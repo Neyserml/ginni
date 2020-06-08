@@ -1,0 +1,22 @@
+<div
+  *ngIf="show"
+  [className]="'dropdown-table ' + class"
+  [class.disabled]="disabled"
+  (click)="toggleActive()"
+>
+  <span>{{ title }}</span>
+  <ng-container *ngIf="!disabled; else down">
+    <ginni-dropdown longText="longText"></ginni-dropdown>
+  </ng-container>
+  <ng-template #down>
+    <span class="dropdown-button icon-chevron-down disabled" [class.long-text]="longText"></span>
+  </ng-template>
+  <span>
+    <ng-content
+      *ngIf="activated"
+      class="title"
+      [class.active]="activated"
+      @collapseInDownAnimation
+    ></ng-content>
+  </span>
+</div>

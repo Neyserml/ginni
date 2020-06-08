@@ -1,0 +1,224 @@
+<ginni-modal
+  class="modal-dialog modal-full reset-body"
+  [(show)]="show"
+  (showChange)="showChange.emit($event)"
+>
+  <ginni-modal-head title *ngIf="mostrarContratos"> Agregar contratos vinculados </ginni-modal-head>
+  <div body class="position-relative" [ngClass]="{ 'flex-middle-center': !mostrarContratos }">
+    <ginni-cargando [loading]="loading" [failed]="failed">
+      <ng-container *ngIf="mostrarContratos">
+        <div class="only-desktop">
+          <table class="table table-striped tr-pointer">
+            <thead>
+              <tr>
+                <th>N° contrato</th>
+                <th>Adjudicación</th>
+                <th>Situación</th>
+                <th>
+                  Valor del
+                  <div>certificado</div>
+                </th>
+                <th class="text-center">
+                  N° cuotas
+                  <div>pagadas</div>
+                </th>
+                <th>Célula</th>
+                <th class="text-center">
+                  Evaluación
+                  <div>crediticia</div>
+                </th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Selección</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contrato of listaContratos">
+                <td>{{ contrato.nroContrato }}</td>
+                <td>
+                  <ng-container *ngIf="contrato?.fechaAdjudicacion; else sinFecha">
+                    {{ isFechaAdjudicacion(contrato.fechaAdjudicacion) }}
+                  </ng-container>
+                  <ng-template #sinFecha>
+                    -
+                  </ng-template>
+                </td>
+                <td>
+                  <ng-container *ngIf="contrato?.situacion; else sinSituacion">
+                    {{ contrato.situacion.toUpperCase() }}
+                  </ng-container>
+                  <ng-template #sinSituacion>
+                    -
+                  </ng-template>
+                </td>
+                <td>{{ _formatoMoneda(contrato.valorCertificado) }}</td>
+                <td class="text-center">{{ contrato.nCuotasPagadas }}</td>
+                <td>{{ contrato.celula?.value.toUpperCase() }}</td>
+                <td class="text-center">{{ contrato.tieneEvaluacionCrediticia ? "SI" : "NO" }}</td>
+                <td class="text-center">{{ contrato.tienePedido ? "SI" : "NO" }}</td>
+                <td class="text-center">
+                  <ng-container *ngIf="contrato.estaIncluido; else noEstaIncluido"
+                    >INCLUIDO</ng-container
+                  >
+                  <ng-template #noEstaIncluido>
+                    <ginni-checkbox
+                      [disabled]="contrato.readOnly"
+                      [(value)]="contrato.selected"
+                    ></ginni-checkbox>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="flex justify-end">
+            <button
+              body
+              (click)="agregarContratos()"
+              ginniButton
+              color="primary"
+              [attr.disabled]="desabilitarAgregar ? null : true"
+            >
+              Agregar seleccionados
+            </button>
+            <div class="big-form-footer flex justify-center" *ngIf="errorMensajeAgregar">
+              <div class="alert alert-danger" role="alert">
+                {{ errorMensajeAgregar }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="only-mobile">
+          <div class="list-items">
+            <div *ngFor="let contrato of listaContratos; let last = last" class="row-item border">
+              <ginni-pagina-container>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-4 col-md-3 form-control-size">
+                    <ng-container *ngIf="contrato.estaIncluido; else noEstaIncluido">
+                      INCLUIDO
+                    </ng-container>
+                    <ng-template #noEstaIncluido>
+                      <ginni-checkbox
+                        body
+                        [disabled]="contrato.readOnly"
+                        [(value)]="contrato.selected"
+                      >
+                      </ginni-checkbox>
+                    </ng-template>
+                  </div>
+                  <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="form-group">
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">N° contrato</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ contrato.nroContrato }}</span>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">Adjudicación</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <ng-container *ngIf="contrato?.fechaAdjudicacion; else sinFecha">
+                            <span>{{ isFechaAdjudicacion(contrato.fechaAdjudicacion) }}</span>
+                          </ng-container>
+                          <ng-template #sinFecha>
+                            -
+                          </ng-template>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">Situación</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <ng-container *ngIf="contrato?.situacion; else sinSituacion">
+                            <span>{{ contrato.situacion.toUpperCase() }}</span>
+                          </ng-container>
+                          <ng-template #sinSituacion>
+                            -
+                          </ng-template>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">
+                          Valor del certificado
+                        </div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ _formatoMoneda(contrato.valorCertificado) }}</span>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">N° cuotas pagadas</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ contrato.nCuotasPagadas }}</span>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">Célula</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ contrato.celula?.value.toUpperCase() }}</span>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">
+                          Evaluación crediticia
+                        </div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ contrato.tieneEvaluacionCrediticia ? "SI" : "NO" }}</span>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <div class="form-control-size col-sm-12 col-xs-6">Pedido</div>
+                        <div class="form-control-size text-right col-sm-12 col-xs-6">
+                          <span>{{ contrato.tienePedido ? "SI" : "NO" }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ginni-pagina-container>
+            </div>
+          </div>
+          <ginni-pagina-container>
+            <div class="big-form-footer">
+              <button
+                [attr.disabled]="desabilitarAgregar ? null : true"
+                (click)="agregarContratos()"
+                body
+                ginniButton
+                color="primary"
+                class="ui-button-block"
+              >
+                Agregar
+              </button>
+            </div>
+          </ginni-pagina-container>
+        </div>
+      </ng-container>
+      <div *ngIf="!mostrarContratos">
+        <ginni-pagina-container>
+          <div class="color-primary mensaje-advertencia">
+            {{ mostrarMensajeAdvertencia }}
+          </div>
+          <div class="ui-button-group-separate">
+            <button
+              (click)="servicioAgregarContratos()"
+              ginniButton
+              class="ui-button-padding"
+              color="primary"
+            >
+              Aceptar
+            </button>
+            <button
+              (click)="cancelarAgregar()"
+              ginniButton
+              class="ui-button-padding ui-button-dark"
+            >
+              Cancelar
+            </button>
+          </div>
+          <div class="big-form-footer">
+            <div class="alert alert-danger" role="alert" *ngIf="errorMensajeAgregar">
+              {{ errorMensajeAgregar }}
+            </div>
+          </div>
+        </ginni-pagina-container>
+      </div>
+    </ginni-cargando>
+  </div>
+</ginni-modal>

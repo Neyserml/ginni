@@ -1,0 +1,11 @@
+[{
+  "idRelacion":83687,
+  "idPersonaRelacionada":477025,
+  "idPersona":246306,
+  "nombre":"INGRESO DEMOPATERNO DEMOMATERNO",
+  "tipoRelacion":"Conviviente",
+  "tipoDocumento":"C.E.",
+  "numeroDocumento":"88552233",
+  "idTipoDocumento":16,
+  "aportaIngresos": true
+}]

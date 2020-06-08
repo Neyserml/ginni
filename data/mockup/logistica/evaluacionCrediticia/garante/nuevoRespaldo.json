@@ -1,0 +1,24 @@
+{
+  "nombres": "DORA",
+  "apellidoPaterno": "YÁNGORA",
+  "apellidoMaterno": "ZEVALLOS",
+  "idTipoRelacion": 120,
+  "idEstadoCivil": 69,
+  "idPaisNacionalidad": 8,
+  "fechaNacimiento": "01/01/2000",
+  "idSexo": 106,
+  "correo": "DAVID_0520@GMAIL.COM",
+  "celular": "949083125",
+  "direccionDomicilio": {
+    "idDepartamento": "06",
+    "idProvincia": "03",
+    "idDistrito": "03",
+    "idTipoZona": "85",
+    "nombreZona": "ZONA 11",
+    "idTipoVia": "98",
+    "direccionTexto": "AV PUNO. 456 LIMA",
+    "referencia": "LA BODEGA 451"
+  },
+  "numeroDocumento": "42413781",
+  "tipoDocumento": 18
+}

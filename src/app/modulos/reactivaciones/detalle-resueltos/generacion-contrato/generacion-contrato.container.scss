@@ -1,0 +1,76 @@
+@import "conf/colors";
+@import "conf/variables";
+
+.esferas {
+  margin-bottom: 50px;
+
+  a[disabled] {
+    pointer-events: none;
+  }
+  
+  .esfera--contenedor {
+
+    .bar {
+      height: 10px;
+      background-color: $gray-light;
+      width: 100%;
+      &.active {
+        background-color: $primary;
+      }
+    }
+    &:not(:first-child) {
+      width: 50%;
+
+      .esfera--texto {
+        width: 28%;
+      }
+    }
+  
+    .esfera--fondo {
+      background-color: $gray-light;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      font-weight: bold;
+      font-size: 36px;
+      justify-content: center;
+      align-items: center;
+      width: 62px;
+      height: 62px;
+
+      &.active {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .active {
+    .esfera--fondo {
+      background-color: $primary;
+    }
+  }
+
+  .esferas__texto {
+    margin-top: 8px;
+
+    div {
+      width: 164px;
+    }
+    .esfera--texto {
+      font-weight: bold;
+      font-size: $fontL;
+      margin-top: 10px;
+
+      &.active,
+      &.active:hover,
+      &.activated {
+        color: $primary !important;
+        cursor: pointer;
+      }
+
+      &:not(.active) {
+        color: $gray-light;
+      }
+    }
+  }
+}

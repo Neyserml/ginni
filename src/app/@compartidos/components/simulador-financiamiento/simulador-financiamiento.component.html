@@ -1,0 +1,739 @@
+<div class="simulador-form">
+  <ginni-cargando [loading]="loading" [failed]="failed">
+    <div class="row-item">
+      <div [ngClass]="{ row: portalSandbox.esDesktop }">
+        <div class="col-md-6">
+          <div class="row row-espaciados">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="simulador__contratos-asociados">
+                      <div class="title-secondary">
+                        <div>
+                          <ng-container *ngIf="mostrarTodoConceptos; else asociados">
+                            Contratos:
+                          </ng-container>
+                          <ng-template #asociados>Contratos asociados al caso:</ng-template>
+                        </div>
+                        <div
+                          *ngFor="let contrato of simuladorIniciarDatos?.contratos; let last = last"
+                        >
+                          {{ contrato }}
+                          <span *ngIf="!last">{{ " ," }}</span>
+                        </div>
+                      </div>
+                      <div class="subtitle-secondary black reset-padding">
+                        {{ excedenteMensaje }}
+                      </div>
+                      <div class="row-underline only-mobile"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 only-desktop"></div>
+        <div class="col-md-5 only-desktop">
+          <div
+            *ngIf="!soloGPS && lineaMaximaFinanciamiento"
+            class="title-secondary black text-right"
+          >
+            Línea máxima {{ _formatoMoneda(lineaMaximaFinanciamiento) }}
+          </div>
+        </div>
+
+        <div class="col-md-5 full-height" *ngIf="simuladorForm">
+          <div class="contenedorForm">
+            <div *ngIf="formIniciar" [formGroup]="formIniciar">
+              <div class="row row-espaciados">
+                <div
+                  class="simulador__informacion-asociado subtitle-secondary col-xs-12 col-sm-12 col-md-12"
+                >
+                  Ingresa la información del asociado para simular un financiamiento
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="row simulador__label">
+                      <div class="subtitle-secondary black form-label col-xs-5 col-sm-5 col-md-7">
+                        Valor vehículo
+                      </div>
+                      <div
+                        class="form-control-wrapper reset-padding col-xs-1 col-sm-1 col-md-1 flex justify-end"
+                      >
+                        $
+                      </div>
+                      <div
+                        class="flex similador__label--mensajes form-control-wrapper col-xs-6 col-sm-6 col-md-4"
+                      >
+                        <div class="flex full-width">
+                          <input
+                            (keyup)="validarFormIniciar('valorVehiculos', $event)"
+                            [ngClass]="{
+                              error: formIniciar.get('valorVehiculos')?.invalid,
+                              disabled:
+                                !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                            }"
+                            [ginniSoloNumeros]="true"
+                            [ginniMontoMaximo]="true"
+                            [ginniPrimerDigitoDiferenteDeCero]="true"
+                            class="form-control"
+                            formControlName="valorVehiculos"
+                            [readonly]="
+                              !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div
+                        *ngIf="simuladorIniciarDatos?.esPedido"
+                        class="col-xs-6 col-sm-6 col-md-8"
+                      ></div>
+                      <div
+                        *ngIf="simuladorIniciarDatos?.esPedido"
+                        class="title-secondary text-center col-xs-6 col-sm-6 col-md-4"
+                      >
+                        Pedido
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                      <div class="col-xs-6 col-sm-6 col-md-4">
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('valorVehiculos')?.errors?.decimales"
+                        >
+                          *Máximo dos decimales
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('valorVehiculos')?.errors?.enteros"
+                        >
+                          *Máximo 15 enteros
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('valorVehiculos')?.errors?.number"
+                        >
+                          *Debe ser un monto válido
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('valorVehiculos')?.errors?.negativo"
+                        >
+                          *No debe ser un monto negativo
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="
+                            formIniciar.get('valorVehiculos')?.errors?.descripcion ||
+                            formIniciar.get('valorVehiculos').value === 0
+                          "
+                        >
+                          *No debe empezar el monto con cero
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="row simulador__label">
+                      <div class="subtitle-secondary black  form-label col-xs-6 col-sm-6 col-md-8">
+                        Cantidad de vehículos
+                      </div>
+                      <div class="form-control-wrapper col-xs-6 col-sm-6 col-md-4">
+                        <input
+                          (keyup)="validarFormIniciar('cantidadVehiculos', $event)"
+                          [ngClass]="{
+                            error: formIniciar.get('cantidadVehiculos')?.invalid,
+                            disabled:
+                              !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                          }"
+                          formControlName="cantidadVehiculos"
+                          [ginniNumerosEnteros]="true"
+                          [ginniMontoMaximo]="true"
+                          [ginniPrimerDigitoDiferenteDeCero]="true"
+                          class="form-control"
+                          [readonly]="
+                            !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                          "
+                        />
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                      <div class="col-xs-6 col-sm-6 col-md-4">
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="
+                            formIniciar.get('cantidadVehiculos')?.errors?.descripcion ||
+                            formIniciar.get('cantidadVehiculos').value === 0
+                          "
+                        >
+                          *Debe ser mínimo 1 vehículo
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('cantidadVehiculos')?.errors?.decimales"
+                        >
+                          *Máximo dos decimales
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('cantidadVehiculos')?.errors?.enteros"
+                        >
+                          *Máximo 15 enteros
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('cantidadVehiculos')?.errors?.number"
+                        >
+                          *Debe ser un monto válido
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('cantidadVehiculos')?.errors?.negativo"
+                        >
+                          *No debe ser un monto negativo
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12" *ngIf="!esInterno">
+                  <div class="form-group">
+                    <div class="row simulador__label">
+                      <div class="subtitle-secondary black  form-label col-xs-5 col-sm-5 col-md-7">
+                        Remate
+                      </div>
+                      <div
+                        class="form-control-wrapper reset-padding col-xs-1 col-sm-1 col-md-1 flex justify-end"
+                      >
+                        $
+                      </div>
+                      <div
+                        class="flex similador__label--mensajes form-control-wrapper col-xs-6 col-sm-6 col-md-4"
+                      >
+                        <div class="flex full-width">
+                          <input
+                            (keyup)="validarFormIniciar('remate', $event)"
+                            [ngClass]="{
+                              error: formIniciar.get('remate')?.invalid,
+                              disabled:
+                                !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                            }"
+                            formControlName="remate"
+                            [ginniSoloNumeros]="true"
+                            [ginniMontoMaximo]="true"
+                            [ginniPrimerDigitoDiferenteDeCero]="true"
+                            class="form-control"
+                            [readonly]="
+                              !puedeEditar || simuladorIniciarDatos.esPedido || evaluacionAprobada
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                      <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                      <div class="col-xs-6 col-sm-6 col-md-4">
+                        <label for="" class="error" *ngIf="formIniciar.get('remate')?.errors?.max">
+                          *No debe exceder al monto del certificado
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('remate')?.errors?.decimales"
+                        >
+                          *Máximo dos decimales
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('remate')?.errors?.enteros"
+                        >
+                          *Máximo 15 enteros
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('remate')?.errors?.number"
+                        >
+                          *Debe ser un monto válido
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="formIniciar.get('remate')?.errors?.negativo"
+                        >
+                          *No debe ser un monto negativo
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8"></div>
+                <!--SIMULADOR INTERNO-->
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                  <div
+                    *ngIf="!mostrarTodoConceptos"
+                    class="big-form-footer simulador__button--calcular space-between row-reverse reset-padding"
+                  >
+                    <ng-container *ngIf="puedeEditar && !evaluacionAprobada">
+                      <div
+                        [ngClass]="{
+                          'text-center': portalSandbox.esDesktop,
+                          'text-right': !portalSandbox.esMobile
+                        }"
+                        class="alternative-button"
+                        *ngIf="mostrarCalcular"
+                        (click)="valoresInicialesButton()"
+                      >
+                        Valores iniciales
+                      </div>
+                    </ng-container>
+                    <button
+                      [disabled]="!puedeEditar || evaluacionAprobada"
+                      *ngIf="!mostrarCalcular"
+                      class="ui-button-padding"
+                      ginniButton
+                      color="primary"
+                      (click)="puedeEditar && !evaluacionAprobada ? calcular() : null"
+                    >
+                      Calcular
+                    </button>
+                  </div>
+                </div>
+                <!--SIMULADOR EXTERNO-->
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div
+                    *ngIf="mostrarTodoConceptos"
+                    class="big-form-footer simulador__button--calcular flex space-between reset-padding"
+                  >
+                    <ng-container *ngIf="puedeEditar">
+                      <div
+                        [ngClass]="{
+                          'text-center': portalSandbox.esDesktop,
+                          'text-right': !portalSandbox.esMobile
+                        }"
+                        class="alternative-button full-width"
+                        *ngIf="mostrarCalcular && !simuladorIniciarDatos?.esPedido"
+                        (click)="valoresInicialesButton()"
+                      >
+                        Valores iniciales
+                      </div>
+                    </ng-container>
+                    <div class="flex-middle-center" *ngIf="!mostrarCalcular">
+                      <span class="icon-chevron-left"></span>
+                      <div class="alternative-button" (click)="regresarEmit.emit()">
+                        Regresar
+                      </div>
+                    </div>
+                    <button
+                      [disabled]="!puedeEditar"
+                      *ngIf="!mostrarCalcular"
+                      class="ui-button-padding"
+                      ginniButton
+                      color="primary"
+                      (click)="puedeEditar ? calcular() : null"
+                    >
+                      Calcular
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-right big-form-footer" *ngIf="calcularMensajeError">
+              <ginni-alert
+                [allowClose]="true"
+                [type]="errorType"
+                (close)="calcularMensajeError = null"
+                (closeSuccess)="calcularMensajeError = null"
+                [show]="calcularMensajeError"
+              >
+                {{ calcularMensajeError }}
+              </ginni-alert>
+            </div>
+            <ng-container *ngIf="mostrarCalcular">
+              <ng-container *ngIf="!mostrarTodoConceptos">
+                <div class="simulador__formulario--select">
+                  <div class=" subtitle-secondary">Conceptos a financiar</div>
+                  <div class="row row-espaciados">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="form-group">
+                        <div class="row flex space-between">
+                          <div class="form-control-wrapper col-xs-12 col-sm-12 col-md-12">
+                            <select
+                              #select
+                              [attr.disabled]="!puedeEditar || evaluacionAprobada ? true : null"
+                              class="form-control"
+                              (change)="
+                                puedeEditar && !evaluacionAprobada ? agregarConcepto($event) : null
+                              "
+                            >
+                              <option value="">SELECCIONAR </option>
+                              <option
+                                *ngFor="let option of listaConfiguracion"
+                                [value]="option.clave"
+                              >
+                                {{ option.valor }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-xs-7 col-sm-12 col-md-12">
+                            <div *ngIf="errorAgregarConcepto">
+                              <label for="" class="error">
+                                Concepto a financiar ya ha sido agregado
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <div class="simulador__formulario--espaciado">
+                <div class="row row-espaciados">
+                  <div
+                    [formGroup]="form"
+                    *ngFor="let concepto of conceptos; let i = index"
+                    class="col-xs-12 col-sm-12 col-md-12"
+                  >
+                    <div class="form-group">
+                      <div class="row simulador__label">
+                        <div class="subtitle-secondary black form-label col-xs-5 col-sm-5 col-md-7">
+                          <div class="simulador__label--nombre-concepto">
+                            {{ concepto.valor }}
+                            <span *ngIf="concepto.nombreConcepto">
+                              ({{ concepto.nombreConcepto.toLowerCase() }})
+                              <span *ngIf="concepto.tipoConcepto === 'F'">*</span>
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          class="form-control-wrapper reset-padding col-xs-1 col-sm-1 col-md-1 flex justify-end"
+                        >
+                          $
+                        </div>
+                        <div class="form-control-wrapper col-xs-6 col-sm-6 col-md-4">
+                          <input
+                            [ngClass]="{
+                              disabledControl: concepto.readonly,
+                              error: form.get(concepto.formControlName)?.invalid,
+                              info:
+                                concepto.clave === GPS_FINANCIADO &&
+                                formIniciar.get('remate')?.value > 0
+                            }"
+                            (keyup)="inputMonto(concepto, $event)"
+                            [formControlName]="concepto.formControlName"
+                            [ginniSoloNumeros]="true"
+                            [ginniMontoMaximo]="true"
+                            [ginniPrimerDigitoDiferenteDeCero]="true"
+                            class="form-control"
+                            [attr.disabled]="
+                              concepto.readonly || !puedeEditar || evaluacionAprobada ? true : null
+                            "
+                            [readonly]="concepto.readonly || !puedeEditar || evaluacionAprobada"
+                          />
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-4" *ngIf="form.invalid">
+                          <label
+                            for=""
+                            class="error"
+                            *ngIf="form.get(concepto.formControlName)?.errors?.excedeDiferencia"
+                          >
+                            *Monto excede {{ concepto.valor.toLowerCase() }}
+                          </label>
+                          <label
+                            for=""
+                            class="error"
+                            *ngIf="form.get(concepto.formControlName)?.errors?.decimales"
+                          >
+                            *Máximo dos decimales
+                          </label>
+                          <label
+                            for=""
+                            class="error"
+                            *ngIf="form.get(concepto.formControlName)?.errors?.enteros"
+                          >
+                            *Máximo 15 enteros
+                          </label>
+                          <label
+                            for=""
+                            class="error"
+                            *ngIf="form.get(concepto.formControlName)?.errors?.negativo"
+                          >
+                            *Debe ser un número positivo
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group simulador__monto">
+                      <div
+                        class="simulador__separador--horizontal col-xs-12 col-sm-12 col-md-12"
+                      ></div>
+                      <div class="row simulador__label">
+                        <div
+                          class="simulador__monto-total subtitle-secondary black form-control-wrapper col-xs-5 col-sm-5 col-md-7"
+                        >
+                          <div>
+                            Total monto del financiamiento<span class="only-mobile reset-margin"
+                              >*</span
+                            >
+                          </div>
+                          <small class="black only-desktop">*</small>
+                        </div>
+                        <div
+                          class="form-control-wrapper reset-padding col-xs-1 col-sm-1 col-md-1 flex justify-end"
+                        >
+                          $
+                        </div>
+                        <div class="form-control-wrapper col-xs-6 col-sm-6 col-md-4">
+                          <input
+                            [attr.disabled]="!puedeEditar || evaluacionAprobada ? true : null"
+                            [ginniSoloNumeros]="true"
+                            [ginniMontoMaximo]="true"
+                            [ginniPrimerDigitoDiferenteDeCero]="true"
+                            [value]="montoTotal"
+                            readonly="true"
+                            class="form-control disabled"
+                          />
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-8"></div>
+                        <div class="form-control-size col-xs-6 col-sm-6 col-md-4 text-center">
+                          <ng-container *ngIf="excedeLineaMaxima && !soloGPS; else noExcede">
+                            <label for="" class="error text-center">
+                              Monto excede la línea máxima
+                            </label>
+                          </ng-container>
+                          <ng-template #noExcede>
+                            <label
+                              for=""
+                              class="blue-strong simulador__linea-maxima"
+                              *ngIf="!soloGPS"
+                            >
+                              <div>Línea máxima</div>
+                              <div>{{ _formatoMoneda(lineaMaximaFinanciamiento) }}</div>
+                            </label>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div *ngIf="confirmarButton; else regresar">
+            <div class="big-form-footer space-between row-reverse">
+              <div class="only-mobile simulador__fecha" *ngIf="fechaFinanciamiento">
+                Fecha de última simulación {{ fechaFinanciamiento }}
+              </div>
+              <button
+                *ngIf="mostrarCalcular"
+                [attr.disabled]="!puedeEditar || evaluacionAprobada ? true : null"
+                class="ui-button-padding"
+                ginniButton
+                color="primary"
+                (click)="puedeEditar && !evaluacionAprobada ? consultar() : null"
+              >
+                Consultar
+              </button>
+            </div>
+
+            <div class="text-right" *ngIf="consultarFailed">
+              <ginni-alert
+                [allowClose]="true"
+                [disappear]="consultarFailed ? true : false"
+                [type]="errorType"
+                (close)="consultarFailed = null"
+                (closeSuccess)="consultarFailed = null"
+                [show]="consultarFailed"
+              >
+                {{ consultarFailed }}
+              </ginni-alert>
+            </div>
+          </div>
+
+          <ng-template #regresar>
+            <div
+              *ngIf="mostrarCalcular && formIniciar.get('remate')?.value > 0"
+              class="form-control-size blue-strong font-bold"
+            >
+              * Valor de GPS puede variar si se realiza remate o adelanto de cuotas
+            </div>
+            <div class="big-form-footer flex space-between" *ngIf="mostrarCalcular">
+              <div class="flex-middle-center">
+                <span class="icon-chevron-left"></span>
+                <div class="alternative-button" (click)="regresarEmit.emit()">
+                  Regresar
+                </div>
+              </div>
+              <button
+                *ngIf="mostrarCalcular"
+                [attr.disabled]="disabledConsultar || !puedeEditar ? true : null"
+                class="ui-button-padding"
+                ginniButton
+                color="primary"
+                (click)="puedeEditar ? consultar() : null"
+              >
+                Consultar
+              </button>
+            </div>
+
+            <div class="text-right" *ngIf="consultarFailed">
+              <ginni-alert
+                [allowClose]="true"
+                [disappear]="consultarFailed ? true : false"
+                [type]="errorType"
+                (close)="consultarFailed = null"
+                (closeSuccess)="consultarFailed = null"
+                [show]="consultarFailed"
+              >
+                {{ consultarFailed }}
+              </ginni-alert>
+            </div>
+          </ng-template>
+        </div>
+        <div class="col-md-1">
+          <div *ngIf="informacionCategoria" class="simulador__separador--vertical"></div>
+        </div>
+        <div class="col-md-6" *ngIf="informacionCategoria">
+          <div class="simulador__categoria flex-column space-between">
+            <!--SIMULADOR INTERNO REGRESAR-->
+            <div class="form-group only-mobile">
+              <div
+                *ngIf="puedeEditar && !simuladorIniciarDatos?.esPedido"
+                class="big-form-footer simulador__button--regresar"
+              >
+                <span class="icon-chevron-left"></span>
+                <div class="alternative-button" (click)="regresar()">
+                  Regresar
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="flex-middle-center simulador__categoria--text color-primary"
+                [ngClass]="{
+                  'color-danger': categoriaInformacion?.nuevaCategoria
+                }"
+              >
+                <ng-container *ngIf="categoriaInformacion?.nuevaCategoria">
+                  <i class="icon-alert-triangle" aria-hidden="true"></i>
+                </ng-container>
+                {{ categoriaInformacion?.mensajeAlerta }}
+              </div>
+
+              <div class="simulador__categoria--informacion">
+                <div class="form-group flex space-between">
+                  <div class="subtitle-secondary black  simulador__label">
+                    <ng-container *ngIf="categoriaInformacion?.nuevaCategoria; else mismaCategoria">
+                      Nueva categoría
+                    </ng-container>
+                    <ng-template #mismaCategoria>
+                      Categoría
+                    </ng-template>
+                  </div>
+                  <div class="form-control simulador__categoria--fake-input disabled">
+                    {{ descripcionCategoria }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="only-desktop simulador__fecha text-right" *ngIf="fechaFinanciamiento">
+              Fecha de la última evaluación con financiamiento {{ fechaFinanciamiento }}
+            </div>
+          </div>
+
+          <div
+            class="big-form-footer"
+            [ngClass]="{ 'simulador__button--confirmar': fechaFinanciamiento }"
+          >
+            <button
+              *ngIf="confirmarButton; else pdfButton"
+              [attr.disabled]="
+                disabledConfirmar || !puedeEditar || evaluacionAprobada ? true : null
+              "
+              ginniButton
+              (click)="
+                !disabledConfirmar && puedeEditar && !evaluacionAprobada ? confirmarCambio() : null
+              "
+              class="ui-button-padding"
+              color="primary"
+            >
+              Confirmar
+            </button>
+            <ng-template #pdfButton>
+              <button
+                ginniButton
+                (click)="generarPDFButton()"
+                class="ui-button-padding"
+                color="primary"
+              >
+                Generar PDF
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-item">
+      <div class="col-md-12">
+        <div class="text-right" *ngIf="seGuardo">
+          <ginni-alert
+            [allowClose]="true"
+            [disappear]="seGuardo ? true : false"
+            [type]="successType"
+            [show]="seGuardo"
+            (close)="seGuardo = null"
+            (closeSuccess)="seGuardo = null"
+          >
+            Guardado correctamente
+          </ginni-alert>
+        </div>
+
+        <div class="text-right" *ngIf="failedConfirmarOPDF">
+          <ginni-alert
+            [allowClose]="true"
+            [disappear]="failedConfirmarOPDF ? true : false"
+            [type]="errorType"
+            (close)="failedConfirmarOPDF = null"
+            (closeSuccess)="failedConfirmarOPDF = null"
+            [show]="failedConfirmarOPDF"
+          >
+            {{ failedConfirmarOPDF }}
+          </ginni-alert>
+        </div>
+      </div>
+    </div>
+  </ginni-cargando>
+</div>
+
+<ginni-modal-confirm
+  [show]="modalConfirmarCambio"
+  (go)="aceptarCambio()"
+  goColor="primary"
+  goText="Aceptar"
+  (back)="cancelarCambio()"
+  backColor="dark"
+  backText="Cancelar"
+>
+  {{ categoriaInformacion?.mensajeConfirmacion }}
+</ginni-modal-confirm>

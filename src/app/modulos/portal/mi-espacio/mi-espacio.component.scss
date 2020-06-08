@@ -1,0 +1,29 @@
+@import "conf/conf";
+
+.bg-mi-espacio {
+  background-image: url("../../../../assets/imagenes/mi_espacio.jpg");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-width: $resM) {
+    right: 50px;
+  }
+}
+
+.head-mi-espacio {
+  padding-bottom: 10px;
+
+  img {
+    width: 60px;
+
+    @media (max-width: $resM) {
+      width: 50px;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@import "conf/conf";
+
+.dialog {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: white;
+  z-index: 15;
+  bottom: 0;
+  left: -100%;
+  transition: left 0.5s;
+
+  &.active {
+    left: 0;
+  }
+
+  .dialog__head {
+    display: flex;
+    height: 50px;
+    background: $blue-strong;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .dialog__close-icon {
+    color: white;
+    font-size: 23px;
+    padding-right: 5px;
+    display: inline-block;
+  }
+
+  .dialog__head-title {
+    color: white;
+  }
+
+  .dialog__body {
+    padding: 15px;
+  }
+}

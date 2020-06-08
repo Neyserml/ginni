@@ -1,0 +1,145 @@
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@media (prefers-reduced-motion) {
+  .animated {
+    -webkit-animation: unset !important;
+    animation: unset !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+
+
+@keyframes DrawLineInfinite {
+  0% {
+    fill-opacity: 0;
+  }
+
+  20% {
+    fill-opacity: 0;
+  }
+
+  25% {
+    fill-opacity: 1;
+  }
+
+  50% {
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  70% {
+    fill-opacity: 1;
+  }
+
+  75% {
+    fill-opacity: 0;
+  }
+
+  90% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    fill-opacity: 0;
+  }
+}
+
+@keyframes DrawLine {
+  0% {
+    fill-opacity: 0;
+  }
+
+  100% {
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes Opacity {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes FillIn {
+  0% {
+    fill-opacity: 0;
+  }
+
+  70% {
+    fill-opacity: 0;
+  }
+
+  80% {
+    fill-opacity: 1;
+  }
+
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+/* Animation */
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes spin {
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

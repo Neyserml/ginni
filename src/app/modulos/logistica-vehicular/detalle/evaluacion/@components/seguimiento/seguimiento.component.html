@@ -1,0 +1,103 @@
+<ginni-cargando
+  [loading]="(seguimientoLoading$ | async) || loading"
+  [failed]="seguimientoFailed$ | async"
+>
+  <div class="table-grid bandeja-trabajo" *ngIf="listarSeguimiento">
+    <div
+      class="simulador__actividades flex-middle-center justify-end"
+      *ngIf="listarSeguimiento.length"
+    >
+      <div class="table-actions__item ui-button-group">
+        <button
+          (click)="descargarPDF()"
+          ginniButton
+          color="white"
+          class="ui-button-large ui-button-block icon-printer2"
+        ></button>
+      </div>
+      <div class="simulador__actividades--text title-secondary black">
+        {{ actividades }}
+      </div>
+    </div>
+    <table class="reset-margin table table-striped only-desktop">
+      <ng-container *ngIf="listarSeguimiento.length; else noHaySeguimiento">
+        <thead>
+          <tr>
+            <th
+              [class]="columna.className ? columna.className : ''"
+              *ngFor="let columna of columnas"
+            >
+              {{ columna?.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="row-animation">
+          <tr *ngFor="let item of listarSeguimiento; let i = index">
+            <td>{{ item.usuario }}</td>
+            <td>{{ item.evento }}</td>
+            <td>{{ item.fechaEvento }}</td>
+            <td>{{ item.comentario }}</td>
+          </tr>
+        </tbody>
+      </ng-container>
+    </table>
+    <div class="only-mobile">
+      <ng-container *ngIf="listarSeguimiento.length; else noHaySeguimiento">
+        <div class="row row-item" *ngFor="let item of listarSeguimiento; let i = index">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="row">
+              <div class="form-control-size col-sm-12 col-xs-8">
+                Datos del seguimiento:
+              </div>
+              <div class="row-underline"></div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="row">
+              <div class="form-control-size color-gray col-sm-12 col-xs-4">Usuario</div>
+              <div class="form-control-size col-sm-12 col-xs-8 text-right">
+                {{ item.usuario?.toUpperCase() }}
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="row">
+              <div class="form-control-size color-gray col-sm-12 col-xs-4">Evento</div>
+              <div class="form-control-size col-sm-12 col-xs-8 text-right">
+                {{ item.evento?.toUpperCase() }}
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="row">
+              <div class="form-control-size color-gray col-sm-12 col-xs-4">Fecha evento</div>
+              <div class="form-control-size col-sm-12 col-xs-8 text-right">
+                {{ item.fechaEvento?.toUpperCase() }}
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="row">
+              <div class="form-control-size color-gray col-sm-12 col-xs-4">Comentarios</div>
+              <div class="form-control-size col-sm-12 col-xs-8 text-right">
+                {{ item.comentario?.toUpperCase() }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #noHaySeguimiento>
+      <div class="empty-message">
+        No cuenta con seguimientos
+      </div>
+    </ng-template>
+    <ginni-paginador
+      *ngIf="numeroPaginas > 1"
+      [(currentPage)]="paginaActual"
+      (currentPageChange)="listarSeguimientos()"
+      [totalItems]="totalRegistros"
+      [maxSize]="tamanioPaginador"
+    ></ginni-paginador>
+  </div>
+</ginni-cargando>

@@ -1,0 +1,26 @@
+{
+  "centroTrabajo": "ADECO ESPAÑA",
+  "cargoOcupacion": {
+    "identificador": "103",
+    "descripcion": "profesional en redes y comunicaciones"
+  },
+  "idTipoTrabajador": 112,
+  "fechaIngresoTrabajo": "20/07/1979",
+  "direccion": {
+    "idDepartamento": "15",
+    "idProvincia": "01",
+    "idDistrito": "01",
+    "idTipoZona": "82",
+    "nombreZona": "corpac",
+    "idTipoVia": null,
+    "direccionTexto": "EMILIO FERRARI NIVEL 2 -P 4A",
+    "referencia": "a pasos de larcomar"
+  },
+  "contacto": {
+    "id": "12321321",
+    "numeroTelefono": "7996961",
+    "anexo": "038",
+    "correoElectronico": "desarrollo@pandero.com.pe"
+  },
+  "estadoPEP": true
+}

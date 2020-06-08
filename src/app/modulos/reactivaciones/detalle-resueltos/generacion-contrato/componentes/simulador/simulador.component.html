@@ -1,0 +1,1655 @@
+<div class="position-relative simulacion-page">
+  <div class="title-primary-strong">
+    Simulación de pago
+  </div>
+  <div class="title-no-link with-border-bottom">
+    <span>
+      Detalle del contrato actual
+    </span>
+  </div>
+  <div class="position-relative">
+    <ng-container *ngIf="contratoActual?.listaContratos; else noHayListaDeContratos">
+      <div
+        *ngFor="let contrato of contratoActual?.listaContratos; let index = index"
+        class="tabla-desplegable-ancha only-high"
+      >
+        <div>
+          <div (click)="toggleCollapse(index)">
+            <img
+              [class.active]="state.accordeon[index]"
+              src="../../../../../../../assets/imagenes/flecha-abajo.png"
+            />
+          </div>
+          <div>
+            <div>
+              <div>Nº Contrato</div>
+              <div>Programa</div>
+              <div>Producto</div>
+              <div>Tipo de bien</div>
+              <div>Grupo</div>
+              <div class="text-right nowrap">Valor del certificado</div>
+              <div class="text-right">Monto de aporte</div>
+              <div
+                [class.no-image]="contrato?.contratoOrigen"
+                [class.with-image-head]="!contrato?.contratoOrigen"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="last-image">
+                <img
+                  *ngIf="!contrato?.contratoOrigen"
+                  src="../../../../../../../assets/imagenes/transparent.png"
+                />
+              </div>
+            </div>
+            <div>
+              <div>{{ contrato?.numeroContrato }}</div>
+              <div>{{ contrato?.programa }}</div>
+              <div>{{ contrato?.producto?.toUpperCase() }}</div>
+              <div>{{ contrato?.tipoBien?.toUpperCase() }}</div>
+              <div>{{ contrato?.grupo }}</div>
+              <div class="text-right nowrap">
+                {{ _formatoMoneda(contrato?.valorCertificado) }}
+              </div>
+              <div class="text-right nowrap">{{ _formatoMoneda(contrato?.montoAporte) }}</div>
+              <div
+                [class.no-image]="contrato?.contratoOrigen"
+                [class.with-image-body]="!contrato?.contratoOrigen"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="last-image" (click)="eliminarContrato(index, contrato?.contratoOrigen)">
+                <ginni-button-icon
+                  class="small last-image"
+                  [ngClass]="{ 'color-red': !this.disableForm }"
+                  *ngIf="!contrato?.contratoOrigen"
+                  icon="x-circle"
+                ></ginni-button-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="state.accordeon[index]" @collapseInDownAnimation>
+          <div>&nbsp;</div>
+          <div>
+            <div>
+              <div>Fecha de resolución</div>
+              <div>Día de pago</div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">Nº cuotas vencidas</div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">Inversión Inmobiliaria</div>
+              <div *ngIf="tipoVehiculo(contrato?.tipoBien)">Nº cuotas vencidas</div>
+              <div *ngIf="tipoVehiculo(contrato?.tipoBien)">Marca</div>
+              <div *ngIf="tipoVehiculo(contrato?.tipoBien)">Modelo</div>
+              <div class="nowrap">Cuota admin.%</div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">&nbsp;&nbsp;&nbsp;</div>
+              <div style="padding: 0 5px;">&nbsp;&nbsp;&nbsp;</div>
+              <div><img src="../../../../../../../assets/imagenes/transparent.png" /></div>
+            </div>
+            <div>
+              <div>{{ _dateFormat(contrato?.detalleContrato.fechaResolucion) }}</div>
+              <div>{{ contrato?.detalleContrato.diaPago }}</div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">
+                {{ contrato?.detalleContrato.nroCuotasVencidas }}
+              </div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">
+                {{ contrato?.detalleContrato.inversionInmobiliaria.toUpperCase() }}
+              </div>
+              <div *ngIf="tipoVehiculo(contrato?.tipoBien)">
+                {{ contrato?.detalleContrato.nroCuotasVencidas }}
+              </div>
+              <div *ngIf="tipoVehiculo(contrato?.tipoBien)">
+                {{ contrato?.marca.toUpperCase() }}
+              </div>
+              <div *ngIf="tipoVehiculo(contrato.tipoBien)">
+                {{ contrato?.modelo.toUpperCase() }}
+              </div>
+              <div>{{ contrato?.porcentajeCuotaAdmin }}</div>
+              <div *ngIf="tipoInmueble(contrato?.tipoBien)">&nbsp;&nbsp;&nbsp;</div>
+              <div style="padding: 0 5px;">&nbsp;&nbsp;&nbsp;</div>
+              <div><img src="../../../../../../../assets/imagenes/transparent.png" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngFor="let contrato of contratoActual?.listaContratos; let index = index"
+        class="tabla-desplegable-alta not-wide"
+      >
+        <div>
+          <div (click)="toggleCollapse(index)">
+            <img
+              [class.active]="state.accordeon[index]"
+              src="../../../../../../../assets/imagenes/flecha-abajo.png"
+            />
+          </div>
+          <div>
+            <ginni-button-icon
+              (click)="eliminarContrato(index, contrato?.contratoOrigen)"
+              class="small-right"
+              *ngIf="!contrato?.contratoOrigen"
+              [class]="!disableForm ? 'color-red' : ''"
+              icon="x-circle"
+            ></ginni-button-icon>
+            <div>
+              <div>Nº Contrato</div>
+              <div>{{ contrato?.numeroContrato }}</div>
+            </div>
+            <div>
+              <div>Programa</div>
+              <div>{{ contrato?.programa }}</div>
+            </div>
+            <div>
+              <div>Producto</div>
+              <div>{{ contrato?.producto?.toUpperCase() }}</div>
+            </div>
+            <div>
+              <div>Tipo de bien</div>
+              <div>{{ contrato?.tipoBien?.toUpperCase() }}</div>
+            </div>
+            <div>
+              <div>Grupo</div>
+              <div>{{ contrato?.grupo }}</div>
+            </div>
+            <div>
+              <div>Valor del certificado</div>
+              <div class="nowrap">{{ _formatoMoneda(contrato?.valorCertificado) }}</div>
+            </div>
+            <div>
+              <div>Monto de aporte</div>
+              <div class="nowrap">{{ _formatoMoneda(contrato?.montoAporte) }}</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="state.accordeon[index]" @collapseInDownAnimation>
+          <div>&nbsp;</div>
+          <div>
+            <div>
+              <div>Fecha de resolución</div>
+              <div>{{ _dateFormat(contrato?.detalleContrato.fechaResolucion) }}</div>
+            </div>
+            <div>
+              <div>Día de pago</div>
+              <div>{{ contrato?.detalleContrato.diaPago }}</div>
+            </div>
+            <div>
+              <div>Nº cuotas vencidas</div>
+              <div>{{ contrato?.detalleContrato.nroCuotasVencidas }}</div>
+            </div>
+            <div *ngIf="tipoInmueble(contrato?.tipoBien)">
+              <div>Inversión inmobiliaria</div>
+              <div>{{ contrato?.detalleContrato.inversionInmobiliaria.toUpperCase() }}</div>
+            </div>
+            <div *ngIf="tipoVehiculo(contrato?.tipoBien)">
+              <div>Marca</div>
+              <div>{{ contrato?.marca?.toUpperCase() }}</div>
+            </div>
+            <div *ngIf="tipoVehiculo(contrato?.tipoBien)">
+              <div>Modelo</div>
+              <div>{{ contrato?.modelo?.toUpperCase() }}</div>
+            </div>
+            <div>
+              <div>Cuota admin.%</div>
+              <div>{{ contrato?.porcentajeCuotaAdmin }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="add-item position-relative">
+        <ginni-button-icon
+          (click)="agrearContrato()"
+          [color]="disableForm ? 'color-disable' : 'blue-strong'"
+          icon="plus-circle"
+        >
+          <span [class.color-disable]="disableForm">Agregar contrato</span>
+        </ginni-button-icon>
+      </div>
+    </ng-container>
+    <ng-template #noHayListaDeContratos>
+      <ginni-cargando [loading]="loading" [failed]="failed"></ginni-cargando>
+    </ng-template>
+  </div>
+  <div class="title-no-link with-border-bottom">
+    <span>
+      Detalle del nuevo contrato
+    </span>
+    <div class="pull-right only-wide">
+      <ginni-dropdown-table
+        [show]="true"
+        [disabled]="!adjudicadosDetalle"
+        longText="true"
+        title="Resultados de asambleas - Adjudicados"
+        class="text-right position-relative"
+      >
+        <ginni-adjudicados-detalle
+          [adjudicadosDetalle]="adjudicadosDetalle"
+        ></ginni-adjudicados-detalle>
+      </ginni-dropdown-table>
+    </div>
+  </div>
+  <div class="not-wide">
+    <ginni-dropdown-table
+      [show]="true"
+      [disabled]="!adjudicadosDetalle"
+      longText="true"
+      title="Resultados de asambleas - Adjudicados"
+      class="position-relative"
+    >
+      <ginni-adjudicados-detalle
+        [adjudicadosDetalle]="adjudicadosDetalle"
+      ></ginni-adjudicados-detalle>
+    </ginni-dropdown-table>
+  </div>
+  <form
+    *ngIf="form"
+    [formGroup]="form"
+    (keydown.enter)="$event.preventDefault()"
+    [ginniScrollToFirstInvalid]="scrollFirstInvalid"
+    autocomplete="off"
+    novalidate
+  >
+    <fieldset [disabled]="disableForm">
+      <div class="form-wrapper no-border-on-mobile">
+        <div class="form-row flex-space-between">
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-label">Tipo de bien:<span class="error">*</span></div>
+                <div class="form-control-wrapper">
+                  <select
+                    class="form-control"
+                    [ngClass]="{ error: form?.get('tipoDeBienControl')?.invalid && submitted }"
+                    formControlName="tipoDeBienControl"
+                    id="tipoDeBienControl"
+                    (change)="llenarProductos(tipoDeBienControl.value)"
+                  >
+                    <option *ngFor="let tipoDeBien of tiposDeBien" [value]="tipoDeBien?.listaId">{{
+                      tipoDeBien?.nombre.toUpperCase()
+                    }}</option>
+                  </select>
+                </div>
+                <label class="error" *ngIf="form?.get('tipoDeBienControl')?.invalid && submitted">
+                  * {{ formErrors.tipoDeBienControl }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-label">Producto:<span class="error">*</span></div>
+                <div class="form-control-wrapper">
+                  <select
+                    class="form-control"
+                    [ngClass]="{
+                      error: form?.get('programaProductosControl')?.invalid && submitted
+                    }"
+                    formControlName="programaProductosControl"
+                    id="programaProductosControl"
+                    (change)="llenarMarcas(programaProductosControl.value)"
+                  >
+                    <option value="0">SELECCIONAR</option>
+                    <option
+                      *ngFor="let programaYProducto of contratosYProductos"
+                      [value]="programaYProducto?.codigo"
+                      >{{ programaYProducto?.valor.toUpperCase() }}</option
+                    >
+                  </select>
+                </div>
+                <label
+                  class="error"
+                  *ngIf="form?.get('programaProductosControl')?.invalid && submitted"
+                >
+                  * {{ validationMessages.programaProductosControl.required }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-label">Grupo:<span class="error">*</span></div>
+                <div class="form-control-wrapper">
+                  <div class="input-group">
+                    <input
+                      [ngClass]="{ error: form?.get('grupoControl')?.invalid && submitted }"
+                      formControlName="grupoControl"
+                      id="grupoControl"
+                      placeholder="SELECCIONAR"
+                      type="text"
+                      class="form-control"
+                      readonly
+                    />
+                    <div class="input-group-append">
+                      <button
+                        (click)="listadoDeGrupos()"
+                        type="button"
+                        ginniButton
+                        class="btn ui-button"
+                        [ngClass]="{
+                          'ui-button-blue-strong': hasProgramaProductos(),
+                          'ui-button-disabled': !hasProgramaProductos()
+                        }"
+                        [class.not-allowed]="!hasProgramaProductos()"
+                      >
+                        <img
+                          height="17"
+                          width="17"
+                          class="ball-option"
+                          src="../../../../../../../assets/imagenes/lupa.png"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <label class="error" *ngIf="form?.get('grupoControl')?.invalid && submitted">
+                  * {{ validationMessages.grupoControl.required }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-label">Valor del certificado US$:<span class="error">*</span></div>
+                <div class="form-control-wrapper">
+                  <select
+                    class="form-control"
+                    [ngClass]="{
+                      error: form?.get('valorCertificadoControl')?.invalid && submitted
+                    }"
+                    formControlName="valorCertificadoControl"
+                    (change)="valorCertificadoChange()"
+                    id="valorCertificadoControl"
+                  >
+                    <option value="0">SELECCIONAR</option>
+                    <option
+                      *ngFor="let certificado of certificados"
+                      [value]="certificado?.codigo"
+                      >{{ _formatoMonedaSinSimbolo(certificado?.valor) }}</option
+                    >
+                  </select>
+                </div>
+                <label
+                  class="error"
+                  *ngIf="form?.get('valorCertificadoControl')?.invalid && submitted"
+                >
+                  * {{ validationMessages.valorCertificadoControl.required }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row flex-space-between">
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else inversionEnInmueble">
+                  <div class="form-label">Marca:</div>
+                  <div class="form-control-wrapper">
+                    <select
+                      class="form-control"
+                      [ngClass]="{
+                        error: form?.get('marcaControl')?.invalid && mostrarSimulacion
+                      }"
+                      formControlName="marcaControl"
+                      id="marcaControl"
+                      (change)="llenarModelos(marcaControl.value)"
+                      *ngIf="marcaControl"
+                    >
+                      <option value="0">SELECCIONAR</option>
+                      <option *ngFor="let marca of marcas" [value]="marca?.codigo">{{
+                        marca?.valor
+                      }}</option>
+                    </select>
+                  </div>
+                  <label
+                    class="error"
+                    *ngIf="form?.get('marcaControl')?.invalid && mostrarSimulacion"
+                  >
+                    * {{ validationMessages.marcaControl.min }}
+                  </label>
+                </ng-container>
+                <ng-template #inversionEnInmueble>
+                  <div class="form-label">Inversión inmobiliaria:</div>
+                  <div class="form-control-wrapper">
+                    <select
+                      (change)="inversionInmobiliariaChange()"
+                      class="form-control"
+                      [ngClass]="{
+                        error:
+                          form?.get('inversionInmobiliariaControl')?.invalid && mostrarSimulacion
+                      }"
+                      formControlName="inversionInmobiliariaControl"
+                      id="inversionInmobiliariaControl"
+                      *ngIf="inversionInmobiliariaControl"
+                    >
+                      <option value="0">SELECCIONAR</option>
+                      <option
+                        *ngFor="let inversion of inversionInmobiliaria"
+                        [value]="inversion?.codigo"
+                        >{{ inversion?.valor.toUpperCase() }}</option
+                      >
+                    </select>
+                  </div>
+                  <label
+                    class="error"
+                    *ngIf="form?.get('inversionInmobiliariaControl')?.invalid && mostrarSimulacion"
+                  >
+                    * {{ validationMessages.inversionInmobiliariaControl.min }}
+                  </label>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else numeroDeFormatoTemplate">
+                  <div class="form-label">Modelo:</div>
+                  <div class="form-control-wrapper">
+                    <select
+                      class="form-control"
+                      [ngClass]="{
+                        error: form?.get('modeloControl')?.invalid && mostrarSimulacion
+                      }"
+                      (change)="deshabilitarSwitchModelo()"
+                      formControlName="modeloControl"
+                      id="modeloControl"
+                      *ngIf="modeloControl"
+                    >
+                      <option value="0">SELECCIONAR</option>
+                      <option *ngFor="let modelo of modelos" [value]="modelo?.codigo">{{
+                        modelo?.valor
+                      }}</option>
+                    </select>
+                  </div>
+                  <label
+                    class="error"
+                    *ngIf="form?.get('modeloControl')?.invalid && mostrarSimulacion"
+                  >
+                    * {{ formErrors.modeloControl }}
+                  </label>
+                </ng-container>
+                <ng-template #numeroDeFormatoTemplate>
+                  <div class="form-label nowrap">Número de formato:</div>
+                  <div class="form-control-wrapper">
+                    <input
+                      class="form-control"
+                      formControlName="numeroDeFormatoControl"
+                      ginniSoloNumeros="true"
+                      maxlength="8"
+                      (keyup)="numeroOnKeyUp($event.target.value)"
+                      [ngClass]="{
+                        error: form?.get('numeroDeFormatoControl')?.invalid && mostrarSimulacion
+                      }"
+                    />
+                  </div>
+                  <label
+                    class="error"
+                    *ngIf="form?.get('numeroDeFormatoControl')?.invalid && mostrarSimulacion"
+                  >
+                    * {{ validationMessages.numeroDeFormatoControl.required }}
+                  </label>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else cuotaAdmin">
+                  <div class="form-label nowrap">Número de formato:</div>
+                  <div class="form-control-wrapper">
+                    <input
+                      class="form-control"
+                      formControlName="numeroDeFormatoControl"
+                      ginniSoloNumeros="true"
+                      maxlength="8"
+                      (keyup)="numeroOnKeyUp($event.target.value)"
+                      [ngClass]="{
+                        error: form?.get('numeroDeFormatoControl')?.invalid && mostrarSimulacion
+                      }"
+                    />
+                  </div>
+                  <label
+                    class="error"
+                    *ngIf="form?.get('numeroDeFormatoControl')?.invalid && mostrarSimulacion"
+                  >
+                    * {{ validationMessages.numeroDeFormatoControl.required }}
+                  </label>
+                </ng-container>
+                <ng-template #cuotaAdmin>
+                  <div class="form-label text-center">Cuota admin.%:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ porcentajeCuotaAdmin }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else numeroDeAsamblea">
+                  <div class="form-label text-center">Cuota admin.%:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ porcentajeCuotaAdmin }}
+                  </div>
+                </ng-container>
+                <ng-template #numeroDeAsamblea>
+                  <div class="form-label text-center">Nº Próxima asamblea:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ numeroProximaAsamblea }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row flex-space-between">
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else diaDePago">
+                  <div class="form-label text-center">Nº Próxima asamblea:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ numeroProximaAsamblea }}
+                  </div>
+                </ng-container>
+                <ng-template #diaDePago>
+                  <div class="form-label text-center">Día de pago:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ diaPago }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else cantidadDeVacantes">
+                  <div class="form-label text-center">Día de pago:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ diaPago }}
+                  </div>
+                </ng-container>
+                <ng-template #cantidadDeVacantes>
+                  <div class="form-label nowrap text-center">Cantidad de vacantes:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ vacantes }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else proximaAsamblea">
+                  <div class="form-label text-center nowrap">Cantidad de vacantes:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ vacantes }}
+                  </div>
+                </ng-container>
+                <ng-template #proximaAsamblea>
+                  <div class="form-label text-center">Próxima asamblea:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ _dateFormat(fechaProximaAsamblea) }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else procesoRealizar">
+                  <div class="form-label text-center">Próxima asamblea:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ _dateFormat(fechaProximaAsamblea) }}
+                  </div>
+                </ng-container>
+                <ng-template #procesoRealizar>
+                  <div class="form-label text-center">Nº de meses:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ numeroMeses }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row flex-space-between">
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row">
+                <ng-container *ngIf="isTipoVehiculo; else numeroDeMeses">
+                  <div class="form-label text-center">Nº de meses:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ numeroMeses }}
+                  </div>
+                </ng-container>
+                <ng-template #numeroDeMeses>
+                  <div class="form-label text-center">Proceso a realizar:</div>
+                  <div class="form-control-wrapper inline-block">
+                    {{ movimientoTipo.toUpperCase() }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div *ngIf="isTipoVehiculo" class="form-group">
+              <div class="form-row">
+                <div class="form-label text-center">Proceso a realizar:</div>
+                <div class="form-control-wrapper inline-block">
+                  {{ movimientoTipo.toUpperCase() }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row"></div>
+            </div>
+          </div>
+          <div class="form-block">
+            <div class="form-group">
+              <div class="form-row"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row flex-space-between">
+          <div class="form-block">
+            <div class="required"><span>*</span>Campos obligatorios</div>
+          </div>
+          <div class="form-block"></div>
+          <div class="form-block"></div>
+          <div class="form-block">
+            <div class="form-group">
+              <button
+                type="button"
+                (click)="submit()"
+                class="wide-button-responsive"
+                ginniButton
+                color="primary"
+              >
+                Calcular
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="position-relative" *ngIf="!mostrarSimulacion">
+        <ginni-cargando [loading]="loadingSimulador"></ginni-cargando>
+      </div>
+      <div class="modal-wrapper">
+        <ginni-modal
+          class="modal-dialog modal-full reset-body"
+          [show]="mostrarContratosRelacionados"
+          [nativeBack]="false"
+          (showChange)="cerrarContratosRelacionados()"
+        >
+          <ginni-modal-head title>Agregar contratos</ginni-modal-head>
+          <div body class="modal-dialog">
+            <div class="table-container position-relative">
+              <ginni-cargando [loading]="loadingContratosRelacionados">
+                <table
+                  class="table table-striped wide only-high"
+                  [class.scroll-contrato]="contratosRelacionados?.length > 4"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Número de contrato</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Programa</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Fecha de resolución</span>
+                      </th>
+                      <th scope="col" class="text-right">
+                        <span class="table-head__text">Valor del certificado</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Nº cuotas pagadas</span>
+                      </th>
+                      <th scope="col" class="text-right">
+                        <span class="table-head__text">Monto aportado</span>
+                      </th>
+                      <th scope="col" class="text-left">
+                        <span class="table-head__text">Selección</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <ng-container
+                    *ngIf="
+                      contratosRelacionados && contratosRelacionados.length > 0;
+                      else noHayContratosRelacionados
+                    "
+                  >
+                    <tbody>
+                      <tr *ngFor="let item of contratosRelacionados; let index = index">
+                        <td scope="row" class="text-center" [innerHTML]="item?.numeroContrato"></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="item?.programa.toUpperCase()"
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="_dateFormat(item?.detalleContrato.fechaResolucion)"
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-right"
+                          [innerHTML]="_formatoMoneda(item?.valorCertificado)"
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="item?.detalleContrato.nroCuotasPagadas"
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-right"
+                          [innerHTML]="_formatoMoneda(item?.montoAporte)"
+                        ></td>
+                        <td scope="row" class="text-center">
+                          <ginni-checkbox
+                            *ngIf="item?.habilitarSeleccion"
+                            [(value)]="state.checkboxes[index]"
+                          ></ginni-checkbox>
+                          <ginni-checkbox
+                            *ngIf="!item?.habilitarSeleccion"
+                            tooltip="Debe trabajarse en SAF"
+                            disabled="disabled"
+                            [(value)]="state.checkboxes[index]"
+                          ></ginni-checkbox>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-container>
+                  <ng-template #noHayContratosRelacionados>
+                    <tbody class="empty-message">
+                      <tr>
+                        <td rowspan="2" colspan="7">
+                          No existen contratos del asociado para fusionar
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
+                <ng-container
+                  *ngIf="contratosRelacionados; else cargandoContratosRelacionadosMobile"
+                >
+                  <ng-container
+                    *ngIf="
+                      contratosRelacionados && contratosRelacionados.length > 0;
+                      else noContratosRelacionados
+                    "
+                  >
+                    <div
+                      class="scroller"
+                      [ngStyle]="_esMobile() && { height: scrollerContratosHeight + 'px' }"
+                    >
+                      <div class="scrollable-div">
+                        <div
+                          class="tabla-desplegable-alta contratos-mobile not-wide"
+                          *ngFor="let item of contratosRelacionados; let index = index"
+                          [class.highligth-info]="item?.contratoOrigen"
+                        >
+                          <div>
+                            <div (click)="toggleCollapseContratos(index)">
+                              <img
+                                [class.active]="state.accordeonContratos[index]"
+                                src="../../../../../../../assets/imagenes/flecha-abajo.png"
+                              />
+                            </div>
+                            <div>
+                              <div>
+                                <div>
+                                  <span>Número de contrato</span>
+                                </div>
+                                <div>
+                                  <span class="checkbox-label">{{ item?.numeroContrato }}</span>
+                                  <ginni-checkbox
+                                    *ngIf="item?.habilitarSeleccion"
+                                    [(value)]="state.checkboxes[index]"
+                                  ></ginni-checkbox>
+                                  <ginni-checkbox
+                                    *ngIf="!item?.habilitarSeleccion"
+                                    tooltip="Debe trabajarse en SAF"
+                                    placement="left"
+                                    disabled="disabled"
+                                  ></ginni-checkbox>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="state.accordeonContratos[index]" @collapseInDownAnimation>
+                            <div>&nbsp;</div>
+                            <div>
+                              <div>
+                                <div>Programa</div>
+                                <div>{{ item?.programa.toUpperCase() }}</div>
+                              </div>
+                              <div>
+                                <div>Fecha de resolución</div>
+                                <div>{{ _dateFormat(item?.detalleContrato.fechaResolucion) }}</div>
+                              </div>
+                              <div>
+                                <div>Valor del certificado</div>
+                                <div>{{ _formatoMoneda(item?.valorCertificado) }}</div>
+                              </div>
+                              <div>
+                                <div>Nº cuotas pagadas</div>
+                                <div>{{ item?.detalleContrato.nroCuotasPagadas }}</div>
+                              </div>
+                              <div>
+                                <div>Monto aportado</div>
+                                <div>{{ _formatoMoneda(item?.montoAporte) }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="align-right-margin-top scroll-fixed contratos-fixed"
+                        #scrollContratosFixed
+                      >
+                        <button
+                          body
+                          ginniButton
+                          color="primary"
+                          [disabled]="agregarIsDisabled()"
+                          class="wide-button-responsive"
+                          (click)="agregarContratosSeleccionados()"
+                        >
+                          Agregar
+                        </button>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #noContratosRelacionados>
+                    <table class="table not-wide">
+                      <tbody>
+                        <tr>
+                          <td class="empty-message">
+                            No existen contratos del asociado para fusionar
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </ng-container>
+                <ng-template #cargandoContratosRelacionadosMobile>
+                  <ginni-cargando
+                    [loading]="loadingContratosRelacionados"
+                    [failed]="failedContratosRelacionados"
+                  ></ginni-cargando>
+                </ng-template>
+              </ginni-cargando>
+            </div>
+          </div>
+        </ginni-modal>
+      </div>
+      <div class="modal-wrapper">
+        <ginni-modal
+          class="modal-dialog modal-full reset-body"
+          [show]="mostrarGrupos"
+          [nativeBack]="false"
+          (showChange)="cerrarListadoDeGrupos()"
+        >
+          <ginni-modal-head title>Grupo</ginni-modal-head>
+          <div body class="modal-dialog">
+            <div class="table-container position-relative">
+              <ginni-cargando [loading]="loadingListadoDeGrupos">
+                <table
+                  [class.scroll-grupo]="listaDeGrupos && listaDeGrupos?.length > 4"
+                  class="table table-striped table-spaced wide only-high"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Grupo</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Día de pago</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Nº Asamblea</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Próxima asamblea</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Ganadores remates</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Ganadores sorteo</span>
+                      </th>
+                      <th scope="col" class="text-center">
+                        <span class="table-head__text">Vacantes</span>
+                      </th>
+                      <th scope="col" class="text-left">
+                        <span class="table-head__text">Selección</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <ng-container
+                    *ngIf="listaDeGrupos && listaDeGrupos?.length > 0; else noHayListadoDeGrupos"
+                  >
+                    <tbody>
+                      <tr
+                        [class.hightligth-info]="item?.resaltado"
+                        *ngFor="let item of listaDeGrupos; let index = index"
+                      >
+                        <td scope="row" class="text-center" [innerHTML]="item?.numeroGrupo"></td>
+                        <td scope="row" class="text-center" [innerHTML]="item?.diaPago"></td>
+                        <td scope="row" class="text-center" [innerHTML]="item?.numeroAsamblea"></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="_dateFormat(item?.fechaProximaAsamblea)"
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="
+                            item?.ultimosRemates && item?.ultimosRemates.length > 0
+                              ? item?.ultimosRemates.join(' | ')
+                              : '-'
+                          "
+                        ></td>
+                        <td
+                          scope="row"
+                          class="text-center"
+                          [innerHTML]="item?.ganadoresSorteo"
+                        ></td>
+                        <td scope="row" class="text-center" [innerHTML]="item?.vacantes"></td>
+                        <td scope="row" class="text-center">
+                          <ginni-radio-button
+                            (click)="checkRadiobutton(index)"
+                            direction="right"
+                            [value]="state.radiobuttons[index]"
+                            [label]=""
+                          ></ginni-radio-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-container>
+                  <ng-template #noHayListadoDeGrupos>
+                    <tbody class="empty-message">
+                      <tr>
+                        <td rowspan="2" colspan="7">{{ failedListadoDeGrupos }}</td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
+                <ng-container *ngIf="listaDeGrupos; else cargandoListadoDeGruposMobile">
+                  <ng-container
+                    *ngIf="listaDeGrupos && listaDeGrupos?.length > 0; else noListadoDeGruposMobile"
+                  >
+                    <div
+                      class="scroller"
+                      [ngStyle]="_esMobile() && { height: scrollerHeight + 'px' }"
+                    >
+                      <div class="scrollable-div">
+                        <div
+                          class="tabla-desplegable-alta not-wide"
+                          *ngFor="let item of listaDeGrupos; let index = index"
+                          [class.highligth-info]="item?.resaltado"
+                        >
+                          <div>
+                            <div (click)="toggleCollapseGrupos(index)">
+                              <img
+                                [class.active]="state.accordeonGrupos[index]"
+                                src="../../../../../../../assets/imagenes/flecha-abajo.png"
+                              />
+                            </div>
+                            <div>
+                              <div>
+                                <div>
+                                  <span *ngIf="item?.resaltado">
+                                    Grupo de Origen
+                                  </span>
+                                  <span *ngIf="!item?.resaltado">
+                                    Grupo
+                                  </span>
+                                </div>
+                                <div>
+                                  <ginni-radio-button
+                                    (click)="checkRadiobutton(index)"
+                                    direction="left"
+                                    [bold]="item?.resaltado"
+                                    [value]="state.radiobuttons[index]"
+                                    [label]="item?.numeroGrupo"
+                                  ></ginni-radio-button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="state.accordeonGrupos[index]" @collapseInDownAnimation>
+                            <div>&nbsp;</div>
+                            <div>
+                              <div>
+                                <div>Día de pago</div>
+                                <div>{{ item?.diaPago }}</div>
+                              </div>
+                              <div>
+                                <div>Nº Asamblea</div>
+                                <div>{{ item?.numeroAsamblea }}</div>
+                              </div>
+                              <div>
+                                <div>Próxima asamblea</div>
+                                <div>{{ _dateFormat(item?.fechaProximaAsamblea) }}</div>
+                              </div>
+                              <div>
+                                <div>Ganadores remates</div>
+                                <div>
+                                  {{
+                                    item?.ultimosRemates && item?.ultimosRemates.length > 0
+                                      ? item?.ultimosRemates.join("|")
+                                      : "-"
+                                  }}
+                                </div>
+                              </div>
+                              <div>
+                                <div>Ganadores sorteo</div>
+                                <div>
+                                  {{ item?.ganadoresSorteo }}
+                                </div>
+                              </div>
+                              <div>
+                                <div>Vacantes</div>
+                                <div>
+                                  {{ item?.vacantes }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="align-right-margin-top scroll-fixed" #scrollFixed>
+                        <div class="with-legend color-gray only-high">
+                          <div class="legend"></div>
+                          <span>Grupo de origen</span>
+                        </div>
+                        <button
+                          body
+                          ginniButton
+                          color="primary"
+                          [disabled]="agregarGrupoIsDisabled()"
+                          class="wide-button-responsive"
+                          (click)="agregarGrupoSeleccionado()"
+                        >
+                          Seleccionar
+                        </button>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #noListadoDeGruposMobile>
+                    <table class="table not-wide">
+                      <tbody>
+                        <tr>
+                          <td class="empty-message">
+                            No existen contratos del asociado para fusionar
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </ng-container>
+                <ng-template #cargandoListadoDeGruposMobile>
+                  <ginni-cargando
+                    [loading]="loadingListadoDeGrupos"
+                    [failed]="failedListadoDeGrupos"
+                  ></ginni-cargando>
+                </ng-template>
+              </ginni-cargando>
+            </div>
+          </div>
+        </ginni-modal>
+      </div>
+    </fieldset>
+    <div *ngIf="mostrarSimulacion" class="simulacion position-relative">
+      <hr class="only-wide" />
+      <ginni-cargando [loading]="loadingSimulador">
+        <div class="title-no-link with-border-bottom">
+          <span>
+            Simulación
+          </span>
+        </div>
+        <fieldset [disabled]="disableForm">
+          <div class="form-wrapper no-border-on-mobile">
+            <div class="form-row flex-space-between">
+              <div class="form-block">
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-label">Tipo de opción:</div>
+                    <div class="form-control-wrapper">
+                      <select
+                        class="form-control"
+                        [ngClass]="{ error: form?.get('updateSimulacionControl')?.invalid }"
+                        formControlName="updateSimulacionControl"
+                        id="updateSimulacionControl"
+                        *ngIf="updateSimulacionControl"
+                        (change)="cambiarEstadoBotonGuardado(updateSimulacionControl.value)"
+                      >
+                        <option *ngFor="let metodo of metodos" [value]="metodo?.codigo">
+                          {{ metodo?.valor.toUpperCase() }}
+                        </option>
+                      </select>
+                    </div>
+                    <label class="error" *ngIf="form?.get('updateSimulacionControl')?.invalid">
+                      * {{ formErrors.updateSimulacionControl }}
+                    </label>
+                    <div class="alert-text">
+                      <label class="color-half-black" *ngIf="!habilitarGuardado">
+                        Esta opción no podrá ser guardada
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-block">
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-label">Celebración del contrato:</div>
+                    <div class="form-control-wrapper">
+                      <input
+                        class="form-control disabled"
+                        type="text"
+                        [value]="simulador?.cuotasCelebracion.valor"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-block">
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-label nowrap">Adjudicación:</div>
+                    <div class="form-control-wrapper">
+                      <input
+                        class="form-control disabled"
+                        type="text"
+                        [value]="simulador?.cuotasAdjudicacion.valor"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-block">
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-label nowrap">Prorrateo:</div>
+                    <div class="form-control-wrapper">
+                      <input
+                        class="form-control disabled"
+                        type="text"
+                        [value]="simulador?.cuotasProrateo.valor"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-container position-relative only-wide">
+            <table class="table table-striped tall">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text">Nro.&nbsp;meses a pagar</span>
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text">Cuota de ingreso</span>
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text">Nueva&nbsp;cuota capital&nbsp;$</span>
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text">Nueva&nbsp;cuota Adm.&nbsp;$</span>
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text"
+                      >Nro. cuotas por {{ isRecupero() }} para ingresar al grupo</span
+                    >
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text"
+                      >Imp. a {{ isRecupero() }} de ingreso al grupo&nbsp;$</span
+                    >
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text"
+                      >Importes por pagar en cuotas transcurridas&nbsp;$</span
+                    >
+                  </th>
+                  <th scope="col" class="text-left">
+                    <span class="table-head__text">Importes enviados a últimas cuotas&nbsp;$</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let simulacion of simulador?.simulaciones">
+                  <td scope="row" class="text-center">{{ simulacion?.numeroMesesAPagar }}</td>
+                  <td scope="row" class="text-center">{{ simulacion?.numeroCuotasIngreso }}</td>
+                  <td scope="row" class="text-center">
+                    {{ _formatoMonedaSinSimbolo(simulacion?.cuotaCapital) }}
+                  </td>
+                  <td scope="row" class="text-center">
+                    {{ _formatoMonedaSinSimbolo(simulacion?.cuotaAdministracion) }}
+                  </td>
+                  <td scope="row" class="text-center">
+                    {{ simulacion?.numeroCuotasPorDiferir }}
+                  </td>
+                  <td scope="row" class="text-center">
+                    {{ _formatoMonedaSinSimbolo(simulacion?.importeADiferir) }}
+                  </td>
+                  <td scope="row" class="text-center">
+                    {{ _formatoMonedaSinSimbolo(simulacion?.importePorPagar) }}
+                  </td>
+                  <td scope="row" class="text-center">
+                    {{ _formatoMonedaSinSimbolo(simulacion?.importeAUltimasCuotas) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-vertical not-wide border-top-gray-light-weak">
+            <div class="light" *ngFor="let simulacion of simulador?.simulaciones">
+              <div>
+                <div>Nro.&nbsp;meses a pagar</div>
+                <div>{{ simulacion?.numeroMesesAPagar }}</div>
+              </div>
+              <div>
+                <div>Cuota de ingreso</div>
+                <div>{{ simulacion?.numeroCuotasIngreso }}</div>
+              </div>
+              <div>
+                <div>Nueva&nbsp;cuota capital&nbsp;$</div>
+                <div>{{ _formatoMonedaSinSimbolo(simulacion?.cuotaCapital) }}</div>
+              </div>
+              <div>
+                <div>Nueva&nbsp;cuota Adm.&nbsp;$</div>
+                <div>{{ _formatoMonedaSinSimbolo(simulacion?.cuotaAdministracion) }}</div>
+              </div>
+              <div>
+                <div>Nro. cuotas por {{ isRecupero() }} para ingresar al grupo</div>
+                <div>{{ simulacion?.numeroCuotasPorDiferir }}</div>
+              </div>
+              <div>
+                <div>Imp. a {{ isRecupero() }} de ingreso al grupo&nbsp;$</div>
+                <div>{{ _formatoMonedaSinSimbolo(simulacion?.importeADiferir) }}</div>
+              </div>
+              <div>
+                <div>Importes por pagar en cuotas transcurridas&nbsp;$</div>
+                <div>{{ _formatoMonedaSinSimbolo(simulacion?.importePorPagar) }}</div>
+              </div>
+              <div>
+                <div>Importes enviados a últimas cuotas&nbsp;$</div>
+                <div>{{ _formatoMonedaSinSimbolo(simulacion?.importeAUltimasCuotas) }}</div>
+              </div>
+            </div>
+          </div>
+          <div (click)="toggleInformacionRelevante()" class="title-no-link with-border-bottom">
+            <span>
+              Información relevante
+            </span>
+            <span class="pull-right">
+              <span
+                class="dropdown-button icon-chevron-down not-wide"
+                [ngClass]="{ active: !this.showInformacionRelevante }"
+              ></span>
+            </span>
+          </div>
+          <div *ngIf="showInformacionRelevante" class="info-title no-border-on-mobile">
+            <div>Aplicación de fondos</div>
+          </div>
+          <div *ngIf="showInformacionRelevante" class="table-vertical-third desktop">
+            <div>
+              <div class="border-top-gray-light-weak no-border-on-mobile">
+                <div>Total pagos efectuados de cuotas capitales</div>
+                <div>
+                  {{
+                    _formatoMoneda((simulador?.simulaciones)[0].detalle.totalPagosCuotasCapitales)
+                  }}
+                </div>
+              </div>
+              <div class="border-top-gray-light-weak no-border-on-mobile">
+                <div>Total pagos efectuados de cuotas adm.</div>
+                <div>
+                  {{
+                    _formatoMoneda(
+                      (simulador?.simulaciones)[0].detalle.totalPagosCuotasAdministrativas
+                    )
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="info-title no-border-on-mobile"
+            *ngIf="
+              showInformacionRelevante &&
+              (simulador?.simulaciones)[0].detalle.importeAbonadoAdjudicacion > 0
+            "
+          >
+            <div>Pago pendiente</div>
+          </div>
+          <div
+            class="table-vertical-third desktop"
+            *ngIf="
+              showInformacionRelevante &&
+              (simulador?.simulaciones)[0].detalle.importeAbonadoAdjudicacion > 0
+            "
+          >
+            <div>
+              <div class="border-top-gray-light-weak no-border-on-mobile">
+                <div>Importe abonado a la adjudicación</div>
+                <div>
+                  {{
+                    _formatoMoneda((simulador?.simulaciones)[0].detalle.importeAbonadoAdjudicacion)
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div (click)="toggleMostrarPagos()" class="title-no-link with-border-bottom">
+            <span>
+              Pagos para adquirir nuevo contrato
+            </span>
+            <span class="pull-right not-wide">
+              <span
+                class="dropdown-button icon-chevron-down"
+                [ngClass]="{ active: !this.mostrarPagos }"
+              ></span>
+            </span>
+          </div>
+          <div *ngIf="mostrarPagos" class="table-vertical desktop">
+            <div
+              class="zebra"
+              [class.border-bottom]="
+                (simulador?.simulaciones)[0].detalle.importeTotalAPagar !==
+                (simulador?.simulaciones)[0].detalle.totalAPagar
+              "
+            >
+              <div>
+                <div>Costo de reactivación</div>
+                <div>
+                  {{ _formatoMoneda((simulador?.simulaciones)[0].detalle.costoReactivacion) }}
+                </div>
+              </div>
+              <div class="border-top-gray-light-weak">
+                <div>Nueva cuota total del mes</div>
+                <div>{{ _formatoMoneda((simulador?.simulaciones)[0].detalle.nuevaCuotaMes) }}</div>
+              </div>
+              <div
+                class="border-top-gray-light-weak"
+                *ngIf="(simulador?.simulaciones)[0].detalle.importeCelebracionContrato > 0"
+              >
+                <div>Importe a la celebración de contrato</div>
+                <div>
+                  {{
+                    _formatoMoneda((simulador?.simulaciones)[0].detalle.importeCelebracionContrato)
+                  }}
+                </div>
+              </div>
+              <ng-container
+                *ngFor="let cia of (simulador?.simulaciones)[0].detalle.cias; index as i"
+              >
+                <div class="border-top-gray-light-weak" *ngIf="cia.saldoMaximo > 0">
+                  <div>
+                    Pago mínimo CIA - <br class="only-small" />Contrato Nro.
+                    <br class="only-small" />{{ getNumeroContratoByContratoId(cia.contratoId) }}
+                  </div>
+                  <div class="min-max-cia">
+                    <div tooltip="A cuenta">
+                      <input
+                        class="form-control pago-cia"
+                        [class.error]="form?.get('cia' + i)?.invalid"
+                        formControlName="cia{{ i }}"
+                        ginniSoloNumeros="true"
+                        ginniValidarMaxMin
+                        id="cia{{ i }}"
+                        (inBetween)="isInBetween($event)"
+                        (keyup)="ciaOnKeyUp($event.target.value, i)"
+                        [max]="cia.saldoMaximo"
+                        [min]="cia.saldoMinimo"
+                        [step]="0.01"
+                        [value]="cia.saldo"
+                      />
+                    </div>
+                    <div>
+                      <div>{{ _formatoMoneda(cia.saldoMaximo) }}</div>
+                      <div>(min.{{ _formatoMoneda(cia.saldoMinimo) }})</div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <div
+                class="border-top-gray-light-weak"
+                *ngIf="(simulador?.simulaciones)[0].detalle.diferenciaCiaMaxima > 0"
+              >
+                <div>Diferencia de CIA</div>
+                <div class="min-max-cia">
+                  <div tooltip="A cuenta">
+                    <input
+                      class="form-control pago-cia"
+                      [class.error]="form?.get('diferenciaCiaControl')?.invalid"
+                      formControlName="diferenciaCiaControl"
+                      ginniSoloNumeros="true"
+                      ginniValidarMaxMin
+                      id="diferenciaCiaControl"
+                      (inBetween)="isInBetween($event)"
+                      (keyup)="diferenciaCiaOnKeyUp($event.target.value)"
+                      [max]="(simulador?.simulaciones)[0].detalle.diferenciaCiaMaxima"
+                      [min]="(simulador?.simulaciones)[0].detalle.diferenciaCiaMinima"
+                      [step]="0.01"
+                      [value]="(simulador?.simulaciones)[0].detalle.diferenciaCiaValor"
+                    />
+                  </div>
+                  <div>
+                    <div>
+                      {{ _formatoMoneda((simulador?.simulaciones)[0].detalle.diferenciaCiaMaxima) }}
+                    </div>
+                    <div>
+                      (min.{{
+                        _formatoMoneda((simulador?.simulaciones)[0].detalle.diferenciaCiaMinima)
+                      }})
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-vertical desktop">
+            <div>
+              <div
+                class="info-item"
+                *ngIf="
+                  (simulador?.simulaciones)[0].detalle.importeTotalAPagar !==
+                  (simulador?.simulaciones)[0].detalle.totalAPagar
+                "
+              >
+                <div>Importe total a pagar</div>
+                <div>
+                  {{ _formatoMoneda((simulador?.simulaciones)[0].detalle.importeTotalAPagar) }}
+                </div>
+              </div>
+              <div
+                class="info-subitem"
+                *ngIf="(simulador?.simulaciones)[0].detalle.saldoAFavor > 0"
+              >
+                <div>Saldo a favor</div>
+                <div>
+                  {{ _formatoMoneda((simulador?.simulaciones)[0].detalle.saldoAFavor, true) }}
+                </div>
+              </div>
+              <div class="info-total">
+                <div>TOTAL A PAGAR</div>
+                <ng-container *ngIf="showtotal; else empty">
+                  <div>{{ _formatoMoneda((simulador?.simulaciones)[0].detalle.totalAPagar) }}</div>
+                </ng-container>
+                <ng-template #empty>
+                  <div>
+                    <img
+                      height="17"
+                      width="17"
+                      class="ball-option"
+                      src="../../../../../../../assets/imagenes/iconos/loading.gif"
+                    />
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="table-vertical-xs-12 desktop">
+            <div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="alert-messages">
+            <ginni-alert
+              [type]="guardarSimulacionAlertType"
+              (close)="closeAlert()"
+              [show]="guardarSimulacionMensaje"
+            >
+              {{ guardarSimulacionAlertMessage }}
+            </ginni-alert>
+          </div>
+          <div class="alert-messages">
+            <div class="date-info" *ngIf="fechaUltimaSimulacion">
+              Fecha de última simulación {{ fechaUltimaSimulacion }}
+            </div>
+          </div>
+        </fieldset>
+        <div class="table-vertical-xs-12 desktop">
+          <div>
+            <div>
+              <div class="label">
+                <ginni-switch
+                  [(value)]="state?.switch.value"
+                  (click)="validateSwitch()"
+                  [disabled]="!habilitarGuardado || deshabilitarSwitch"
+                ></ginni-switch>
+                <div class="input">
+                  Procesar información
+                </div>
+              </div>
+            </div>
+            <div>
+              <button
+                *ngIf="!state?.switch.value"
+                class="wide-button-responsive ui-button"
+                (click)="guardarSimulacion()"
+                ginniButton
+                color="primary"
+                [disabled]="!habilitarGuardado || deshabilitarGuardado"
+              >
+                Guardar simulación
+              </button>
+              <button
+                *ngIf="state?.switch.value"
+                class="wide-button-responsive"
+                ginniButton
+                color="green"
+                (click)="saveAndGenerate()"
+              >
+                Guardar y Generar contrato
+              </button>
+            </div>
+          </div>
+        </div>
+      </ginni-cargando>
+    </div>
+  </form>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="cerrarSimulacionCaducada()"
+    icon="alert"
+    [show]="simulacionCaducada"
+  >
+    <div text>Esta simulación ha caducado</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-confirm
+    [show]="confirmSave"
+    (go)="generate()"
+    goColor="primary"
+    goText="Aceptar"
+    (back)="closeConfirmSave()"
+    backColor="dark"
+    backText="Cancelar"
+  >
+    ¿Estás seguro que deseas generar la reserva del nuevo contrato?
+  </ginni-modal-confirm>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closePayment()"
+    icon="check"
+    [show]="payment"
+  >
+    <div text>
+      <ng-container
+        *ngIf="
+          (simulador?.simulaciones)[0].detalle.totalAPagar != 0;
+          else templateMensajeGeneroContrato
+        "
+      >
+        Se generó la obligación de<br />pago con éxito
+      </ng-container>
+      <ng-template #templateMensajeGeneroContrato>Se generó el contrato con éxito</ng-template>
+    </div>
+    <div subtext *ngIf="(simulador?.simulaciones)[0].detalle.totalAPagar === 0.0">
+      Se ha enviado un mensaje al asociado indicando los medios de pago
+    </div>
+    <div endtext *ngIf="nuevoNumeroDeContrato">Número de contrato: {{ nuevoNumeroDeContrato }}</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeErrorPayment()"
+    icon="alert"
+    [show]="errorPayment"
+  >
+    <div text>Este contrato cuenta con una<br />vacante reservada</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeGenerateError()"
+    icon="alert"
+    [show]="generateError"
+  >
+    <div text>No se pudo generar un<br />nuevo contrato</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeGenerateOverflow()"
+    icon="alert"
+    [show]="generateOverflow"
+  >
+    <div text>
+      El grupo seleccionado se encuentra<br />avanzado y sobrepasa la deuda del<br />certificado
+    </div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext [show]="loadingModal">
+    <div text>
+      <ginni-cargando [loading]="true"></ginni-cargando>
+    </div>
+  </ginni-modal-icon-subtext>
+  <ginni-cargando [loading]="loadingSimulation"></ginni-cargando>
+</div>

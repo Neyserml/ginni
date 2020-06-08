@@ -1,0 +1,403 @@
+@import "conf/colors";
+@import "conf/variables";
+
+.bandeja-trabajo {
+
+  ::ng-deep {
+
+    .contrato-mobile {
+
+      .tabla__checklist {
+        justify-content: space-around !important;
+        padding: 2px 0;
+      }
+
+      .contrato-mobile__body {
+        padding: 0 21px 16px;
+        width: 100%;
+
+        .contrato-mobile__item {
+          padding: 4px 0;
+        }
+      }
+
+      .contrato-mobile__head {
+        padding: 18px 21px 10px;
+      }
+    }
+
+    ginni-pagina-container {
+      @media (max-width: $resM) {
+        padding: 20px 20px 40px;
+      }
+    }
+  }
+
+  .not-displayed {
+    display: none;
+  }
+
+  .ui-button.ui-button-large {
+    font-size: 18px;
+  }
+
+  .tabla__checklist {
+    justify-content: space-evenly;
+  }
+
+  .table-grid {
+    overflow-x: auto;
+  }
+
+  .table-content {
+
+    .title-reactivaciones {
+      border-bottom: 1px solid $gray-light;
+      color: $dark-light;
+      margin-bottom: 26px;
+
+      .title-tab {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 20px;
+        margin-right: 2rem;
+        padding-bottom: 10px;
+        position: relative;
+        top: 4px;
+
+        &.active {
+          color: $primary;
+          border-bottom: 4px solid $primary;
+        }
+      }
+    }
+  }
+
+  .with-legend {
+    float: right;
+
+    .legend {
+      background-color: $danger;
+      display: inline-block;
+      height: 18px;
+      margin: 0 8px -4px 0;
+      opacity: 0.5;
+      width: 18px;
+    }
+
+    span {
+      font-size: $fontM;
+    }
+  }
+
+  ginni-pagina-container {
+    max-width: 1240px;
+  }
+
+  .icon-minus {
+    color: $gray-light;
+  }
+
+  table {
+
+    .icon-document-detail:before {
+      color: $gray-light;
+    }
+
+    th.th-center {
+
+      span {
+        text-align: center;
+      }
+    }
+
+    th.nowrap {
+
+      span {
+        white-space: nowrap;
+      }
+    }
+
+    td {
+
+      p.nowrap {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @media (max-width: $resM) {
+
+    .bandeja-trabajo .nav {
+      margin-bottom: 6px;
+    }
+
+    .nav {
+      justify-content: flex-start;
+
+      li {
+
+        a {
+          font-size: 1rem;
+        }
+
+        span {
+          font-size: 0.8125rem;
+        }
+      }
+    }
+
+    .th {
+      font-size: 13px;
+      white-space: nowrap;
+      padding-bottom: 17px !important;
+
+      &.text-right {
+        padding-right: 1.5rem !important;
+
+        &> div {
+          display: inline-block;
+        }
+      }
+    }
+
+    .table td, .table th, .table .td, .table .th {
+      padding: 0.75rem 1.3rem;
+    }
+  }
+}
+
+.modal-dialog {
+
+  ::ng-deep {
+
+    @media (min-width: $resM) {
+
+      .nsm-dialog {
+        color: $gray-strong;
+        float: right;
+        height: 100%;
+        margin: 0;
+        position: relative;
+        width: 418px;
+
+        .modal__wrapper {
+          padding: 3px;
+          padding-top: 0;
+        }
+
+        .modal__head {
+          color: $primary;
+          font-size: 18px;
+        }
+
+        .modal__close .modal__close-icon {
+          top: -83px;
+        }
+
+        .nsm-content {
+          border-radius: 0;
+          float: right;
+          height: 100%;
+          margin: 0;
+          font-size: $fontM;
+          overflow-y: scroll;
+          padding-top: 100px;
+
+          input[type=text] {
+            border: 1px solid $gray-strong;
+          }
+
+          label {
+            font: 400 12px $font-family;
+          }
+
+          .filter-button {
+            text-align: center;
+          }
+
+          .label {
+            font-size: $fontM;
+            font-weight: bold;
+
+            &.cuotas {
+              margin-top: 37px;
+            }
+          }
+
+          .input {
+            margin-bottom: 14px;
+            opacity: 0.8;
+            padding-left: 10px;
+
+            &.select-all {
+              margin-bottom: 38px;
+            }
+
+            .flag-switch {
+              margin: 0;
+            }
+          }
+
+          .from-to {
+            border: 1px solid $gray-strong;
+            border-radius: 4px;
+            font-weight: bold;
+            height: 37px;
+            margin: 0 37px 0 30px;
+            text-align: center;
+            width: 46px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.reactivaciones-filtro {
+
+  @media (max-width: $resM) {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .label {
+    margin: 16px 0;
+  }
+
+  .input {
+
+    div {
+      margin-bottom: 12px;
+    }
+  }
+
+  hr {
+    border: 1px solid $gray-light;
+    margin: 55px 0;
+  }
+
+  button {
+    &:disabled {
+      background-color: $gray;
+      color: white;
+      border: 1px solid $gray;
+    }
+  }
+
+  label.error-message {
+    text-align: left;
+  }
+
+  input {
+    &:disabled {
+      background-color: #e9e9e9;
+      border: 1px solid #c1c1c1 !important;
+    }
+  }
+
+  button {
+    margin-top: 44px;
+    width: 297px;
+  }
+  .custom-slider {
+
+    .ng5-slider-ceil {
+      border: 2px solid $gray;
+      float: right;
+      height: 39px;
+      line-height: 34px;
+      position: relative;
+      right: 0;
+      text-align: center;
+      top: -54px;
+      vertical-align: middle;
+      width: 48px;
+    }
+
+    .ng5-slider-floor {
+      border: 2px solid $gray;
+      float: left;
+      height: 39px;
+      left: 0;
+      line-height: 34px;
+      position: relative;
+      text-align: center;
+      top: 0;
+      vertical-align: middle;
+      width: 48px;
+    }
+
+    .ng5-slider {
+      left: 11px;
+      top: -28px;
+      width: calc(100% - 70px);
+    }
+
+    ::ng-deep {
+
+      .ng5-slider {
+        width: 100%;
+
+        .ng5-slider-bar {
+          background: $dark-light;
+          height: 8px;
+        }
+
+        .ng5-slider-selection {
+          background: #8BC34A;
+          cursor: pointer;
+        }
+
+        .ng5-slider-pointer {
+          background-color: #8BC34A;
+          bottom: 0;
+          height: 15px;
+          top: -4px;
+          width: 15px;
+        }
+
+        .ng5-slider-pointer:after {
+          display: none;
+        }
+
+        .ng5-slider-bubble {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.ingreso-al-caso {
+
+  span {
+    color: white;
+    font-size: 15px;
+  }
+
+  ::ng-deep {
+
+    .modal__wrapper {
+      padding: 15px;
+      height: 236px;
+
+      .modal-content-fit {
+        margin-top: 30px;
+      }
+    }
+
+    .modal-content-fit div:nth-child(1) {
+      font-weight: 100;
+    }
+
+    .modal__close {
+      padding-bottom: 0;
+
+      .modal__close-icon {
+        position: absolute;
+        right: -5px;
+        top: -10px;
+      }
+    }
+  }
+}

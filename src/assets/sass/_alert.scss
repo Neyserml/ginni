@@ -1,0 +1,67 @@
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  border: 0.5px solid transparent;
+  font-size: 12px;
+  border-radius: 0.25rem;
+  display: inline-block;
+
+  i {
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 16px;
+  }
+}
+
+// Headings for larger alerts
+.alert-heading {
+  // Specified to prevent conflicts of changing $headings-color
+  color: inherit;
+}
+
+.alert-default {
+  align-items: center;
+  background-color: $notification-default-background;
+  border-color: $notification-default-border;
+  color: $notification-default-color;
+}
+
+.alert-success {
+  align-items: center;
+  background-color: $notification-success-background;
+  border-color: $notification-success-border;
+  color: $notification-success-color;
+}
+
+.alert-danger {
+  align-items: center;
+  background-color: $notification-error-background;
+  border-color: $notification-error-border;
+  color: $notification-error-color;
+}
+
+.alert-info {
+  align-items: center;
+  background-color: $notification-info-background;
+  border-color: $notification-info-border;
+  color: $notification-info-color;
+}
+
+.alert-warning {
+  align-items: center;
+  background-color: $notification-warning-background;
+  border-color: $notification-warning-border;
+  color: $notification-warning-color;
+}
+
+.alert-default, .alert-success, .alert-danger, .alert-info, .alert-warning {
+
+  span {
+    font-size: 20px;
+    margin-right: 15px;
+    vertical-align: middle;
+  }
+}

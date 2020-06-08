@@ -1,0 +1,13 @@
+<div
+  *ngFor="let tab of tabsPage"
+  tooltip-class="text-align-left"
+  content-type="html"
+  placement="bottom"
+  content-type="html"
+  class="title-tab"
+  [class.active]="state[tab.nombre]"
+  (click)="onClickChangeTab(tab.nombre)"
+>
+  {{ tab.nombre.toLowerCase() | capitalizeText }}
+  <ng-container *ngIf="state[tab.nombre] && tab.quantity"> ({{ tab.quantity }}) </ng-container>
+</div>

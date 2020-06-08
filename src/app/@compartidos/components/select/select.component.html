@@ -1,0 +1,24 @@
+<div class="ginni-select">
+  <div class="input-group input-group--transparent" [ngClass]="{ active: options.length || empty }">
+    <input
+      [disabled]="disabled ? true : null"
+      class="form-control"
+      type="text"
+      #input
+      (blur)="onBlurInput()"
+    />
+    <div class="input-group-append" *ngIf="cargando">
+      <div class="input-group-text loading"><i></i></div>
+    </div>
+  </div>
+  <div class="select-options" *ngIf="(options.length || empty) && !cargando" @fadeInDownAnimation>
+    <div class="option option-default" *ngIf="empty; else elseTemplate">
+      No existe coincidencias
+    </div>
+    <ng-template #elseTemplate>
+      <div class="option" *ngFor="let option of options" (click)="clickSelect(option)">
+        {{ option.text }}
+      </div>
+    </ng-template>
+  </div>
+</div>

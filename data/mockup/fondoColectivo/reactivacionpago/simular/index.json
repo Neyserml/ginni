@@ -1,0 +1,50 @@
+{
+  "cuotasCelebracion": {
+    "valor": 0,
+    "activo": false
+  },
+  "cuotasProrateo": {
+    "valor": 0,
+    "activo": false
+  },
+  "cuotasAdjudicacion": {
+    "valor": 0,
+    "activo": false
+  },
+  "simulaciones": [
+    {
+      "detalle": {
+        "totalPagosCuotasCapitales": 793.84,
+        "totalPagosCuotasAdministrativas": 159.24,
+        "costoReactivacion": 98.33,
+        "cias": [
+          {
+            "contratoId": 137468,
+            "saldoMinimo": 451.00,
+            "saldoMaximo": 901.99,
+            "saldo": 480.00
+          }
+        ],
+        "diferenciaCiaMinima": "0.00",
+        "diferenciaCiaMaxima": "514.01",
+        "diferenciaCiaValor": "500.00",
+        "importeCelebracionContrato": 0,
+        "importeTotalAPagar": 1265.08,
+        "nuevaCuotaMes": 412,
+        "saldoAFavor": 100.00,
+        "totalAPagar": 1365.08
+      },
+      "importeAUltimasCuotasAdm": 80.57,
+      "importeAUltimasCuotasCap": 460.51,
+      "numeroMesesAPagar": 78,
+      "numeroCuotasIngreso": 1,
+      "cuotaCapital": 333.33,
+      "cuotaAdministracion": 62.93,
+      "cuotaTotal": 396.26,
+      "numeroCuotasPorDiferir": 39,
+      "importeADiferir": 15454.14,
+      "importePorPagar": 0,
+      "importeAUltimasCuotas": 3566.34
+    }
+  ]
+}

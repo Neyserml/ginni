@@ -1,0 +1,209 @@
+<div class="position-relative">
+  <ginni-cargando
+    [loading]="loading"
+    [failed]="(asociadosFailed$ | async) || errorValidarInicio || errorConfiguracionesGenerales"
+  >
+    <ng-container class="table-wrapper" *ngIf="evaluacionIniciada === true">
+      <ginni-pagina-container class="container-desktop">
+        <ng-container *ngIf="!agregarGarante">
+          <div class="evaluacion-button only-desktop flex-middle-center justify-end">
+            <div class="big-form-footer reset-padding">
+              <div
+                class="alert alert-danger reset-margin flex"
+                role="alert"
+                *ngIf="notificacionError"
+              >
+                <span class="icon-alert-circle"></span> {{ notificacionError }}
+              </div>
+              <div class="alert alert-info reset-margin" role="alert" *ngIf="notificacionExitoso">
+                El correo electrónico se ha enviado de forma exitosa
+              </div>
+            </div>
+            <div class="evaluacion-button--icon" *ngIf="accesoEditar || esJefe">
+              <button
+                color="white"
+                [disabled]="loadingMensaje"
+                (click)="accesoEditar ? enviarNotificaciones() : null"
+                ginniButton
+                class="ui-button-large ui-button-block icon-mail"
+              ></button>
+            </div>
+          </div>
+          <div class="tab-section">
+            <ginni-tabs class="tab-separator">
+              <ginni-tab>
+                <ginni-tab-title title> Listado de contratos vinculados </ginni-tab-title>
+                <ginni-lista-contratos
+                  [puedeEditar]="puedeEditar"
+                  [idBloqueContrato]="idBloqueContrato"
+                  (abrirModalListaContratos)="mostrarModalContratos = $event"
+                >
+                </ginni-lista-contratos>
+              </ginni-tab>
+              <ginni-tab>
+                <ginni-tab-title title>
+                  Evaluación con financiamiento
+                </ginni-tab-title>
+                <div
+                  *ngIf="(simuladorIniciarData && simuladorDatosInformativos) || failedSimulador"
+                >
+                  <ginni-simulador-financiamiento
+                    [esInterno]="true"
+                    [evaluacionAprobada]="evaluacionAprobada"
+                    [configuracionEvaluacionCrediticia]="configuracionEvaluacionCrediticia"
+                    [confirmarButton]="true"
+                    [simuladorIniciarDatos]="simuladorIniciarDatos"
+                    [failed]="failedSimulador"
+                    [puedeEditar]="accesoEditar"
+                    (aceptarCambioEvent)="simuladorAceptarCambio($event)"
+                    (calcularEvent)="simuladorCalcular($event)"
+                    (consultarEvent)="simuladorConsultar($event)"
+                    (calcularDiferenciaEvent)="simuladorCalcularDiferencia($event)"
+                    (valoresIniciales)="valoresInicialesSimulador()"
+                  >
+                  </ginni-simulador-financiamiento>
+                </div>
+              </ginni-tab>
+              <ginni-tab>
+                <ginni-tab-title title>
+                  Documentos, verificaciones y garantías
+                </ginni-tab-title>
+                <ginni-lista-documentos
+                  [puedeEditar]="puedeEditar"
+                  [configuracion]="configuracion"
+                  [evaluacionAprobada]="evaluacionAprobada"
+                  [idBloqueContrato]="idBloqueContrato"
+                  [tipoPersona]="tipoPersona"
+                  [restriccionTotal]="restriccionTotal"
+                  (abrirModalVisor)="abrirModalListaDocumentos($event)"
+                  (agregarGarante)="mostrarAgregarGarante()"
+                  (editarGarante)="mostrarAgregarGarante($event)"
+                  (idCreditoPersona)="obtenerIdCredito($event)"
+                  (listaDocumentosPersonas)="obtenerDocumentosPersonas($event)"
+                ></ginni-lista-documentos>
+              </ginni-tab>
+              <ginni-tab>
+                <ginni-tab-title title>Seguimiento</ginni-tab-title>
+                <ginni-seguimiento-evaluacion [idBloqueContrato]="idBloqueContrato">
+                </ginni-seguimiento-evaluacion>
+              </ginni-tab>
+              <!--
+              <ginni-tab>
+                <ginni-tab-title title>
+                  Listado de verificaciones
+                </ginni-tab-title>
+                <ginni-lista-verificaciones
+                  [idBloqueContrato]="idBloqueContrato"
+                  (abrirModalVerificaciones)="modalListarVerificaciones = true"
+                  (datosVerificacionSeleccionada)="obtenerDatosVerificacionSeleccionada($event)"
+                  (accionModal)="modalVerificaciones($event)"
+                >
+                </ginni-lista-verificaciones>
+              </ginni-tab>
+              -->
+            </ginni-tabs>
+          </div>
+        </ng-container>
+        <div *ngIf="agregarGarante">
+          <ginni-agregar-garante
+            [idBloqueContrato]="idBloqueContrato"
+            [configuracion]="configuracion"
+            [configuracionEvaluacionCrediticia]="configuracionEvaluacionCrediticia"
+            [informacionAsociado]="informacionAsociado"
+            [documentosPersonas]="documentosPersonas"
+            (volverConsultar)="agregarGarante = false; editarGarante = null"
+            (garante)="obtenerInformacionGarante($event)"
+            [editarGarante]="editarGarante"
+            [accionGarante]="accionGarante"
+          >
+          </ginni-agregar-garante>
+          <div class="tab-section" *ngIf="mostrarTabs">
+            <ginni-tabs class="tab-separator">
+              <ginni-tab>
+                <ginni-tab-title title
+                  >Información del garante o respaldo familiar
+                </ginni-tab-title>
+                <ginni-informacion-garante
+                  [accesoEditar]="puedeEditar"
+                  [accionGarante]="accionGarante"
+                  [informacionGarante]="informacionGarante"
+                  [configuracion]="configuracion"
+                  (datosPersonaGarante)="obtenerPersonaGarante($event)"
+                  (mostrarPersonasRelacionadas)="mostrarPersonasRelacionadas = true"
+                  [mostrarModal]="esRespaldo()"
+                  (desabilitarTabs)="desabilitarTabs = true"
+                  [editarGarante]="editarGarante"
+                ></ginni-informacion-garante>
+              </ginni-tab>
+              <ginni-tab>
+                <ginni-tab-title title [ngClass]="{ 'text-disable': desabilitarTabs }">
+                  Información laboral
+                </ginni-tab-title>
+                <div *ngIf="!desabilitarTabs">
+                  <ginni-informacion-laboral
+                    [accesoEditar]="puedeEditar"
+                    [idPersona]="idPersonaGarante"
+                    [configuracion]="configuracion"
+                  >
+                  </ginni-informacion-laboral>
+                </div>
+              </ginni-tab>
+              <ginni-tab *ngIf="mostrarPersonasRelacionadas">
+                <ginni-tab-title title [ngClass]="{ 'text-disable': desabilitarTabs }">
+                  Personas relacionadas
+                </ginni-tab-title>
+                <div *ngIf="!desabilitarTabs">
+                  <ginni-personas-relacionadas
+                    [accesoEditar]="puedeEditar"
+                    [tipoPersona]="tipoPersonaGarante"
+                    [idPersona]="idPersonaGarante"
+                    [idEstadoCivilPersona]="idEstadoCivilGaranteORespaldo"
+                    [mostrarModal]="esRespaldo()"
+                    [configuracion]="configuracion"
+                  >
+                  </ginni-personas-relacionadas>
+                </div>
+              </ginni-tab>
+              <ginni-tab>
+                <ginni-tab-title title [ngClass]="{ 'text-disable': desabilitarTabs }"
+                  >Ingresos</ginni-tab-title
+                >
+                <div *ngIf="!desabilitarTabs">
+                  <ginni-ingresos
+                    [accesoEditar]="puedeEditar"
+                    [idPersona]="idPersonaGarante"
+                    [configuracion]="configuracion"
+                    [configuracionEvaluacionCrediticia]="configuracionEvaluacionCrediticia"
+                    [garanteORespaldo]="garanteORespaldo"
+                  >
+                  </ginni-ingresos>
+                </div>
+              </ginni-tab>
+            </ginni-tabs>
+          </div>
+        </div>
+      </ginni-pagina-container>
+    </ng-container>
+  </ginni-cargando>
+</div>
+
+<ginni-modal-lista-contratos
+  [idBloqueContrato]="idBloqueContrato"
+  [(show)]="mostrarModalContratos"
+  (showChange)="cerrarModal()"
+></ginni-modal-lista-contratos>
+
+<ginni-modal-lista-documentos
+  [idCreditoPersona]="idCreditoPersona"
+  [(show)]="modalListarDocumentos"
+  (showChange)="(modalListarDocumentos)"
+>
+</ginni-modal-lista-documentos>
+<ginni-modal-lista-verificaciones
+  [idBloqueContrato]="idBloqueContrato"
+  [accionModal]="accionModalVerificaciones"
+  [datosVerificacionSeleccionada]="datosVerificacionSeleccionada"
+  [(show)]="modalListarVerificaciones"
+  [configuracionEvaluacionCrediticia]="configuracionEvaluacionCrediticia"
+>
+</ginni-modal-lista-verificaciones>

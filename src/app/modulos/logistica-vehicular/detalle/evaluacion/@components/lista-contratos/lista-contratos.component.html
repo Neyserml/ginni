@@ -1,0 +1,127 @@
+<div class="position-relative">
+  <ginni-cargando
+    [loading]="(contratoLoading$ | async) || loading"
+    [failed]="contratosFailed$ | async"
+  >
+    <div class="table-grid only-desktop">
+      <ginni-borrar-fila [(row)]="indexContratoVinculadoSelected" (deleteRow)="filaAEliminar()">
+        ¿Estás seguro que deseas eliminar esta información?
+      </ginni-borrar-fila>
+      <table class="reset-margin table table-striped">
+        <thead>
+          <tr>
+            <th>N° contrato</th>
+            <th>Adjudicación</th>
+            <th>Situación</th>
+            <th>
+              Valor del
+              <div>certificado</div>
+            </th>
+            <th class="text-center">
+              N° cuotas
+              <div>pagadas</div>
+            </th>
+            <th class="text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="row-animation">
+          <tr *ngFor="let contrato of contratos; let i = index">
+            <td>{{ contrato.numeroContrato }}</td>
+            <td>{{ contrato.fechaAdjudicacion }}</td>
+            <td>{{ contrato.modalidad.toUpperCase() }}</td>
+            <td>{{ _formatoMoneda(contrato.monto) }}</td>
+            <td class="text-center">
+              {{ contrato.numeroCuotasPagadas }}
+            </td>
+            <td class="text-right">
+              <div
+                class="action"
+                [ngClass]="{ disabled: !puedeEditar }"
+                (click)="puedeEditar ? mostrarMensajeAlerta(i) : null"
+              >
+                <span class="icon-x-circle"></span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="only-mobile">
+      <div class="row row-item" *ngFor="let contrato of contratos; let i = index">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size col-sm-12 col-xs-8">
+              Datos del asociado
+            </div>
+            <div class="form-control-size col-sm-12 col-xs-4 text-right">
+              <div class="action" [ngClass]="{ disabled: !puedeEditar }">
+                <span
+                  class="icon-x-circle"
+                  (click)="puedeEditar ? mostrarMensajeAlerta(i) : null"
+                ></span>
+              </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+              <div class="row-underline"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size color-gray col-sm-12 col-xs-6">N° contrato</div>
+            <div class="form-control-size col-sm-12 col-xs-6 text-right">
+              {{ contrato.numeroContrato }}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size color-gray col-sm-12 col-xs-6">Adjudicación</div>
+            <div class="form-control-size col-sm-12 col-xs-6 text-right">
+              {{ contrato.fechaAdjudicacion }}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size color-gray col-sm-12 col-xs-6">Situación</div>
+            <div class="form-control-size col-sm-12 col-xs-6 text-right">
+              {{ contrato.modalidad.toUpperCase() }}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size color-gray col-sm-12 col-xs-6">Valor del certificado</div>
+            <div class="form-control-size col-sm-12 col-xs-6 text-right">
+              {{ _formatoMoneda(contrato.monto) }}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="row">
+            <div class="form-control-size color-gray col-sm-12 col-xs-6">N° cuotas pagadas</div>
+            <div class="form-control-size col-sm-12 col-xs-6 text-right">
+              {{ contrato.numeroCuotasPagadas }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <ginni-borrar-fila [(row)]="indexContratoVinculadoSelected" (deleteRow)="filaAEliminar()">
+        ¿Estás seguro que deseas eliminar?
+      </ginni-borrar-fila>
+    </div>
+    <div class="row-add-button" *ngIf="puedeEditar">
+      <ginni-button-icon
+        color="blue-strong"
+        icon="plus-circle"
+        (click)="abrirModalListaContratos.emit(true)"
+      >
+        Agregar contratos vinculados
+      </ginni-button-icon>
+    </div>
+    <div class="big-form-footer">
+      <div class="alert alert-danger" role="alert" *ngIf="guardadoError">{{ guardadoError }}</div>
+    </div>
+  </ginni-cargando>
+</div>

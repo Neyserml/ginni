@@ -1,0 +1,202 @@
+[
+  {
+    "codigo": 1,
+    "valor": "AUDI"
+  },
+  {
+    "codigo": 32,
+    "valor": "BAW"
+  },
+  {
+    "codigo": 41,
+    "valor": "BRILLIANCE"
+  },
+  {
+    "codigo": 47,
+    "valor": "BYD"
+  },
+  {
+    "codigo": 29,
+    "valor": "CHANGAN"
+  },
+  {
+    "codigo": 45,
+    "valor": "CHERY"
+  },
+  {
+    "codigo": 2,
+    "valor": "CHEVROLET"
+  },
+  {
+    "codigo": 14,
+    "valor": "CITROEN"
+  },
+  {
+    "codigo": 4,
+    "valor": "DAIHATSU"
+  },
+  {
+    "codigo": 35,
+    "valor": "DONGFENG"
+  },
+  {
+    "codigo": 22,
+    "valor": "FAW"
+  },
+  {
+    "codigo": 56,
+    "valor": "FIAT"
+  },
+  {
+    "codigo": 16,
+    "valor": "FORD"
+  },
+  {
+    "codigo": 38,
+    "valor": "FORLAND"
+  },
+  {
+    "codigo": 31,
+    "valor": "FOTON"
+  },
+  {
+    "codigo": 23,
+    "valor": "GEELY"
+  },
+  {
+    "codigo": 24,
+    "valor": "GREAT WALL"
+  },
+  {
+    "codigo": 21,
+    "valor": "HAFEI"
+  },
+  {
+    "codigo": 34,
+    "valor": "HAIMA"
+  },
+  {
+    "codigo": 50,
+    "valor": "HILUX"
+  },
+  {
+    "codigo": 46,
+    "valor": "HINO"
+  },
+  {
+    "codigo": 13,
+    "valor": "HONDA"
+  },
+  {
+    "codigo": 5,
+    "valor": "HYUNDAI"
+  },
+  {
+    "codigo": 18,
+    "valor": "ISUZU"
+  },
+  {
+    "codigo": 30,
+    "valor": "JAC"
+  },
+  {
+    "codigo": 25,
+    "valor": "JEEP"
+  },
+  {
+    "codigo": 27,
+    "valor": "JINBEI"
+  },
+  {
+    "codigo": 58,
+    "valor": "JMC"
+  },
+  {
+    "codigo": 52,
+    "valor": "KENBO"
+  },
+  {
+    "codigo": 6,
+    "valor": "KIA"
+  },
+  {
+    "codigo": 37,
+    "valor": "LAND ROVER"
+  },
+  {
+    "codigo": 33,
+    "valor": "MAHINDRA"
+  },
+  {
+    "codigo": 7,
+    "valor": "MAZDA"
+  },
+  {
+    "codigo": 53,
+    "valor": "MERCEDES BENZ"
+  },
+  {
+    "codigo": 49,
+    "valor": "MG"
+  },
+  {
+    "codigo": 42,
+    "valor": "MINI"
+  },
+  {
+    "codigo": 8,
+    "valor": "MITSUBISHI"
+  },
+  {
+    "codigo": 9,
+    "valor": "NISSAN"
+  },
+  {
+    "codigo": 10,
+    "valor": "PEUGEOT"
+  },
+  {
+    "codigo": 20,
+    "valor": "PORSCHE"
+  },
+  {
+    "codigo": 44,
+    "valor": "RENAULT"
+  },
+  {
+    "codigo": 15,
+    "valor": "SEAT"
+  },
+  {
+    "codigo": 17,
+    "valor": "SSANGYONG"
+  },
+  {
+    "codigo": 48,
+    "valor": "SUBARU"
+  },
+  {
+    "codigo": 11,
+    "valor": "SUZUKI"
+  },
+  {
+    "codigo": 43,
+    "valor": "TOYOTA"
+  },
+  {
+    "codigo": 12,
+    "valor": "VOLKSWAGEN"
+  },
+  {
+    "codigo": 36,
+    "valor": "VOLVO"
+  },
+  {
+    "codigo": 62,
+    "valor": "WINGS"
+  },
+  {
+    "codigo": 51,
+    "valor": "WISU"
+  }
+]

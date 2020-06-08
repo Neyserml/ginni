@@ -1,0 +1,62 @@
+import { IGaranteDetalle } from '../@interface/garante.interface';
+
+export const GaranteStub = {
+  garanteDetalle: <IGaranteDetalle>{
+    idRelacion: 'idRelacion',
+    idPersonaRelacionada: 'idPersonaRelacionada',
+    idPersona: 'idPersona',
+    nombres: 'nombres',
+    apellidoPaterno: 'apellidoPaterno',
+    apellidoMaterno: 'apellidoMaterno',
+    idTipoRelacion: 'idTipoRelacion',
+    idEstadoCivil: 'idEstadoCivil',
+    tipoDocumento: 'tipoDocumento',
+    numeroDocumento: 'numeroDocumento',
+    tipoPersona: 'tipoPersona',
+    idPaisNacionalidad: 'idPaisNacionalidad',
+    fechaNacimiento: 'fechaNacimiento',
+    idSexo: 'idSexo',
+    correo: 'correo',
+    celular: 'celular',
+    telefonoFijo: 'telefonoFijo',
+    estadoPEP: true,
+    aportaIngresos: true,
+    mensajesAlertas: ['mensajesAlertas1', 'mensajesAlertas2'],
+    esLegal: true,
+    tipoGarante: 'tipoGarante'
+  },
+  garanteDetalleDomicilio: <IGaranteDetalle>{
+    idRelacion: 'idRelacion',
+    idPersonaRelacionada: 'idPersonaRelacionada',
+    idPersona: 'idPersona',
+    nombres: 'nombres',
+    apellidoPaterno: 'apellidoPaterno',
+    apellidoMaterno: 'apellidoMaterno',
+    idTipoRelacion: 'idTipoRelacion',
+    idEstadoCivil: 'idEstadoCivil',
+    tipoDocumento: 'tipoDocumento',
+    numeroDocumento: 'numeroDocumento',
+    tipoPersona: 'tipoPersona',
+    idPaisNacionalidad: 'idPaisNacionalidad',
+    fechaNacimiento: 'fechaNacimiento',
+    idSexo: 'idSexo',
+    correo: 'correo',
+    celular: 'celular',
+    telefonoFijo: 'telefonoFijo',
+    estadoPEP: true,
+    direccionDomicilio: {
+      idDepartamento: 'idDepartamento',
+      idProvincia: 'idProvincia',
+      idDistrito: 'idDistrito',
+      idTipoZona: 'idTipoZona',
+      nombreZona: 'nombreZona',
+      idTipoVia: 'idTipoVia',
+      direccionTexto: 'direccionTexto',
+      referencia: 'referencia'
+    },
+    aportaIngresos: true,
+    mensajesAlertas: ['mensajesAlertas1', 'mensajesAlertas2'],
+    esLegal: true,
+    tipoGarante: 'tipoGarante'
+  }
+};

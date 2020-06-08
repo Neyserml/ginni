@@ -1,0 +1,45 @@
+{
+  "total": 0.00,
+  "movimientosAdministrativos": [
+    {
+      "fechaMovimiento": "2019-04-23T09:00:00.00-05:00",
+      "contratoOrigen": "1100-140-14",
+      "contratoDestino": "1100-059-22",
+      "movimiento": "Reubicación",
+      "cuotasPagadas": "03",
+      "cuotaCapital": 2000.00,
+      "cuotaDeAdministracion": 1000.00,
+      "saldosNoAplicados": 0.00
+    },
+    {
+      "fechaMovimiento": "2019-04-23T09:00:00.00-05:00",
+      "contratoOrigen": "1100-140-14",
+      "contratoDestino": "1100-059-22",
+      "movimiento": "Reubicación",
+      "cuotasPagadas": "03",
+      "cuotaCapital": 2000.00,
+      "cuotaDeAdministracion": 1000.00,
+      "saldosNoAplicados": 0.00
+    },
+    {
+      "fechaMovimiento": "2019-04-23T09:00:00.00-05:00",
+      "contratoOrigen": "1100-140-14",
+      "contratoDestino": "1100-059-22",
+      "movimiento": "Reubicación",
+      "cuotasPagadas": "03",
+      "cuotaCapital": 2000.00,
+      "cuotaDeAdministracion": 1000.00,
+      "saldosNoAplicados": 0.00
+    },
+    {
+      "fechaMovimiento": "2019-04-23T09:00:00.00-05:00",
+      "contratoOrigen": "1100-140-14",
+      "contratoDestino": "1100-059-22",
+      "movimiento": "Reubicación",
+      "cuotasPagadas": "03",
+      "cuotaCapital": 2000.00,
+      "cuotaDeAdministracion": 1000.00,
+      "saldosNoAplicados": 0.00
+    }
+  ]
+}

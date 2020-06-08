@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <h2>GESTOR DE EXCEPCIONES - GINNI en Proyecto Local.</h2>
+    <h3>Error generado el: <span th:text="${fecha}"></span></h3>
+    <h3>
+      Mensaje de error localizado:
+    </h3>
+    <!-- <tr /> -->
+    <h4><span th:text="${localizedMessage}"></span></h4>
+    <!-- <tr /> -->
+    <h3>
+      Detalle del error:
+    </h3>
+    <!-- <tr /> -->
+    <h4><span th:text="${message}"></span></h4>
+    <h4>Atentamente:</h4>
+    <h5>El equipo GINNI.</h5>
+    <img th:src="@{${imagencorreo}}" />
+  </body>
+</html>

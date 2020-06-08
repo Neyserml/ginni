@@ -1,0 +1,115 @@
+<!-- https://mjml.io/try-it-live/B19Gu5n-L -->
+<mjml>
+  <mj-head>
+    <mj-title>Titulo</mj-title>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="'Open Sans', Roboto, 'Helvetica Neue', Arial, sans-serif"></mj-all>
+      <mj-text font-weight="400" font-size="11px" color="#000000" line-height="18px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#F2F2F2">
+    <mj-section vertical-align="middle" background-size="cover" background-repeat="no-repeat">
+      <mj-column width="100%">
+        <mj-image src="http://www.labhpdiesel.com/arte-pago-total-v2.png" alt="" align="center" border="none" padding="0px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="15px" background-color="#2D72B4">
+      <mj-column>
+        <mj-text color="#FFFFFF" align="center" font-weight="500" font-size="22px">Cada vez más cerca de alcanzar tus metas</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-top="40px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" font-weight="500" font-size="13px" padding-bottom="0px">Hola <span style="font-size: 14px; font-weight: bold;">ANA MARÍA,</span></mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="500" padding-top="5px">Para continuar con tu proceso de reactivación de contrato debes realizar un pago de:</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section border="2px solid  #FFFFFF" padding="40px" padding-top="24px" background-color="#FFFFFF">
+      <mj-column width="40%" border="2px solid #2D72B4">
+        <mj-table>
+          <tr>
+            <td style="width:51px; padding-bottom: 0px !important">
+              <img width="51px" src="http://www.labhpdiesel.com/pila-de-monedas.png"/>
+            </td>
+            <td style="width:200px; text-align: right !important; padding-bottom: 0px !important">
+              <span style="color:#2D72B4; font-size:25px;font-weight:600">
+                $980.00
+              </span>
+            </td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" font-size="13px" color="#F5A623" font-weight="700">Lugares de pago:</mj-text>
+        <mj-text align="left" font-size="13px" color="#2D72B4" font-weight="700">Cuenta Reacaudadora "Pandero Servicios Varios"</mj-text>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-table>
+          <tr>
+            <td style="text-align:center">
+              <img width="60px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-BCP.jpg" style="padding:0 5px" />
+              <img width="60px" src="http://labhpdiesel.com/logo-bbva-v2.png" style="padding:0 5px" />
+              <img width="100px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-scotiabank.png" style="padding:0 5px" />
+              <img width="100px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-interbank.png" style="padding:0 5px" />
+              <img width="60px" src="http://labhpdiesel.com/banbif-logo.png" style="padding:0 5px" />
+            </td>
+          </tr>
+        </mj-table>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-text align="center" color="#F5A623" font-weight="500">Tienes hasta el 22/07/2019 - 11:59 PM para realizar tu pago.</mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="500">Si tuvieras alguna consulta no dudes en comunicarte comigo, que gustosamente te atenderé.</mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="500">Atentamente.</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-table>
+          <tr>
+            <td style="color: #2D72B4; font-weight: bold">Lady Huamaní</td>
+          </tr>
+          <tr>
+            <td style="position:relative; display: inline-block">
+              <a th:href="@{https://api.whatsapp.com/send?text=¡Hola!, ¿Podrías ayudarme con mi proceso de adjudicación, por favor?(phone=${'51'+celularFuncionario})}">
+                <img width="17px" style="position:relative; top: 4px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-whatsapp-verde.png"/>
+                <div style="width:200px; height:17px; display:inline-block; position:relative">
+                  <span style="color:#7ED321;text-decoration: underline; font-weight: bold">
+                    Cel.: 9989 23299
+                  </span>
+                </div>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="position:relative; display: inline-block">
+              <img width="17px" style="position:relative; top: 4px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-telefono.png"/>
+              <div style="width:200px; height:17px; display:inline-block; position:relative">
+                <span style="color:#2D72B4; font-weight: bold">
+                  Telf.: 619-1200 anexo 0000
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="position:relative; display: inline-block">
+              <img width="17px" style="position:relative; top: 4px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-e-mail.png"/>
+              <div style="width:200px; height:17px; display:inline-block; position:relative">
+                <span style="color:#2D72B4; font-weight: bold">
+                  lhuamani@pandero.com.pe
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="height:20px"></td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="12px" background-color="#F5A623"></mj-section>
+  </mj-body>
+</mjml>

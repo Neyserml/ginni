@@ -1,0 +1,26 @@
+<ginni-pagina-full>
+  <div class="asociado">
+    <ginni-pagina-container class="header-asociado">
+      <ginni-pagina-ruta-bar [breadcrumbs]="portalSandbox.breadcrumbs"></ginni-pagina-ruta-bar>
+      <ginni-cargando [loading]="loading" [failed]="failed">
+        <ginni-header-asociado
+          [fechaActualizacion]="fechaActualizacion"
+          [datosAsociados]="datosAsociados"
+          [personaActualIndex]="personaActualIndex"
+          (cambiarAsociado)="cambiarAsociado()"
+        ></ginni-header-asociado>
+      </ginni-cargando>
+    </ginni-pagina-container>
+    <div class="separador-ancho only-desktop"></div>
+    <div class="pagina-asociado">
+      <ginni-tab-bar [tabs]="tabs"></ginni-tab-bar>
+      <div [ngClass]="{ 'position-relative': false }">
+        <ng-container class="table-wrapper">
+          <ginni-pagina-container class="container-desktop">
+            <router-outlet></router-outlet>
+          </ginni-pagina-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ginni-pagina-full>

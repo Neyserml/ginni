@@ -1,0 +1,110 @@
+@import "conf/conf";
+
+$scale: 1;
+$scaleTo: 1.2;
+
+.modal__title-icon {
+  height: 95px;
+  position: relative;
+  width: 82px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.expiracion-circle {
+  &:before {
+    content: "";
+    border: 1px solid #c4c3c4;
+    box-sizing: content-box;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border-radius: 100%;
+    animation: pulse 2.5s ease infinite;
+  }
+
+  svg {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 68px;
+    height: auto;
+  }
+}
+
+.expiracion-title {
+  font-size: 21px;
+  @media (max-width: $resM) {
+    font-size: 15px;
+  }
+}
+
+.expiracion-numero {
+  top: 21px;
+  position: absolute;
+  font-size: 25px;
+  font-weight: $font-semibold;
+  color: $blue-strong;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
+
+.expiracion-text {
+  font-size: 13px;
+  border-top: 1px solid $dark-light;
+  padding-top: 8px;
+  color: $gray;
+
+  @media (max-width: $resM) {
+    font-size: 12px;
+  }
+}
+
+.fill-up {
+  animation: fillup-spin 9.5s linear;
+}
+
+@keyframes fillup-spin {
+  to {
+    stroke-dashoffset: -422;
+  }
+}
+
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+  }
+
+  50% {
+    -webkit-transform: scale($scaleTo);
+    transform: scale($scaleTo);
+  }
+
+  100% {
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+  }
+
+  50% {
+    -webkit-transform: scale($scaleTo);
+    transform: scale($scaleTo);
+  }
+
+  100% {
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+  }
+}

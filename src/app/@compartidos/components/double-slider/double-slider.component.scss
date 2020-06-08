@@ -1,0 +1,69 @@
+@import "conf/colors";
+
+.custom-slider {
+
+  .ng5-slider-ceil {
+    border: 2px solid $gray;
+    float: right;
+    height: 39px;
+    line-height: 34px;
+    position: relative;
+    right: 0;
+    text-align: center;
+    top: -54px;
+    vertical-align: middle;
+    width: 48px;
+  }
+
+  .ng5-slider-floor {
+    border: 2px solid $gray;
+    float: left;
+    height: 39px;
+    left: 0;
+    line-height: 34px;
+    position: relative;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    width: 48px;
+  }
+
+  .ng5-slider {
+    left: 11px;
+    top: -28px;
+    width: calc(100% - 70px);
+  }
+
+  ::ng-deep {
+
+    .ng5-slider {
+      width: 100%;
+
+      .ng5-slider-bar {
+        background: $dark-light;
+        height: 8px;
+      }
+
+      .ng5-slider-selection {
+        background: #69db52;
+        cursor: pointer;
+      }
+
+      .ng5-slider-pointer {
+        background-color: #69db52;
+        bottom: 0;
+        height: 15px;
+        top: -4px;
+        width: 15px;
+      }
+
+      .ng5-slider-pointer:after {
+        display: none;
+      }
+
+      .ng5-slider-bubble {
+        display: none;
+      }
+    }
+  }
+}

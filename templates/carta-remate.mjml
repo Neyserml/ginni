@@ -1,0 +1,191 @@
+<!-- https://mjml.io/try-it-live/rkG7isPWI -->
+<mjml>
+  <mj-head>
+    <mj-title>Titulo</mj-title>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="'Open Sans', Roboto, 'Helvetica Neue', Arial, sans-serif"></mj-all>
+      <mj-text font-weight="400" font-size="11px" color="#000000" line-height="18px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#F2F2F2">
+
+
+    <mj-section vertical-align="middle" background-size="cover" background-repeat="no-repeat">
+      <mj-column width="100%">
+        <mj-image src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/foto-pareja.jpg" alt="" align="center" border="none" padding="0px"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="15px" background-color="#2D72B4">
+      <mj-column>
+        <mj-text color="#FFFFFF" align="center" font-size="32px">¡Felicitaciones!</mj-text>
+        <mj-text color="#FFFFFF" align="center" font-weight="500" font-size="18px" >Tu certificado ha sido adjudicado, ya estamos cerca a la entrega de su vehículo.</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="20px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" font-weight="700" font-size="13px">
+          Hola ______________,
+        </mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="700" font-size="13px">
+          CC ______________,
+        </mj-text>
+
+        <mj-text align="left" color="#2D72B4" font-weight="500" padding-top="10px">
+          Mi nombre es _________________, soy tu Funcionario de Servicios y Ventas y junto a mi equipo de trabajo, te asesoraremos para el trámite de tu vehículo.
+        </mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="500" padding-top="10px">
+        Recuerda que tu certificado ha sido adjudicado por Remate, por lo tanto, deberás cancelar el importe ofertado de_____ a más tardar el dd/mm/aa para evitar el retiro de la adjudicación y la aplicación de penalidades.
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="20px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" color="#F5A623" font-weight="700" font-size="13px">
+          Lugares de pago:
+        </mj-text>
+
+        <mj-text align="left" color="#2D72B4" font-weight="700" font-size="14px" padding-top="10px" >
+          Cuenta Recaudadora “Pandero Servicios Varios”
+        </mj-text>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-table>
+          <tr>
+            <td style="text-align:center">
+              <img width="60px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-BCP.jpg" style="padding:0 5px" />
+              <img width="100px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-BBVA.jpg" style="padding:0 5px" />
+              <img width="100px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-scotiabank.png" style="padding:0 5px" />
+              <img width="100px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-interbank.png" style="padding:0 5px" />
+              <img width="80px" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/bancos/banco-pichincha.jpg" style="padding:0 5px" />
+            </td>
+          </tr>
+        </mj-table>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-text align="left" font-weight="700" font-size="13px" padding-top="10px" color="#2D72B4">
+          A tomar en cuenta:
+        </mj-text>
+        <mj-text align="left" font-weight="500" padding-top="0px" color="#2D72B4">
+          Los documentos presentados a continuación son requeridos considerando un vehículo de $_________.
+        </mj-text>
+        <mj-text align="left" font-weight="500" padding-top="0px" color="#2D72B4">
+          Si desea un vehículo de mayor valor o un financiamiento adicional, por favor infórmame a la brevedad posible, pues los requisitos pueden variar.
+        </mj-text>
+        <mj-text align="left" font-weight="500" padding-top="0px" color="#2D72B4">
+          Todos los documentos entregados serán debidamente validados.
+        </mj-text>
+      </mj-column>
+
+    </mj-section>
+
+
+
+    <mj-wrapper border="2px solid  #FFFFFF" padding="40px" padding-top="0px" background-color="#FFFFFF">
+      <mj-section  border="2px solid #F5A623" padding-top="10px">
+
+        <mj-column width="100%">
+          <mj-text align="left" font-weight="700" color="#F5A623" padding-bottom="0px">
+            Documentos requeridos:
+          </mj-text>
+        </mj-column>
+
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-DNI.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Copia de documento de identidad
+          </mj-text>
+        </mj-column>
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-boleta-pago.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Sustento de ingresos
+          </mj-text>
+        </mj-column>
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-recibo-servicios.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Último recibo de servicios
+          </mj-text>
+        </mj-column>
+
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-ficha-datos.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Hoja de datos llenada y firmada
+          </mj-text>
+        </mj-column>
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-aval.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Garante o aval
+          </mj-text>
+        </mj-column>
+        <mj-column width="33.3%">
+          <mj-image width="60" src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/icono-GPS.png" />
+          <mj-text align="center" color="#2D72B4" font-weight="700" font-size="10px" padding-bottom="0px">
+            Instalación de GPS sistema de geolocalización
+          </mj-text>
+        </mj-column>
+
+
+        <mj-column width="100%">
+          <mj-text align="left" color="#F5A623" font-weight="700" font-size="14px" padding-top="20px">Consideraciones
+          </mj-text>
+
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+
+    <mj-section   padding="20px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" font-weight="500">
+          Si tuvieras alguna duda o consulta no dudes en comunicarte conmigo, que gustosamente te atenderé.
+        </mj-text>
+        <mj-text align="left" color="#2D72B4" font-weight="500" padding-top="10px">
+            Atentamente,
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="20px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" padding-top="0px" font-weight="700" font-size="13px">José Antonio Rivas Dueñas
+        </mj-text>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" padding-top="0px" font-weight="700" font-size="12px">Cel.: 9989 23299
+        </mj-text>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" padding-top="0px" font-weight="700" font-size="12px">Telf.: 619-1200 anexo 0000
+        </mj-text>
+      </mj-column>
+      <mj-column width="100%">
+        <mj-text align="left" color="#2D72B4" padding-top="0px" font-weight="700" font-size="12px">jose.rivas@pandero.com.pe
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section  padding="20px" background-color="#FFFFFF" >
+      <mj-column width="100%">
+        <mj-text align="center" color="#2D72B4" font-weight="500">
+     El siguiente flujo representa el camino que recorreremos juntos, donde usted es el protagonista, por lo que será importante su apoyo.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+
+    <mj-section vertical-align="middle" background-size="cover" background-repeat="no-repeat">
+      <mj-column width="100%">
+        <mj-image src="https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/notificaciones/paso-1-pie-pagina.gif" alt="" align="center" border="none" padding="0px"></mj-image>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

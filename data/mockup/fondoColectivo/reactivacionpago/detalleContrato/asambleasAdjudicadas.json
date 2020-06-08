@@ -1,0 +1,12 @@
+[
+  {
+    "numeroAsamblea": "2",
+    "cuotasRemate": [4, 5, 12, 30],
+    "cuotasSorteo": 2
+  },
+  {
+    "numeroAsamblea": "3",
+    "cuotasRemate": [7, 9, 21, 29],
+    "cuotasSorteo": 3
+  }
+]

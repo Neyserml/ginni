@@ -1,0 +1,19 @@
+@import "../../../../assets/sass/conf/conf.scss";
+
+.buscador__icon {
+  background-color: $blue-strong;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  color: white;
+  font-size: 15px;
+  padding-top: 5px;
+  p {
+    width: 34px;
+    text-align: center;
+  }
+}
+
+.buscador__icon--input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

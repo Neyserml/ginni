@@ -1,0 +1,47 @@
+{
+  "segmento": "A",
+  "fechaActualizacion": "1981-08-16T00:00:00.00-05:00",
+  "personas": [{
+      "idPersona": "50871",
+      "nombrePersona": "Luis Flores",
+      "tipoDocumento": "DNI",
+      "nroDocumento": "48325574",
+      "departamento": "Lima",
+      "telefonos": [
+        "+510000001", "+510000002", "+510000003"
+      ],
+      "telefonoMovil": "930320255",
+      "correo": "lflores@gmail.com",
+      "genero": "M",
+      "urlFoto": ""
+    },
+    {
+      "idPersona": "50872",
+      "nombrePersona": "Oscar Flores",
+      "tipoDocumento": "DNI",
+      "nroDocumento": "45189640",
+      "departamento": "Lima",
+      "telefonos": [
+        "+511111111"
+      ],
+      "telefonoMovil": "930305685",
+      "correo": "oflores@gmail.com",
+      "genero": "F",
+      "urlFoto": ""
+    },
+    {
+      "idPersona": "50873",
+      "nombrePersona": "Raúl Flores",
+      "tipoDocumento": "DNI",
+      "nroDocumento": "48646381",
+      "departamento": "Lima",
+      "telefonos": [
+        "+512000001", "+512000002", "+512000003", "+512000004"
+      ],
+      "telefonoMovil": "910828768",
+      "correo": "rflores@gmail.com",
+      "genero": "F",
+      "urlFoto": ""
+    }
+  ]
+}

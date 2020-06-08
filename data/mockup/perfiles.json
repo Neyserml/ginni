@@ -1,0 +1,81 @@
+{
+  "menu": [
+    {
+      "nombre": "Mi espacio",
+      "clave": "miespacio",
+      "icono": "home"
+    },
+    {
+      "nombre": "Ficha del asociado",
+      "clave": "fichacliente",
+      "icono": "user"
+    },
+    {
+      "nombre": "Mi bandeja de trabajo",
+      "clave": "bandejacelula",
+      "icono": "inbox"
+    },
+    {
+      "nombre": "Mi bandeja de trabajo Asistente Recuperos",
+      "clave": "bandejaseguimientoevaluacion",
+      "icono": "inbox"
+    },
+    {
+      "nombre": "Mi bandeja de reactivaciones",
+      "clave": "bandejareactivaciones",
+      "icono": "inbox"
+    },
+    {
+      "nombre": "Mi bandeja de trabajo",
+      "clave": "bandejajefenegocios",
+      "icono": "inbox"
+    },
+    {
+      "nombre": "Simulador",
+      "clave": "simulador",
+      "icono": "calculadora"
+    }
+  ],
+  "paginas": [
+    {
+      "nombre": "Mi Espacio",
+      "clave": "miespacio"
+    },
+    {
+      "nombre": "Asociado",
+      "clave": "asociado"
+    },
+    {
+      "nombre": "Asociado",
+      "clave": "asociado"
+    },
+    {
+      "nombre": "Mi bandeja de trabajo",
+      "clave": "bandejacelula"
+    },
+    {
+      "nombre": "Bandeja Seguimiento",
+      "clave": "bandejaseguimientoevaluacion"
+    },
+    {
+      "nombre": "Movimientos Administrativos",
+      "clave": "movadmin"
+    },
+    {
+      "nombre": "Ficha Cliente",
+      "clave": "fichacliente"
+    },
+    {
+      "nombre": "Configuracion",
+      "clave": "configuracion"
+    },
+    {
+      "nombre": "Pagina Item En Tramite",
+      "clave": "itementramite"
+    },
+    {
+      "nombre": "Pagina Item Programacion Entrega",
+      "clave": "itemprogramacionentrega"
+    }
+  ]
+}

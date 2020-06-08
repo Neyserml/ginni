@@ -1,0 +1,8 @@
+{
+  "categoria": {
+    "codigo": "E",
+    "descripcion": "GPS + Aval A"
+  },
+  "mensajeAlerta": "¡El asociado mantiene su categoría!",
+  "nuevaCategoria": false
+}

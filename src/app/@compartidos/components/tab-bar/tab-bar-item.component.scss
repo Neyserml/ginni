@@ -1,0 +1,100 @@
+@import "conf/conf";
+
+:host {
+  display: flex;
+}
+
+.tab-bar-item {
+  color: inherit;
+  text-align: center;
+  padding: 10px 0;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: $fontM;
+
+  @media (min-width: $resM) {
+    transition: 0s;
+  }
+
+  @media (max-width: $resM) {
+
+    .tab-bar-item__text {
+      display: inline-block;
+    }
+  }
+
+  span:before {
+    color: #8aa3bd;
+
+    @media (max-width: $resM) {
+      padding-right: 10px;
+    }
+  }
+
+  &:not(.active) {
+
+    @media (max-width: $resM) {
+
+      span:before {
+        padding-right: 0;
+      }
+
+      .tab-bar-item__text {
+        display: none;
+      }
+    }
+  }
+
+  &.active,
+  &.active:hover {
+    color: $gray-strong;
+    background-color: white;
+    font-weight: $font-semibold;
+    font-size: $fontM;
+    display: flex;
+    align-items: center;
+
+    span:before {
+      color: $gray-strong;
+      padding-left: 0;
+    }
+
+    .tab-bar-item__text {
+      display: inline-block;
+      padding: 0 10px 0 8px;
+
+      @media (max-width: $resM) {
+        padding: 0;
+        vertical-align: middle;
+        padding-left: 6px;
+      }
+    }
+
+    @media (max-width: $resM) {
+      color: white;
+      background-color: $dark-blue;
+
+      span:before {
+        color: white;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.tab-bar-item__text {
+  display: none;
+}
+
+.tab-bar-item__button {
+  font-size: 20px;
+  display: inline-block;
+}
+
+.tab-bar-item.active .tab-bar-item__button {
+  padding-left: 10px;
+
+  @media (max-width: $resM) {
+    vertical-align: middle;
+  }
+}

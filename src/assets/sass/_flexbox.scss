@@ -1,0 +1,97 @@
+.flex {
+  display: flex !important;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-full {
+  flex: 1;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.justify-end-desktop {
+  @media screen and (min-width: $resSidebarMobile) {
+    justify-content: flex-end;
+  }
+}
+
+.flex-middle-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-middle-right {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-col-full {
+    flex: 1;
+  }
+
+  &-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (max-width: $resSidebarMobile) {
+    flex-direction: column;
+  }
+
+  &-col {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @media screen and (max-width: $resSidebarMobile) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}

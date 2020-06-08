@@ -1,0 +1,74 @@
+{
+  "tipoRespaldoNatural": [
+    {
+      "valor": "RESPALDO",
+      "clave": "120"
+    },
+    {
+      "valor": "GARANTE",
+      "clave": "122"
+    }
+  ],
+  "tipoRespaldoJuridico": [
+    {
+      "valor": "GARANTE",
+      "clave": "122"
+    }
+  ],
+  "simuladorFinanciamiento": [
+    {
+      "valor": "CIB",
+      "clave": "CIN_B_CONTADO"
+    },
+    {
+      "valor": "DIFERENCIA DE PRECIO",
+      "clave": "COB_DPRECIO"
+    },
+    {
+      "valor": "TRÁMITES",
+      "clave": "ING_INSCR_REG"
+    },
+    {
+      "valor": "ACCESORIOS",
+      "clave": "VENTA_EQ_ACC"
+    },
+    {
+      "valor": "GPS",
+      "clave": "VENTA_EQ_ACC_GPS"
+    }
+  ],
+  "tipoVerificacion": [
+    {
+      "valor": "DOMICILIARIA",
+      "clave": "1"
+    },
+    {
+      "valor": "LABORAL",
+      "clave": "2"
+    }
+  ],
+  "viaVerificacion": [
+    {
+      "valor": "PRESENCIAL",
+      "clave": "3"
+    },
+    {
+      "valor": "TELEFONICA",
+      "clave": "4"
+    }
+  ],
+  "verificador": [
+    {
+      "valor": "EQUIFAX",
+      "clave": "5"
+    },
+    {
+      "valor": "SR. SALDARRIAGA",
+      "clave": "6"
+    },
+    {
+      "valor": "CHEK & CHECK",
+      "clave": "7"
+    }
+  ]
+}

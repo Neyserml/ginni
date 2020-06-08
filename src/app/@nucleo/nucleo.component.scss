@@ -1,0 +1,155 @@
+@import "conf/colors";
+
+::ng-deep {
+  .notifier {
+
+    &__container {
+
+      * {
+        box-sizing: border-box;
+      }
+
+      &-list {
+        margin: {
+          top: 0;
+          bottom: 0;
+        }
+        padding: {
+          left: 0;
+        }
+        list-style-type: none;
+      }
+
+    }
+
+    &__notification {
+      display: block;
+      position: fixed; // Overlay
+      visibility: hidden; // Notifications are hidden by default, and get shown (or animated in) dynamically by the Angular component
+      z-index: 10000; // Pretty much random ...
+
+      // This attribute forces this element to be rendered on a new layer, by the GPU, in order to improve its performance (#perfmatters)
+      will-change: transform;
+
+      // This attribute improves the overall scrolling performance for fixed position elements, such as this one (#perfmatters)
+      // See <https://benfrain.com/improving-css-performance-fixed-position-elements/>
+      backface-visibility: hidden;
+
+    }
+
+  }
+
+  $notifier-shadow-color: rgba(0, 0, 0, 0.2) !default;
+
+  .notifier__notification--material {
+    border-radius: 3px;
+    box-shadow: 0 1px 3px $notifier-shadow-color;
+    cursor: default; // Default cursor, even when hovering over text
+    padding: {
+      top: 11px;
+      right: 26px;
+      bottom: 10px;
+      left: 26px;
+    }
+
+    .notifier__notification {
+
+      &-message {
+        display: inline-block;
+        margin: { // Reset paragraph default styles
+          top: 0;
+          bottom: 0;
+        }
+        vertical-align: top;
+        line-height: 32px;
+        font-size: 15px;
+      }
+
+      &-button {
+        display: inline-block;
+        transition: opacity 0.2s ease;
+        opacity: 0.5;
+        margin: {
+          right: -10px;
+          left: 10px;
+        };
+        outline: none;
+        border: none;
+        background: none;
+        cursor: pointer; // Make it obvious that the "button" (or, more honestly, icon) is clickable (#UX)
+        padding: 6px;
+        width: 32px;
+        height: 32px;
+        vertical-align: top;
+
+        &:hover,
+        &:focus {
+          opacity: 1; // Make me "feel" the clickability with a transparency change (#UX)
+        }
+
+        &:active {
+          transform: scale(0.82); // Make me "feel" the click by a push back (#UX)
+          opacity: 1;
+        }
+
+      }
+
+    }
+
+  }
+  // NOTIFIER: DEFAULT TYPE STYLES
+  .notifier__notification--default {
+    background-color: $notification-default-background;
+    border: 1px solid $notification-default-border;
+    color: $notification-default-color;
+
+    .notifier__notification-button-icon { // 16x16 fixed size
+      fill: $notification-default-color;
+    }
+
+  }
+
+  // NOTIFIER: ERROR TYPE STYLES
+  .notifier__notification--error {
+    background-color: $notification-error-background;
+    border: 1px solid $notification-error-border;
+    color: $notification-error-color;
+
+    .notifier__notification-button-icon { // 16x16 fixed size
+      fill: $notification-error-color;
+    }
+  }
+
+  // NOTIFIER: INFO TYPE STYLES
+  .notifier__notification--info {
+    background-color: $notification-info-background;
+    border: 1px solid $notification-info-border;
+    color: $notification-info-color;
+
+    .notifier__notification-button-icon { // 16x16 fixed size
+      fill: $notification-info-color;
+    }
+  }
+
+  // NOTIFIER: SUCCESS TYPE STYLES
+  .notifier__notification--success {
+    background-color: $notification-success-background;
+    border: 1px solid $notification-success-border;
+    color: $notification-success-color;
+
+    .notifier__notification-button-icon { // 16x16 fixed size
+      fill: $notification-success-color;
+    }
+  }
+
+  // NOTIFIER: WARNING TYPE STYLES
+  .notifier__notification--warning {
+    background-color: $notification-warning-background;
+    border: 1px solid $notification-warning-border;
+    color: $notification-warning-color;
+
+    .notifier__notification-button-icon { // 16x16 fixed size
+      fill: $notification-warning-color;
+    }
+  }
+}

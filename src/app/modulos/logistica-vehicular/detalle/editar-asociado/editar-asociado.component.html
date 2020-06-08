@@ -1,0 +1,58 @@
+<ginni-pagina-full>
+  <div class="editar-asociado asociado">
+    <ginni-pagina-container>
+      <ginni-pagina-ruta-bar [breadcrumbs]="portalSandbox.breadcrumbs"></ginni-pagina-ruta-bar>
+    </ginni-pagina-container>
+    <ginni-pagina-container class="container-desktop">
+      <div class="position-relative">
+        <div class="tab-section">
+          <ginni-tabs class="tab-separator">
+            <ginni-tab>
+              <ginni-tab-title title> {{ tituloInformacionPersonal }} </ginni-tab-title>
+              <ginni-informacion-personal
+                [accesoEditar]="accesoEditar"
+                [idPersona]="idPersona"
+                [configuracion]="configuracion"
+              >
+              </ginni-informacion-personal>
+            </ginni-tab>
+
+            <ginni-tab *ngIf="esTipoNatural">
+              <ginni-tab-title title> Información laboral </ginni-tab-title>
+              <ginni-informacion-laboral
+                [accesoEditar]="accesoEditar"
+                [idPersona]="idPersona"
+                [configuracion]="configuracion"
+              >
+              </ginni-informacion-laboral>
+            </ginni-tab>
+
+            <ginni-tab *ngIf="mostrarPersonasRelacionadas">
+              <ginni-tab-title title>Personas relacionadas</ginni-tab-title>
+              <ginni-personas-relacionadas
+                [accesoEditar]="accesoEditar"
+                [tipoPersona]="tipoPersona"
+                [idPersona]="idPersona"
+                [idEstadoCivilPersona]="idEstadoCivilPersona"
+                [mostrarModal]="true"
+                [configuracion]="configuracion"
+                (agregarIngreso)="agregarIngreso($event)"
+              >
+              </ginni-personas-relacionadas>
+            </ginni-tab>
+
+            <ginni-tab id="tipo-natural" *ngIf="esTipoNatural">
+              <ginni-tab-title title>Ingresos</ginni-tab-title>
+              <ginni-ingresos
+                [accesoEditar]="accesoEditar"
+                [idPersona]="idPersona"
+                [configuracion]="configuracion"
+              >
+              </ginni-ingresos>
+            </ginni-tab>
+          </ginni-tabs>
+        </div>
+      </div>
+    </ginni-pagina-container>
+  </div>
+</ginni-pagina-full>

@@ -1,0 +1,21 @@
+@import "conf/conf";
+
+:host {
+  padding: 10px 20px;
+  display: block;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+
+  &.container-desktop {
+    @media (max-width: $resM) {
+      padding: 0;
+    }
+  }
+
+  &.container-mobile {
+    @media (min-width: $resM) {
+      padding: 0;
+    }
+  }
+}

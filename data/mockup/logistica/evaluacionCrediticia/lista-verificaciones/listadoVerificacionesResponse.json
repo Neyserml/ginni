@@ -1,0 +1,46 @@
+[
+  {
+    "id": 17,
+    "persona": {
+      "id": 238645,
+      "value": "QUISPE SEMINARIO RAFAHEL RENATO"
+    },
+    "via": {
+      "id": 138,
+      "value": "Presencial"
+    },
+    "tipo": {
+      "id": 135,
+      "value": "Domiciliaria"
+    },
+    "verificador": {
+      "id": 200,
+      "value": "Equifax"
+    },
+    "tieneAdjunto": true,
+    "comentarios": "Este es un comentario",
+    "fechaCreacion": null
+  },
+  {
+    "id": 20,
+    "persona": {
+      "id": 238645,
+      "value": "QUISPE SEMINARIO RAFAHEL RENATO"
+    },
+    "via": {
+      "id": 138,
+      "value": "Presencial"
+    },
+    "tipo": {
+      "id": 135,
+      "value": "Domiciliaria"
+    },
+    "verificador": {
+      "id": 200,
+      "value": "Equifax"
+    },
+    "tieneAdjunto": false,
+    "comentarios": "Este es un comentario",
+    "fechaCreacion": "13/08/2019"
+  }
+]

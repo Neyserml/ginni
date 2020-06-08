@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h2>GESTOR DE EXCEPCIONES[Reactivaciones] - GINNI en Proyecto Local.</h2>
+    <h3>Error generado el: <span th:text="${fecha}"></span></h3>
+    <h3>
+      Mensaje de error localizado:
+    </h3>
+    <!-- <tr /> -->
+    <h4><span th:text="${mensaje}"></span></h4>
+    <ul th:each="item : ${listaContratos}">
+      <li th:inline="text">[[${item}]]</li>
+    </ul>
+    <!-- <tr /> -->
+    <h3>
+      Detalle del error:
+    </h3>
+    <!-- <tr /> -->
+
+    <h4>Atentamente:</h4>
+    <h5>El equipo GINNI.</h5>
+  </body>
+</html>

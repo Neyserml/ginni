@@ -1,0 +1,299 @@
+<div class="form__leyenda flex justify-end only-desktop"><small>*</small>Campos obligatorios</div>
+<div class="position-relative ingresos">
+  <ginni-borrar-fila [(row)]="indexIngresoEliminar" (deleteRow)="filaAEliminar()">
+    ¿Estás seguro que deseas eliminar esta información?
+  </ginni-borrar-fila>
+  <div class="row-section" *ngIf="formIngresos">
+    <div class="row-item" *ngFor="let ingreso of formIngresos.controls; let i = index">
+      <div
+        class="row-action action"
+        [ngClass]="{
+          disabled: ingresos[i]?.readOnly || !accesoEditar,
+          'full-width': portalSandbox?.esMobile,
+          'reset-margin': portalSandbox?.esMobile
+        }"
+        (click)="mostrarMensajeAlerta(i)"
+      >
+        <i class="icon-x-circle"></i>
+      </div>
+      <div class="row-contain" [formGroup]="ingreso">
+        <div class="row row-espaciados">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">Origen <small>*</small></div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <select
+                    class="form-control"
+                    [ngClass]="{
+                      error:
+                        ingreso.controls.idOrigen?.value === '' ||
+                        ingreso.controls.idOrigen?.errors?.origenMaximo
+                    }"
+                    [attr.disabled]="!attrDisabled(ingreso) ? null : true"
+                    formControlName="idOrigen"
+                    (change)="changeForm(i)"
+                  >
+                    <option value="">SELECCIONAR </option>
+                    <option *ngFor="let option of listaOrigen" [value]="option.clave">{{
+                      option.valor
+                    }}</option>
+                  </select>
+                </div>
+                <div
+                  class="col-xs-12"
+                  *ngIf="
+                    ingreso.controls.idOrigen?.value === '' || ingreso.controls.idOrigen?.invalid
+                  "
+                >
+                  <label for="" class="error" *ngIf="ingreso.controls.idOrigen?.errors?.required">
+                    *Este campo es obligatorio
+                  </label>
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="ingreso.controls.idOrigen?.errors?.origenMaximo"
+                  >
+                    *Debe ser máximo 3 origen del mismo tipo
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">Tipo de ingresos <small>*</small></div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <select
+                    class="form-control"
+                    [ngClass]="{
+                      error:
+                        ingreso.controls.idTipoIngreso?.value === '' ||
+                        ingreso.controls.idTipoIngreso?.errors?.ingresoRepetido
+                    }"
+                    formControlName="idTipoIngreso"
+                    [attr.disabled]="!attrDisabled(ingreso) ? null : true"
+                    (change)="changeForm(i)"
+                  >
+                    <option value="">SELECCIONAR</option>
+                    <option
+                      *ngFor="let option of configuracion?.ingresoEconomico"
+                      [value]="option.clave"
+                      >{{ option.valor }}</option
+                    >
+                  </select>
+                </div>
+                <div
+                  class="col-xs-12"
+                  *ngIf="
+                    ingreso.controls.idTipoIngreso?.value === '' ||
+                    ingreso.controls.idTipoIngreso?.invalid
+                  "
+                >
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="ingreso.controls.idTipoIngreso?.errors?.required"
+                  >
+                    *Este campo es obligatorio
+                  </label>
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="ingreso.controls.idTipoIngreso?.errors?.ingresoRepetido"
+                  >
+                    *No debe repetir el mismo ingreso para el origen seleccionado
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">Fuente</div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <input
+                    maxlength="255"
+                    style="text-transform:uppercase;"
+                    class="form-control"
+                    [ngClass]="{
+                      error: ingreso.controls.fuente?.invalid
+                    }"
+                    value=""
+                    formControlName="fuente"
+                    (keydown)="keyupForm(i, false)"
+                  />
+                </div>
+                <div class="col-xs-12" *ngIf="ingreso.controls.fuente?.invalid">
+                  <label class="error" *ngIf="ingreso.controls.fuente?.errors?.maxlength">
+                    *Debe ser máximo
+                    {{ ingreso.controls.fuente?.errors?.maxlength?.requiredLength }} caracteres
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <form [formGroup]="ingreso.controls['ingresoMensualNeto']">
+              <div class="form-group">
+                <div class="row">
+                  <div class="form-label col-xs-12">Ingreso mensual neto <small>*</small></div>
+                  <div class="form-control-wrapper col-xs-12">
+                    <div class="row flex-full">
+                      <div class="col-xs-5">
+                        <select
+                          (change)="
+                            obtenerIngresoDolar(i, ingreso.controls.ingresoMensualNeto['controls'])
+                          "
+                          class="form-control"
+                          formControlName="idMoneda"
+                        >
+                          <option
+                            *ngFor="let option of configuracion?.tipoMoneda"
+                            [value]="option.clave"
+                          >
+                            {{ option.valor }}</option
+                          >
+                        </select>
+                      </div>
+                      <div class="col-xs-7">
+                        <input
+                          [ginniPrimerDigitoDiferenteDeCero]="true"
+                          [ginniMontoMaximo]="true"
+                          [ginniSoloNumeros]="true"
+                          class="form-control"
+                          formControlName="monto"
+                          [ngClass]="{
+                            error: ingreso.controls.ingresoMensualNeto.controls.monto?.value === ''
+                          }"
+                          (keyup)="keyupForm(i, true, $event)"
+                        />
+                      </div>
+                      <div
+                        class="col-xs-12 monto-informacion"
+                        *ngIf="
+                          ingreso.controls['ingresoMensualNeto'].controls['idMoneda']?.value ===
+                            '1' ||
+                          ingreso.controls['ingresoMensualNeto'].controls['idMoneda']?.value === 1
+                        "
+                      >
+                        El monto en US$ {{ ingresosDolares[i] }}
+                      </div>
+                      <div class="col-xs-12">
+                        <label
+                          *ngIf="
+                            ingreso.controls['ingresoMensualNeto'].controls['monto']?.errors
+                              ?.required
+                          "
+                          for=""
+                          class="error"
+                        >
+                          *Este campo es obligatorio
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="
+                            ingreso.controls['ingresoMensualNeto'].controls['monto']?.errors
+                              ?.decimales
+                          "
+                        >
+                          *Máximo dos decimales
+                        </label>
+                        <label
+                          for=""
+                          class="error"
+                          *ngIf="
+                            ingreso.controls['ingresoMensualNeto'].controls['monto']?.errors
+                              ?.enteros
+                          "
+                        >
+                          *Máximo 15 enteros
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="only-desktop">
+      <div class="row-item">
+        <div class="row-contain">
+          <div class="row row-espaciados">
+            <div class="col-xs-12 col-md-8"></div>
+            <div class="col-xs-12 col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <div
+                    class="form-label form-control-wrapper col-md-7 col-xs-5 total-ingreso flex-column"
+                  >
+                    <div>Total ingreso mensual $</div>
+                    <span class="text-right"
+                      >T.C {{ configuracion?.tipoCambio?.toFixed(2) }} soles
+                    </span>
+                  </div>
+                  <div class="form-control-wrapper col-md-5 col-sm-4 col-xs-7">
+                    <input class="form-control" [value]="totalIngreso" readonly="true" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="only-mobile">
+      <div class="row-item">
+        <div class="row-contain">
+          <div class="row row-espaciados">
+            <div class="col-xs-12 col-md-8"></div>
+            <div class="col-xs-12 col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <div
+                    class="form-label form-control-wrapper col-md-7 col-xs-5 total-ingreso flex-column"
+                  >
+                    <div class="text-left">Total ingreso mensual $</div>
+                    <span class="text-left">
+                      T.C {{ configuracion?.tipoCambio?.toFixed(2) }} soles
+                    </span>
+                  </div>
+                  <div class="form-control-wrapper col-md-5 col-sm-4 col-xs-7">
+                    <input class="form-control" [value]="totalIngreso" readonly="true" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ginni-button-icon
+      (click)="nuevoIngreso()"
+      class="blue-strong"
+      icon="plus-circle"
+      [ngClass]="{ disabled: disabled || !accesoEditar }"
+    >
+      Agregar un ingreso
+    </ginni-button-icon>
+    <div class="text-right big-form-footer" *ngIf="guardadoMensaje">
+      <ginni-alert
+        [allowClose]="true"
+        [disappear]="guardadoMensaje ? true : false"
+        [type]="guardadoType"
+        (close)="guardadoMensaje = null"
+        (closeSuccess)="guardadoMensaje = null"
+        [show]="guardadoMensaje"
+      >
+        {{ guardadoMensaje }}
+      </ginni-alert>
+    </div>
+  </div>
+</div>

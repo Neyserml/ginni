@@ -1,0 +1,215 @@
+{
+  "lista": [{
+      "personaId": 436739,
+      "nombres": [
+        "Pari Penadillo Richar"
+      ],
+      "contratoId": 130432,
+      "fechaSituacionActual": "2019-01-17T19:07:18.00Z",
+      "nombreCliente": "PARI PENADILLO RICHAR",
+      "numeroContrato": "1504-010-20",
+      "segmento": "A",
+      "modalidad": "2",
+      "ecAprobada": 0,
+      "dias": 22,
+      "contratos": [
+        "1504-010-20"
+      ],
+      "modalidades": [
+        "Remate", "adjudicacion"
+      ],
+      "bloqueContratoID": 99999
+    },
+    {
+      "personaId": 436923,
+      "nombres": [
+        "Bolivar Valle Bristhan Juan"
+      ],
+      "ecAprobada": 1,
+      "contratoId": 130581,
+      "fechaSituacionActual": "2019-01-16T23:29:56.00Z",
+      "nombreCliente": "BOLIVAR VALLE BRISTHAN JUAN",
+      "numeroContrato": "1504-011-22",
+      "segmento": "B",
+      "modalidad": "2",
+      "dias": 23,
+      "contratos": [
+        "1504-011-22"
+      ],
+      "modalidades": [
+        "Remate"
+      ]
+    },
+    {
+      "personaId": 435821,
+      "nombres": [
+        "Sierra Vargas Robert Jesus"
+      ],
+      "ecAprobada": 0,
+      "contratoId": 129746,
+      "fechaSituacionActual": "2019-01-16T23:29:08.00Z",
+      "nombreCliente": "SIERRA VARGAS ROBERT JESUS",
+      "numeroContrato": "1504-171-13",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 23,
+      "contratos": [
+        "1504-171-13"
+      ],
+      "modalidades": [
+        "Sorteo"
+      ]
+    },
+    {
+      "personaId": 333671,
+      "nombres": [
+        "Montejo Salas Mercedes Natividad"
+      ],
+      "ecAprobada": 1,
+      "contratoId": 55932,
+      "fechaSituacionActual": "2019-01-07T12:49:41.00Z",
+      "nombreCliente": "MONTEJO SALAS MERCEDES NATIVIDAD",
+      "numeroContrato": "0090-006-17",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 32,
+      "contratos": [
+        "0090-006-17",
+        "0090-063-19"
+      ],
+      "modalidades": [
+        "Sorteo",
+        "Sorteo"
+      ],
+      "bloqueContratoID": 32918
+    },
+    {
+      "personaId": 347220,
+      "nombres": [
+        "Aranzamendi Soto Silvia Liz"
+      ],
+      "ecAprobada": 1,
+      "contratoId": 65480,
+      "fechaSituacionActual": "2018-12-31T17:12:39.00Z",
+      "nombreCliente": "ARANZAMENDI SOTO SILVIA LIZ",
+      "numeroContrato": "0718-070-17",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 39,
+      "contratos": [
+        "0718-070-17"
+      ],
+      "modalidades": [
+        "Sorteo"
+      ]
+    },
+    {
+      "personaId": 347220,
+      "nombres": [
+        "Aranzamendi Soto Silvia Liz"
+      ],
+      "ecAprobada": 1,
+      "contratoId": 65481,
+      "fechaSituacionActual": "2018-12-31T17:12:00.00Z",
+      "nombreCliente": "ARANZAMENDI SOTO SILVIA LIZ",
+      "numeroContrato": "0718-112-17",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 39,
+      "contratos": [
+        "0718-112-17"
+      ],
+      "modalidades": [
+        "Sorteo"
+      ]
+    },
+    {
+      "personaId": 333780,
+      "nombres": [
+        "Huaman Maldonado Rainier"
+      ],
+      "ecAprobada": 0,
+      "contratoId": 132454,
+      "fechaSituacionActual": "2018-12-31T17:08:11.00Z",
+      "nombreCliente": "HUAMAN MALDONADO RAINIER",
+      "numeroContrato": "0719-161-26",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 39,
+      "contratos": [
+        "0719-161-26"
+      ],
+      "modalidades": [
+        "Sorteo"
+      ]
+    },
+    {
+      "personaId": 446615,
+      "nombres": [
+        "Procesos Alimentarios Jhire E.I.R.L."
+      ],
+      "ecAprobada": 0,
+      "contratoId": 138031,
+      "fechaSituacionActual": "2018-12-28T20:53:44.00Z",
+      "nombreCliente": "PROCESOS ALIMENTARIOS JHIRE E.I.R.L",
+      "numeroContrato": "0096-066-37",
+      "segmento": "",
+      "modalidad": "1",
+      "dias": 42,
+      "contratos": [
+        "0096-066-37"
+      ],
+      "modalidades": [
+        "Sorteo"
+      ]
+    },
+    {
+      "personaId": 376603,
+      "nombres": [
+        "Delmarconsa Contratistas Generales S.A.C."
+      ],
+      "ecAprobada": 1,
+      "contratoId": 86768,
+      "fechaSituacionActual": "2018-12-28T15:44:32.00Z",
+      "nombreCliente": "DELMARCONSA CONTRATISTAS GENERALES S.A.C.",
+      "numeroContrato": "1103-168-11",
+      "segmento": "",
+      "modalidad": "2",
+      "dias": 42,
+      "contratos": [
+        "1103-168-11",
+        "1103-169-13",
+        "1106-097-20"
+      ],
+      "modalidades": [
+        "Remate",
+        "Remate",
+        "Remate"
+      ],
+      "bloqueContratoID": 33123
+    },
+    {
+      "personaId": 374206,
+      "nombres": [
+        "Gallardo Rosales Yoselin Vanessa"
+      ],
+      "ecAprobada": 1,
+      "contratoId": 86190,
+      "fechaSituacionActual": "2018-12-28T15:44:32.00Z",
+      "nombreCliente": "GALLARDO ROSALES YOSELIN VANESSA",
+      "numeroContrato": "1103-124-11",
+      "segmento": "",
+      "modalidad": "2",
+      "dias": 42,
+      "contratos": [
+        "1103-124-11"
+      ],
+      "modalidades": [
+        "Remate"
+      ],
+      "bloqueContratoID": 33162
+    }
+  ],
+  "numeroPaginas": 12,
+  "totalRegistros": 110
+}

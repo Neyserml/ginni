@@ -1,0 +1,179 @@
+<div class="table-wrapper position-relative">
+  <ginni-pagina-container class="container-mobile">
+    <div class="row-item form-uppercase" [formGroup]="form">
+      <ginni-cargando [loading]="loading">
+        <div class="big-form-footer flex-middle-center">
+          <span class="icon-chevron-left"></span>
+          <div class="alternative-button" (click)="volverConsultar.emit()">
+            Regresar
+          </div>
+        </div>
+        <div class="title-secondary">Agregar un garante o respaldo</div>
+        <div class="row row-espaciados">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">Tipo <small>*</small></div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <select
+                    class="form-control"
+                    formControlName="idTipoRelacion"
+                    [ngClass]="{
+                      error: formError && form.controls['idTipoRelacion']?.invalid
+                    }"
+                  >
+                    <option value="">SELECCIONAR</option>
+                    <option *ngFor="let option of listaTiposGarante" [value]="option.clave">{{
+                      option.valor
+                    }}</option>
+                  </select>
+                </div>
+                <div
+                  class="col-xs-12"
+                  *ngIf="formError && form.controls['idTipoRelacion']?.invalid"
+                >
+                  <label for="" class="error" *ngIf="form.controls['idTipoRelacion']?.invalid"
+                    >*Este campo es obligatorio
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="existeGarante" class="subtitle-secondary black">
+          Ingresa el tipo de documento de identidad y número para encontrar a la persona que buscas
+        </div>
+        <div class="row row-espaciados">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">Tipo de documento <small>*</small></div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <select
+                    formControlName="tipoDocumento"
+                    class="form-control"
+                    [ngClass]="{
+                      error: formError && form.controls['tipoDocumento']?.invalid
+                    }"
+                  >
+                    <option value="">SELECCIONAR</option>
+                    <option *ngFor="let option of listaTipoDocumento" [value]="option.clave">{{
+                      option.valor
+                    }}</option>
+                  </select>
+                </div>
+                <div class="col-xs-12" *ngIf="formError && form.controls['tipoDocumento']?.invalid">
+                  <label for="" class="error" *ngIf="form.controls['tipoDocumento']?.invalid">
+                    *Este campo es obligatorio
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-label col-sm-12 col-xs-12">N° documento<small>*</small></div>
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <input
+                    class="form-control"
+                    [ginniSoloNumeros]="esSoloNumeros"
+                    formControlName="numeroDocumento"
+                    maxlength="65"
+                    [ngClass]="{
+                      error: formError && form.controls['numeroDocumento']?.invalid
+                    }"
+                  />
+                </div>
+                <div
+                  class="col-xs-12"
+                  *ngIf="formError && form.controls['numeroDocumento']?.invalid"
+                >
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="form.controls['numeroDocumento']?.errors?.required"
+                  >
+                    *Este campo es obligatorio
+                  </label>
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="form.controls['numeroDocumento']?.errors?.repetido"
+                  >
+                    *No se puede registrar a un {{ personaRepetida?.tipo?.toLowerCase() }} como aval
+                  </label>
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="form.controls['numeroDocumento']?.errors?.minlength"
+                  >
+                    *Debe ser
+                    {{ form.controls["numeroDocumento"]?.errors?.minlength?.requiredLength }}
+                    caracteres</label
+                  >
+                  <label
+                    for=""
+                    class="error"
+                    *ngIf="form.controls['numeroDocumento']?.errors?.maxlength"
+                  >
+                    *Debe ser
+                    {{ form.controls["numeroDocumento"]?.errors?.maxlength?.requiredLength }}
+                    caracteres
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-3" *ngIf="existeGarante">
+            <div class="form-group">
+              <div class="row">
+                <div class="form-control-wrapper col-sm-12 col-xs-12">
+                  <div class="big-form-footer">
+                    <button
+                      ginniButton
+                      class="ui-button ui-button-padding ui-button-primary"
+                      color="primary"
+                      (click)="buscarRespaldo(form)"
+                    >
+                      Buscar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="big-form-footer">
+          <div class="alert alert-danger" role="alert" *ngIf="mensajeError">
+            {{ mensajeError }}
+          </div>
+        </div>
+      </ginni-cargando>
+    </div>
+  </ginni-pagina-container>
+</div>
+
+<ginni-modal [(show)]="modalAlerta" class="modal-small color-primary">
+  <div body class="text-center" [ngClass]="{ 'color-danger': mensajesSistema?.esLegal }">
+    <div class="icon-alert-danger" *ngIf="mensajesSistema?.esLegal">
+      <i class="icon-alert-triangle" aria-hidden="true"></i>
+    </div>
+    <div *ngIf="mensajesSistema.mensaje?.length">
+      <p class="text-center" *ngFor="let mensaje of mensajesSistema?.mensaje">{{ mensaje }}</p>
+    </div>
+    <div class="ui-button-group-separate" *ngIf="!mensajesSistema.esLegal">
+      <button
+        ginniButton
+        color="primary"
+        class="ui-button"
+        type="button"
+        (click)="modalAlerta = false"
+      >
+        Aceptar
+      </button>
+    </div>
+  </div>
+</ginni-modal>

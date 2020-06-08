@@ -1,0 +1,85 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "angular-core"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets/css",
+        "assets/fonts",
+        "assets/imagenes",
+        "assets/js",
+        "favicon.ico",
+        "apple-touch-icon.png",
+        "android-chrome-192x192.png",
+        "mstile-150x150.png",
+        "browserconfig.xml",
+        "android-chrome-256x256.png",
+        "favicon-32x32.png",
+        "favicon-16x16.png",
+        "safari-pinned-tab.svg",
+        "manifest.json"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "ginni",
+      "styles": [
+        "../node_modules/flexboxgrid/dist/flexboxgrid.min.css",
+        "../node_modules/normalize.css/normalize.css",
+        "styles.scss"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": ["./assets/sass"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "local": "environments/environment.ts",
+        "dev": "environments/environment.dev.ts",
+        "dev2": "environments/environment.dev2.ts",
+        "qa": "environments/environment.qa.ts",
+        "qa2": "environments/environment.qa2.ts",
+        "test": "environments/environment.test.ts",
+        "int": "environments/environment.int.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {
+      "inlineStyle": false
+    }
+  }
+}

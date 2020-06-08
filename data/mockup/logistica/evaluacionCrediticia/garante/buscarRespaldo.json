@@ -1,0 +1,47 @@
+{
+  "mensajesAlertas": ["mnesaje1", "mensaje2"],
+  "esLegal": false,
+  "idRelacion": null,
+  "idPersonaRelacionada": 404197,
+  "idPersona": null,
+  "nombres": "ESTHER LUISA",
+  "apellidoPaterno": "ROJAS",
+  "apellidoMaterno": "VERA DE FLORIDA",
+  "idTipoRelacion": "3",
+  "idEstadoCivil": 69,
+  "tipoDocumento": 18,
+  "numeroDocumento": "13004000",
+  "tipoPersona": null,
+  "idPaisNacionalidad": 189,
+  "fechaNacimiento": "18/03/1966",
+  "idSexo": 107,
+  "correo": "desarrollo@pandero.com.pe",
+  "celular": "997495526",
+  "telefonoFijo": "4856612",
+  "estadoPEP": false,
+  "direccionDomicilio": {
+    "idDepartamento": "15",
+    "idProvincia": "01",
+    "idDistrito": "03",
+    "idTipoZona": "91",
+    "nombreZona": "",
+    "idTipoVia": "95",
+    "referencia": "997495526.",
+    "direccionTexto": "BORAY 550 APV INCA MANCO CAPAC"
+  },
+  "aportaIngresos": false,
+  "informacionLaboral": {
+    "idTipoTrabajador": 113,
+    "centroTrabajo": "EMPRESA DEMO",
+    "cargoOcupacion": {
+      "identificador": 79,
+      "descripcion": "MAESTRO RENCAUCHE DE LLANTAS"
+    },
+    "fechaIngresoTrabajo": "01/05/2017",
+    "correoLaboral": "JOSE@GMAIL.COM",
+    "ingresoMensualNeto": {
+      "idMoneda": 1,
+      "monto": 12000
+    }
+  }
+}

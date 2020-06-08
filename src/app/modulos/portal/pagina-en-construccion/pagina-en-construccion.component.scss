@@ -1,0 +1,101 @@
+@import "conf/conf";
+
+.genio-animacion__container {
+  position: relative;
+  display: inline-block;
+}
+
+$animation: rotate(29deg) translateY(80px) scale(0.4, 0.1);
+
+.genio-animacion__genio,
+.genio-animacion__genio--background {
+  position: absolute;
+  right: -71px;
+  top: -124px;
+
+  @media (max-width: $resM) {
+    width: 60px;
+    right: -43px;
+    top: -79px;
+
+    @media (max-width: $resS) {
+      width: 40px;
+      right: -32px;
+      top: -55px;
+    }
+  }
+}
+
+.genio-animacion__lampara {
+  @media (max-width: $resS) {
+    width: 90px;
+  }
+}
+
+
+.genio-animacion__genio {
+
+  animation: smoke 5s linear;
+  animation-iteration-count: infinite;
+
+}
+
+.genio-animacion__genio--background {
+  display: block;
+  animation: smokeBack 5s linear;
+  animation-iteration-count: infinite;
+}
+
+
+
+@keyframes smoke {
+  0% {
+    transform: $animation;
+    opacity: 0;
+    filter: blur(20px);
+  }
+
+  40% {
+    transform: rotate(0deg) translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(1px);
+  }
+
+  60% {
+    transform: rotate(0deg) translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(1px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateY(0) scale(1);
+    opacity: 0;
+    filter: blur(20px);
+  }
+}
+
+@keyframes smokeBack {
+  0% {
+    opacity: 0;
+  }
+
+  39% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  61% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,101 @@
+[{
+    "clave": "01",
+    "valor": "AMAZONAS"
+  },
+  {
+    "clave": "02",
+    "valor": "ANCASH"
+  },
+  {
+    "clave": "03",
+    "valor": "APURIMAC"
+  },
+  {
+    "clave": "04",
+    "valor": "AREQUIPA"
+  },
+  {
+    "clave": "05",
+    "valor": "AYACUCHO"
+  },
+  {
+    "clave": "06",
+    "valor": "CAJAMARCA"
+  },
+  {
+    "clave": "07",
+    "valor": "CALLAO"
+  },
+  {
+    "clave": "08",
+    "valor": "CUSCO"
+  },
+  {
+    "clave": "09",
+    "valor": "HUANCAVELICA"
+  },
+  {
+    "clave": "10",
+    "valor": "HUANUCO"
+  },
+  {
+    "clave": "11",
+    "valor": "ICA"
+  },
+  {
+    "clave": "12",
+    "valor": "JUNIN"
+  },
+  {
+    "clave": "13",
+    "valor": "LA LIBERTAD"
+  },
+  {
+    "clave": "14",
+    "valor": "LAMBAYEQUE"
+  },
+  {
+    "clave": "15",
+    "valor": "LIMA"
+  },
+  {
+    "clave": "16",
+    "valor": "LORETO"
+  },
+  {
+    "clave": "17",
+    "valor": "MADRE DE DIOS"
+  },
+  {
+    "clave": "18",
+    "valor": "MOQUEGUA"
+  },
+  {
+    "clave": "19",
+    "valor": "PASCO"
+  },
+  {
+    "clave": "20",
+    "valor": "PIURA"
+  },
+  {
+    "clave": "21",
+    "valor": "PUNO"
+  },
+  {
+    "clave": "22",
+    "valor": "SAN MARTIN"
+  },
+  {
+    "clave": "23",
+    "valor": "TACNA"
+  },
+  {
+    "clave": "24",
+    "valor": "TUMBES"
+  },
+  {
+    "clave": "25",
+    "valor": "UCAYALI"
+  }
+]

@@ -1,0 +1,32 @@
+<div class="sidebar">
+  <div
+    ginniAllPageHeight
+    class="sidebar-wrapper"
+    [ngClass]="{
+      active: activeMenu,
+      'active-routerback': showRouterBack,
+      'active-submenu': activeSubmenu
+    }"
+  >
+    <div class="sidebar-menu">
+      <div class="sidebar-back" (click)="routerBack.emit(true)">
+        <div class="sidebar-item__icon sidebar-item__icon-back icon-chevron-left"></div>
+      </div>
+      <ginni-sidebar-item
+        [disabled]="activeSubmenu"
+        *ngFor="let listMenu of listMenus"
+        [route]="listMenu['url']"
+        [text]="listMenu['nombre']"
+        [icon]="listMenu['icono']"
+        (click)="activeMenuChange.emit(false)"
+        (clickRoute)="clickedRoute.emit(true)"
+      ></ginni-sidebar-item>
+    </div>
+  </div>
+</div>
+<div
+  *ngIf="activeMenu"
+  (click)="activeMenuChange.emit(!activeMenu)"
+  class="sidebar-shadow"
+  @fadeInAnimation
+></div>

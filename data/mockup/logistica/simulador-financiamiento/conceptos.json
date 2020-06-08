@@ -1,0 +1,45 @@
+{
+  "valorExcedente": "1000.00",
+  "listaConceptos": [
+    {
+      "valor": "GPS",
+      "monto": "1000",
+      "montoInicial": "1000",
+      "clave": "VENTA_EQ_ACC_GPS",
+      "readonly": false,
+      "porDefecto": true,
+      "nombreConcepto": "FINANCIADO",
+      "tipoConcepto": "F"
+    },
+    {
+      "valor": "GPS",
+      "monto": "2000",
+      "montoInicial": "2000",
+      "clave": "VENTA_EQ_ACC_GPS",
+      "readonly": true,
+      "porDefecto": true,
+      "nombreConcepto": "CONTADO",
+      "tipoConcepto": "C"
+    },
+    {
+      "valor": "DIFERENCIA DE PRECIO",
+      "monto": "3000",
+      "montoInicial": "3000",
+      "clave": "COB_DPRECIO",
+      "readonly": true,
+      "porDefecto": true,
+      "nombreConcepto": "CONTADO",
+      "tipoConcepto": "C"
+    },
+    {
+      "valor": "DIFERENCIA DE PRECIO",
+      "monto": "4000",
+      "montoInicial": "4000",
+      "clave": "COB_DPRECIO",
+      "readonly": false,
+      "porDefecto": true,
+      "nombreConcepto": "FINANCIADO",
+      "tipoConcepto": "F"
+    }
+  ]
+}

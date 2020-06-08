@@ -1,0 +1,56 @@
+@import "conf/colors";
+@import "conf/variables";
+
+.asociado {
+
+  ::ng-deep {
+
+    .separador-detalle-resueltos {
+      background-color: $gray-light;
+      height: 20px;
+    }
+  }
+}
+
+.title-no-link {
+
+  @media (min-width: 1023px) {
+    padding: 16px 0;
+  }
+
+  @media (max-width: 1023px) {
+    border-top: 1px solid $gray-light;
+    padding-top: 16px;
+    padding-left: 29px;
+
+    &.with-border-bottom {
+      padding-bottom: 16px;
+      border-bottom: 1px solid $gray-light;
+    }
+
+    &> span {
+      font-size: 15px !important;
+      padding: 16px 0 16px 29px;
+
+      @media(max-width: 1024px) {
+        padding: 21px 0 !important;
+      }
+    }
+
+    &> ginni-dropdown {
+      padding-right: 29px;
+    }
+  }
+
+  &> span {
+    color: $blue-strong;
+    font-size: 18px;
+    height: 27px;
+    line-height: 24px;
+    padding: 1rem 0;
+
+    @media (max-width: 1024px) {
+      font-size: $fontM;
+    }
+  }
+}

@@ -1,0 +1,457 @@
+<ginni-modal
+  class="modal-full modal-without-padding  modal--view"
+  *ngIf="portalSandbox.esDesktop"
+  [show]="show"
+  [nativeBack]="true"
+  (showChange)="showChange.emit($event)"
+>
+  <div body class="position-relative">
+    <ginni-cargando [loading]="loading" [failed]="failed">
+      <div class="row">
+        <div class="col-xs-5 corner-left">
+          <div
+            class="modal__view-wrapper modal__view-main modal-large-height flex-column space-between"
+          >
+            <div>
+              <div class="title-primary">Verificación laboral</div>
+              <div class="subtitle">Carga el documento de verificación (Tamaño máximo 10MB)</div>
+              <form [formGroup]="formTabs" *ngIf="formTabs">
+                <div class="form-group">
+                  <div class="form-label">Persona:</div>
+                  <div class="form-control-wrapper">
+                    <select
+                      class="form-control col-sm-8"
+                      formControlName="persona"
+                      [attr.disabled]="formTabs.get('persona').disabled ? true : null"
+                      [ngClass]="{ error: formTabs.get('persona')?.errors?.required && seGuarda }"
+                    >
+                      <option value="">SELECCIONAR</option>
+                      <option
+                        [value]="option.idPersona"
+                        *ngFor="let option of listaPersonasVerificaciones | sort: 'nombre'"
+                      >
+                        {{ option.nombre.toUpperCase() }}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="formTabs.get('persona')?.errors?.required && seGuarda">
+                    <label for="" class="error">
+                      *Este campo es obligatorio
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Verificador:</div>
+                  <div class="form-control-wrapper">
+                    <select
+                      class="form-control col-sm-8"
+                      formControlName="verificador"
+                      [ngClass]="{
+                        error: formTabs.get('verificador')?.errors?.required && seGuarda
+                      }"
+                    >
+                      <option value="">SELECCIONAR</option>
+                      <option
+                        [value]="option.clave"
+                        *ngFor="let option of configuracionEvaluacionCrediticia?.verificador"
+                      >
+                        {{ option.valor.toUpperCase() }}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="formTabs.get('verificador')?.errors?.required && seGuarda">
+                    <label for="" class="error">
+                      *Este campo es obligatorio
+                    </label>
+                  </div>
+                </div>
+              </form>
+              <div class="form-group">
+                <div class="form-label">Tipo:</div>
+                <ginni-radio-group class="form-control-wrapper">
+                  <ginni-radio-button
+                    *ngFor="let radio of radioTipoVerificacion; let i = index"
+                    class="col-md-6 reset-padding"
+                    direction="right"
+                    [value]="state.radiobuttonsTipoVerificacion[i]"
+                    [label]="radio.valor"
+                    (click)="clickTipoVerificacion(radio, i)"
+                  >
+                  </ginni-radio-button>
+                </ginni-radio-group>
+                <div *ngIf="errorTipoVerificacion && seGuarda">
+                  <label for="" class="error">
+                    *Este campo es obligatorio
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">Vía:</div>
+                <ginni-radio-group class="form-control-wrapper">
+                  <ginni-radio-button
+                    *ngFor="let radio of radioViaVerificacion; let i = index"
+                    class="col-xs-6 reset-padding"
+                    direction="right"
+                    [value]="state.radiobuttonsViaVerificacion[i]"
+                    [label]="radio.valor"
+                    (click)="clickViaVerificacion(radio, i)"
+                  ></ginni-radio-button>
+                </ginni-radio-group>
+                <div *ngIf="errorViaVerificacion && seGuarda">
+                  <label for="" class="error">
+                    *Este campo es obligatorio
+                  </label>
+                </div>
+              </div>
+              <div class="form-group form-text-area ">
+                <div class="form-label">Comentarios:</div>
+                <textarea
+                  name="observacion"
+                  #textarea
+                  cols="200"
+                  maxlength="255"
+                  style="text-transform: uppercase"
+                  [value]="comentarios"
+                ></textarea>
+              </div>
+            </div>
+            <div class="big-form-footer">
+              <div class="alert alert-danger" role="alert" *ngIf="errorGuardarVerificacion">
+                {{ errorGuardarVerificacion }}
+              </div>
+              <div class="alert alert-success" role="alert" *ngIf="exitoGuardarVerificacion">
+                Los datos se han guardado exitosamente
+              </div>
+              <button
+                (click)="guardar(textarea)"
+                ginniButton
+                class="ui-button-padding"
+                color="primary"
+              >
+                Guardar cambios
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-7 corner-right">
+          <div class="corner-right-wrapper">
+            <div class="documento-zone">
+              <div class="documento-dropzone-top">
+                <div *ngIf="habilitarVisor">Documento de verificación</div>
+              </div>
+              <ng-container *ngIf="archivoSubido?.url; else noHayArchivos">
+                <div class="documento-dropzone">
+                  <div
+                    class="documento-dropzone-image"
+                    *ngIf="archivoSubido.tipoImagen; else documentoPDF"
+                  >
+                    <div class="documento-image row-item">
+                      <div class="documento-image-contain">
+                        <img
+                          id="image-verificacion"
+                          [src]="archivoSubido?.url | sanitizeUrl"
+                          class="img-fluid"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #documentoPDF>
+                    <object
+                      width="100%"
+                      [data]="archivoSubido?.url | sanitizeUrl"
+                      type="application/pdf"
+                    >
+                    </object>
+                  </ng-template>
+                </div>
+              </ng-container>
+              <ng-template #noHayArchivos>
+                <div class="documento-dropzone documento-dropzone--dashed">
+                  <div class="documento-dropzone__main">
+                    <div class="documento-dropzone__empty">
+                      <img src="../../../../../assets/imagenes/drag.png" />
+                      <p>Arrastra y suelta los archivos para cargar</p>
+                    </div>
+                  </div>
+                  <div class="documento-dropzone__footer">
+                    <label
+                      [ngClass]="{ disabled: !habilitarVisor }"
+                      for="reemplazar"
+                      class="documento-btn ui-button ui-button-blue-strong"
+                    >
+                      Buscar en la computadora
+                    </label>
+                    <input
+                      [disabled]="!habilitarVisor ? true : null"
+                      type="file"
+                      id="reemplazar"
+                      (change)="subirArchivo($event)"
+                      [multiple]="false"
+                    />
+                  </div>
+                </div>
+              </ng-template>
+              <ginni-cargando *ngIf="cargandoArchivo" [loading]="cargandoArchivo"></ginni-cargando>
+              <ginni-borrar-fila
+                (deleteRow)="accionAlertaDocumento()"
+                class="text-small"
+                [(row)]="alertaDocumento"
+                [btnText]="botonEliminarDocumento"
+                [visor]="true"
+              >
+                {{ mensajeEliminarDocumento }}
+              </ginni-borrar-fila>
+              <div
+                class="documento-dropzone-footer row-item flex space-between"
+                *ngIf="archivoSubido?.url"
+              >
+                <div>
+                  <div class="documento-btn danger" (click)="abrirAlertaDocumento()">
+                    Eliminar archivo
+                  </div>
+                  <label for="reemplazar" class="documento-btn">
+                    Reemplazar archivo
+                  </label>
+                  <input
+                    type="file"
+                    id="reemplazar"
+                    (change)="subirArchivo($event)"
+                    [multiple]="false"
+                  />
+                </div>
+                <div class="flex-middle-center">
+                  <div class="documento-btn" (click)="descargarDocumento()">
+                    <a id="descargar">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="errorGuardado" role="alert" *ngIf="errorGuardarArchivo">
+                <span class="icon-alert-triangle"></span>
+                {{ errorGuardarArchivo }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ginni-cargando>
+  </div>
+</ginni-modal>
+
+<ginni-modal
+  class="modal-dialog modal-full reset-body modal--view"
+  *ngIf="portalSandbox.esMobile"
+  [show]="show"
+  [nativeBack]="true"
+  (showChange)="showChange.emit($event)"
+>
+  <ginni-modal-head title> Agregar una verificación </ginni-modal-head>
+  <div body ginniAllPageHeight>
+    <ginni-cargando [loading]="loading" [failed]="failed">
+      <ginni-pagina-container>
+        <div class="corner-left">
+          <form [formGroup]="formTabs" *ngIf="formTabs">
+            <div class="form-group form-group-padding">
+              <div class="form-label">Persona:</div>
+              <div class="form-control-wrapper">
+                <select
+                  class="form-control col-sm-8"
+                  formControlName="persona"
+                  [attr.disabled]="formTabs.get('persona').disabled ? true : null"
+                  [ngClass]="{ error: formTabs.get('persona')?.errors?.required && seGuarda }"
+                >
+                  <option value="">SELECCIONAR</option>
+                  <option
+                    [value]="option.idPersona"
+                    *ngFor="let option of listaPersonasVerificaciones | sort: 'nombre'"
+                  >
+                    {{ option.nombre.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="formTabs.get('persona')?.errors?.required && seGuarda">
+                <label for="" class="error">
+                  *Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+            <div class="form-group form-group-padding">
+              <div class="form-label">Verificador:</div>
+              <div class="form-control-wrapper">
+                <select
+                  class="form-control col-sm-8"
+                  formControlName="verificador"
+                  [ngClass]="{ error: formTabs.get('verificador')?.errors?.required && seGuarda }"
+                >
+                  <option value="">SELECCIONAR</option>
+                  <option
+                    [value]="option.clave"
+                    *ngFor="let option of configuracionEvaluacionCrediticia?.verificador"
+                  >
+                    {{ option.valor.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="formTabs.get('verificador')?.errors?.required && seGuarda">
+                <label for="" class="error">
+                  *Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+          </form>
+          <div class="form-group form-group-padding">
+            <div class="col-xs-10 reset-padding">
+              <div class="form-label">Tipo:</div>
+              <ginni-radio-group class="form-control-wrapper">
+                <ginni-radio-button
+                  *ngFor="let radio of radioTipoVerificacion; let i = index"
+                  class="col-xs-6 reset-padding"
+                  direction="right"
+                  [value]="state.radiobuttonsTipoVerificacion[i]"
+                  [label]="radio.valor"
+                  (click)="clickTipoVerificacion(radio, i)"
+                >
+                </ginni-radio-button>
+              </ginni-radio-group>
+              <div *ngIf="errorTipoVerificacion && seGuarda">
+                <label for="" class="error">
+                  *Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-group-padding">
+            <div class="col-xs-10 reset-padding">
+              <div class="form-label">Vía:</div>
+              <ginni-radio-group class="form-control-wrapper" [(value)]="tipoViaValue">
+                <ginni-radio-button
+                  *ngFor="let radio of radioViaVerificacion; let i = index"
+                  class="col-xs-6 reset-padding"
+                  direction="right"
+                  [value]="state.radiobuttonsViaVerificacion[i]"
+                  [label]="radio.valor"
+                  (click)="clickViaVerificacion(radio, i)"
+                ></ginni-radio-button>
+              </ginni-radio-group>
+              <div *ngIf="errorViaVerificacion && seGuarda">
+                <label for="" class="error">
+                  *Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-text-area ">
+            <div class="form-label">Comentarios:</div>
+            <textarea
+              name="observacion"
+              #textarea
+              cols="200"
+              maxlength="255"
+              style="text-transform: uppercase"
+              [value]="comentarios"
+            ></textarea>
+          </div>
+          <div class="big-form-footer">
+            <div class="alert alert-danger" role="alert" *ngIf="errorGuardarVerificacion">
+              {{ errorGuardarVerificacion }}
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="exitoGuardarVerificacion">
+              Los datos se han guardado exitosamente
+            </div>
+            <button
+              (click)="guardar(textarea)"
+              ginniButton
+              class="ui-button-padding"
+              color="primary"
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </ginni-pagina-container>
+      <div class="errorGuardado" role="alert" *ngIf="errorGuardarArchivo">
+        <span class="icon-alert-triangle"></span>
+        {{ errorGuardarArchivo }}
+      </div>
+    </ginni-cargando>
+  </div>
+</ginni-modal>
+
+<ginni-modal
+  class="modal-dialog modal-full reset-body modal--view"
+  *ngIf="portalSandbox.esMobile"
+  [(show)]="showVisorMobile"
+>
+  <ginni-modal-head title> Subir documento </ginni-modal-head>
+  <div body>
+    <div class="documento-zone position-relative">
+      <ginni-cargando [loading]="cargandoArchivo">
+        <ginni-pagina-container>
+          <div class="corner-left">
+            Documento de verificación {{ valorTipoVerificacion?.toLowerCase() }}
+            <div class="subtitle">(Tamaño máximo 10 MB)</div>
+          </div>
+        </ginni-pagina-container>
+        <div class="documento-dropzone" *ngIf="archivoSubido?.url">
+          <ginni-borrar-fila
+            (deleteRow)="accionAlertaDocumento()"
+            class="text-small"
+            [(row)]="alertaDocumento"
+            [btnText]="botonEliminarDocumento"
+          >
+            {{ mensajeEliminarDocumento }}
+          </ginni-borrar-fila>
+          <div class="documento-adjunto row-item">
+            <div class="documento-adjunto-wrapper">
+              <a class="documento-adjunto-contain">
+                <div class="documento-adjunto-image">
+                  <ng-container *ngIf="archivoSubido?.tipoImagen; else esPDF">
+                    <img src="../../../../../../../assets/imagenes/imagen.png" />
+                  </ng-container>
+                  <ng-template #esPDF>
+                    <img src="../../../../../../../assets/imagenes/pdf.png" />
+                  </ng-template>
+                </div>
+                <div class="documento-adjunto-text">
+                  <div class="documento-adjunto-title">
+                    Documento de verificación
+                  </div>
+                </div>
+              </a>
+              <div class="documento-adjunto-action">
+                <div class="action" (click)="abrirAlertaDocumento()">
+                  <span class="icon-x-circle"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="documento-dropzone-footer row-item">
+          <div
+            class="documento-btn text-left"
+            (click)="descargarDocumento()"
+            *ngIf="archivoSubido?.url"
+          >
+            Descargar
+          </div>
+        </div>
+        <div *ngIf="errorGuardarArchivo" class="alert alert-danger" role="alert">
+          {{ errorGuardarArchivo }}
+        </div>
+        <div class="documento-dropzone" *ngIf="!archivoSubido?.url">
+          <div class="documento-dropzone__footer">
+            <label for="reemplazar" class="ui-button-blue-strong ui-button">
+              Buscar en la memoria
+            </label>
+            <input
+              [disabled]="!habilitarVisor ? true : null"
+              type="file"
+              id="reemplazar"
+              (change)="subirArchivo($event)"
+              [multiple]="false"
+            />
+          </div>
+        </div>
+      </ginni-cargando>
+    </div>
+  </div>
+</ginni-modal>

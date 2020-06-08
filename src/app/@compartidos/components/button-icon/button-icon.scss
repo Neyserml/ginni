@@ -1,0 +1,46 @@
+@import "conf/conf";
+
+ginni-button-icon {
+  display: inline-block;
+}
+
+.ginni-button {
+  cursor: pointer;
+  display: flex;
+
+  .button-add__text {
+    font-size: $fontM;
+    padding-left: 35px;
+
+    @media (max-width: $resM) {
+      font-size: 12px;
+    }
+  }
+
+  .button-add__icon {
+    font-size: 24px;
+    position: absolute;
+
+    &.small {
+      font-size: 16px;
+    }
+
+    &.small-right {
+      font-size: 16px;
+      margin-top: 14px;
+      position: absolute !important;
+      right: 9px;
+      display: block !important;
+    }
+
+    @media (max-width: $resM) {
+      font-size: 22px;
+    }
+  }
+}
+
+.form-mode-no-edit {
+  .ginni-button {
+    display: none;
+  }
+}

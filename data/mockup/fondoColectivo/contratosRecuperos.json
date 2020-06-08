@@ -1,0 +1,116 @@
+{
+  "lista": [
+    {
+      "nombre": "PARI PENADILLO RICHAR",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Bolivar Valle Bristhan Juan",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Huaman Maldonado Rainier",
+      "categoria": "A",
+      "contratos": [
+        "0719-161-26"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Procesos Alimentarios Jhire E.I.R.L.",
+      "categoria": "A",
+      "contratos": [
+        "0096-066-37"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "Huaman Maldonado Rainier",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    },
+    {
+      "nombre": "Sierra Vargas Robert Jesus",
+      "categoria": "A",
+      "contratos": [
+        "1504-010-20", "1504-011-22", "1504-171-13"
+      ],
+      "diasAdjudicacion": "120",
+      "diasEvaluacion": "60",
+      "funcionario": "PARI PENADILLO RICHAR",
+      "ingreso": "456465"
+    }
+  ],
+  "numeroPaginas": 12,
+  "totalRegistros": 110
+}

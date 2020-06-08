@@ -1,0 +1,26 @@
+image: trion/ng-cli-karma
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - test
+
+before_script:
+  - npm install
+
+build_stage:
+  stage: build
+  only:
+    - master
+  script:
+    - ./node_modules/@angular/cli/bin/ng build --progress false --prod
+
+test_stage:
+  stage: test
+  only:
+    - master
+  script:
+    - ./node_modules/@angular/cli/bin/ng test --progress false --single-run=true --watch=false

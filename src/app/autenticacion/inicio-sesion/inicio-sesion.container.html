@@ -1,0 +1,222 @@
+<div
+  class="registro"
+  [attr.data-environment]="_getEnvironment()"
+  [attr.data-version]="_getVersion()"
+>
+  <div class="registro__wrapper-form">
+    <div #registroFrom class="registro__form">
+      <form [formGroup]="formInicioSesion" class="form" (ngSubmit)="onSubmitInicio()">
+        <ginni-cargando [loading]="cargandoAutenticacion || cargandoRecaptcha">
+          <div
+            id="recaptcha-main"
+            class="g-recaptcha"
+            data-sitekey="6LcRtG8UAAAAAFnnGcleMt4UOm42b3kIl37GF_-F"
+            data-callback="recaptchaSubmit"
+            data-size="invisible"
+          ></div>
+          <ginni-svg class="registro__logo" src="assets/imagenes/iconos/ginni.svg"></ginni-svg>
+          <div class="registro__form-group">
+            <div class="form-group">
+              <label class="form-label"> Nombre de usuario </label>
+              <input
+                id="txtNombreUsuario"
+                ginniSoloRegex
+                [caracteres]="caracteresNoPermitidos"
+                [permitirCaracteres]="false"
+                [ctrlRegex]="nombreUsuario"
+                autocomplete="off"
+                (focus)="animarIndicador($event)"
+                autoFocus
+                type="text"
+                formControlName="nombreUsuario"
+                placeholder=""
+                class="form-control"
+                [ngClass]="{
+                  error: nombreUsuario.invalid && enviadoFormularioInicio
+                }"
+              />
+              <div *ngIf="nombreUsuario.invalid && enviadoFormularioInicio">
+                <label class="error" *ngIf="nombreUsuario['errors'].required">
+                  Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="txtContrasenia" class="form-label"> Contraseña </label>
+              <input
+                id="txtContrasenia"
+                (focus)="animarIndicador($event)"
+                type="password"
+                formControlName="contrasenia"
+                placeholder=""
+                class="form-control"
+                [ngClass]="{
+                  error: contrasenia.invalid && enviadoFormularioInicio
+                }"
+              />
+              <div *ngIf="contrasenia.invalid && enviadoFormularioInicio">
+                <label class="error" *ngIf="contrasenia['errors'].required">
+                  Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+            <button
+              id="linkRecuperar"
+              class="link"
+              type="button"
+              (click)="modalRecuperarClave = true"
+            >
+              Restablecer contraseña
+            </button>
+          </div>
+          <button
+            id="btnIngresar"
+            ginniButton
+            color="primary"
+            class="ui-button-block"
+            type="submit"
+          >
+            Ingresar al sitio
+          </button>
+        </ginni-cargando>
+      </form>
+      <div class="registro__indicador">
+        <div #indicador class="registro__indicador-focus"></div>
+      </div>
+    </div>
+    <div id="lblMensajeErrorLogin" class="registro__error" *ngIf="mensajeError" @zoomAnimation>
+      <p>{{ mensajeError }}</p>
+      <p></p>
+    </div>
+  </div>
+  <div class="registro__footer">
+    <ginni-svg
+      class="registro__logo--footer"
+      src="assets/imagenes/iconos/pandero-white.svg"
+    ></ginni-svg>
+    <a href="https://www.pandero.com.pe/terminos-y-condiciones/" target="_blank">
+      Términos y condiciones del servicio
+    </a>
+    <a>Versión: {{ _getVersion() }}</a>
+  </div>
+</div>
+<div class="registro__background"></div>
+<ginni-modal
+  [(show)]="modalRecuperarClave"
+  (showChange)="onCloseModalRecuperarClave()"
+  class="modal-small"
+>
+  <ginni-modal-head title>
+    <ng-container *ngIf="restablecer$ | async; else titleTemplate"> Confirmación </ng-container>
+    <ng-template #titleTemplate>
+      <div id="lblTituloRecuperarModal">
+        <ng-container *ngIf="esCuentaBloqueada || esCuentaExpirada; else elseTemplate">
+          <div class="modal__title-icon">
+            <ginni-svg src="assets/imagenes/iconos/alerta.svg"></ginni-svg>
+          </div>
+          <ng-container *ngIf="esCuentaBloqueada"> Tu cuenta ha sido bloqueada </ng-container>
+          <ng-container *ngIf="esCuentaExpirada"> Tu contraseña ha expirado </ng-container>
+        </ng-container>
+        <ng-template #elseTemplate> Restablece tu contraseña </ng-template>
+      </div>
+    </ng-template>
+  </ginni-modal-head>
+  <div body>
+    <ginni-cargando [loading]="restablecerLoading$ | async">
+      <div class="recuperar">
+        <ng-container *ngIf="restablecer$ | async; else bodyTemplate">
+          <p>El correo se ha enviado de forma exitosa.</p>
+          <button
+            (click)="cerrarRecuperarModal()"
+            ginniButton
+            color="primary"
+            class="ui-button-block recuperar__button"
+          >
+            Aceptar
+          </button>
+        </ng-container>
+        <ng-template #bodyTemplate>
+          <div id="lblDescRecuperarModal">
+            <ng-container
+              *ngIf="esCuentaBloqueada || esCuentaExpirada; else textoRecuperaContrasenia"
+            >
+              <p *ngIf="esCuentaBloqueada">
+                Has excedido el número de intentos para ingresar. Por favor ingresa tu nombre de
+                usuario para restablecer tu contraseña.
+              </p>
+              <p *ngIf="esCuentaExpirada">
+                Por favor ingresa tu nombre de usuario para restablecer tu contraseña.
+              </p>
+            </ng-container>
+            <ng-template #textoRecuperaContrasenia>
+              <p class="text-justify">
+                Para restablecer tu contraseña, por favor ingresa tu nombre de usuario y recibirás
+                un correo con las indicaciones que debes seguir.
+              </p>
+            </ng-template>
+          </div>
+          <form
+            [formGroup]="formRecuperar"
+            class="form text-center"
+            (ngSubmit)="onSubmitRecuperar()"
+          >
+            <div class="form-group">
+              <input
+                ginniSoloRegex
+                [caracteres]="caracteresNoPermitidos"
+                [permitirCaracteres]="false"
+                [ctrlRegex]="recuperarUsuario"
+                [ngClass]="{
+                  error: recuperarUsuario.invalid && enviadoFormularioRecuperar
+                }"
+                type="text"
+                placeholder="ej. aperez"
+                class="form-control"
+                formControlName="recuperarUsuario"
+              />
+              <div *ngIf="recuperarUsuario.invalid && enviadoFormularioRecuperar">
+                <label class="error" *ngIf="recuperarUsuario['errors'].required">
+                  Este campo es obligatorio
+                </label>
+              </div>
+            </div>
+            <label class="error-message" *ngIf="restablecerFailed$ | async">
+              {{ restablecerFailed$ | async }}
+            </label>
+            <button
+              id="btnEnviarModal"
+              ginniButton
+              color="primary"
+              class="ui-button-block recuperar__button"
+              type="submit"
+            >
+              Enviar
+            </button>
+          </form>
+        </ng-template>
+      </div>
+    </ginni-cargando>
+  </div>
+</ginni-modal>
+<ginni-modal [(show)]="modalActualizarContrasenia" class="modal-small">
+  <ginni-modal-head title>
+    <br />
+    <div class="modal__title-icon"></div>
+    Contraseña Actualizada
+  </ginni-modal-head>
+  <div body>
+    <p class="text-center">Tu contraseña ha sido actualizada con éxito.</p>
+    <br />
+    <br />
+    <button
+      id="btnEnviarModal"
+      ginniButton
+      color="primary"
+      class="ui-button-block"
+      type="button"
+      (click)="cerrarActualizarContraseniaModal()"
+    >
+      Aceptar
+    </button>
+  </div>
+</ginni-modal>

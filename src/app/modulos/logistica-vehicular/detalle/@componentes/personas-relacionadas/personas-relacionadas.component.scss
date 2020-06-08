@@ -1,0 +1,26 @@
+@import "../../../../../../assets/sass/conf/conf.scss";
+
+.sin-relacionados {
+  cursor: default;
+  padding: 0;
+
+  div {
+    background: white;
+    padding: 50px 10px;
+    text-align: center;
+    color: #9B9B9B;
+
+    @media (max-width: $resM) {
+      background-color: $light;
+      padding: 20px 10px;
+    }
+  }
+}
+
+.clean-form__mensaje {
+  font-size: 13px;
+  color: $blue-strong;
+  font-weight: $font-semibold;
+}
+
+

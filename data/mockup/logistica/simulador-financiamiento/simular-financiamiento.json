@@ -1,0 +1,9 @@
+{
+  "mensajeConfirmacion": "¿Estás seguro que deseas recalcular la categoría? Los requisitos podrían variar. \nEsta acción no se puede revertir\n",
+  "mensajeAlerta": "Alerta de cambio de categoría",
+  "nuevaCategoria": true,
+  "categoria": {
+    "codigo": "B",
+    "descripcion": "GPS + Comité especial"
+  }
+}

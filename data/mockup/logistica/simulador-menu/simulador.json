@@ -1,0 +1,25 @@
+[
+  {
+    "contratoId": 142898,
+    "numeroContrato": 2626,
+    "nombreCompleto": "Estrella",
+    "idPersona": 4488,
+    "situacion": "adjudicado",
+    "valorCertificado": "12122.00",
+    "cuotasPagadas": 3,
+    "celula": "derco",
+    "evaluacionCrediticia": true,
+    "seleccionado": true
+  },{
+    "contratoId": 454545,
+    "numeroContrato": 1315,
+    "nombreCompleto": "Graciela",
+    "idPersona": 12151,
+    "situacion": "sorteo",
+    "valorCertificado": "45450.21",
+    "cuotasPagadas": 12,
+    "celula": "norte",
+    "evaluacionCrediticia": false,
+    "seleccionado": false
+  }
+]

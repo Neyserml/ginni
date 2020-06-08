@@ -1,0 +1,509 @@
+<ginni-cargando [loading]="loading" [failed]="failed">
+  <div class="table-grid only-desktop">
+    <ginni-borrar-fila [(row)]="indexContratoVinculadoSelected" (deleteRow)="filaAEliminar()">
+      ¿Estás seguro que deseas eliminar esta información?
+    </ginni-borrar-fila>
+    <table class="table table-striped reset-margin">
+      <thead>
+        <tr>
+          <th>Tipo de documento</th>
+          <th>N° documento</th>
+          <th class="column-icons th-width-20">
+            <div *ngIf="puedeEditar && mostrarIconEditar" class="icon-container"></div>
+            Nombre o Razón social
+          </th>
+          <th>Tipo</th>
+          <td class="text-center">Verificaciones domiciliario</td>
+          <td class="text-center">Verificaciones laboral</td>
+          <td class="text-center">Documentos enviados</td>
+          <td class="text-center">Garantías reales</td>
+          <!--
+        <th>
+          <div class="action default"></div>
+          Documentos requeridos
+        </th>
+        <th class="text-center">Estado</th>
+        -->
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="formCheckbox">
+        <tr *ngFor="let documento of formCheckbox.controls; let i = index" [formGroup]="documento">
+          <td>{{ documentos[i].tipoDocumento.toUpperCase() }}</td>
+          <td>{{ documentos[i].numeroDocumento.toUpperCase() }}</td>
+          <td
+            class="column-icons"
+            (click)="!documentos[i].readOnly ? editarGaranteORespaldo(documentos[i]) : null"
+          >
+            <ng-container *ngIf="documentos[i].readOnly; else mostrarEditar">
+              <div *ngIf="mostrarIconEditar" class="icon-container"></div>
+            </ng-container>
+            <ng-template #mostrarEditar>
+              <div *ngIf="mostrarIconEditar" class="icon-container">
+                <span class="icon-editar cursor-pointer"></span>
+              </div>
+            </ng-template>
+            <div class="text" [ngClass]="{ middle: !documentos[i].readOnly }">
+              <span
+                [ngClass]="
+                  !documentos[i].readOnly && puedeEditar ? 'cursor-pointer' : 'cursor-default'
+                "
+              >
+                {{ documentos[i].nombre.toUpperCase() }}
+              </span>
+            </div>
+          </td>
+          <td>{{ documentos[i].tipo.toUpperCase() }}</td>
+          <!--
+        <td>
+          <div *ngFor="let documento of item.documentos" class="paragraph cursor-pointer flex">
+            <div class="action default">
+              <span class="icon-check color-green full-width" *ngIf="documento.url"></span>
+            </div>
+            <span>
+              {{ documento.nombre.toUpperCase() }}
+            </span>
+          </div>
+        </td>
+        <td class="text-center">
+          <div *ngFor="let documento of item.documentosRequeridos" class="paragraph">
+            {{ documento.estado.toUpperCase() }}
+          </div>
+        </td>
+        -->
+          <td class="text-center">
+            <ng-container *ngIf="accesoEditar; else visualizarVerificacionDomiciliario">
+              <ginni-checkbox
+                [noText]="true"
+                formControlName="verificacionesDomiciliario"
+                (click)="
+                  puedeEditar
+                    ? cambioCheckbox(
+                        'verificacionesDomiciliario',
+                        documentos[i].verificaciones[0].id,
+                        i
+                      )
+                    : null
+                "
+              ></ginni-checkbox>
+            </ng-container>
+            <ng-template #visualizarVerificacionDomiciliario>
+              <ng-container
+                *ngIf="documentos[i].verificaciones[0]?.estado; else sinVerificacionDomiciliario"
+              >
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinVerificacionDomiciliario>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </td>
+          <td class="text-center">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarVerificacionLaboral"
+              formControlName="verificacionesLaboral"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox('verificacionesLaboral', documentos[i].verificaciones[1].id, i)
+                  : null
+              "
+            >
+            </ginni-checkbox>
+            <ng-template #visualizarVerificacionLaboral>
+              <ng-container
+                *ngIf="documentos[i].verificaciones[1]?.estado; else sinVerificacionLaboral"
+              >
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinVerificacionLaboral>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </td>
+          <td class="text-center">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarDocumentos"
+              formControlName="documentosEnviados"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox(
+                      'documentosEnviados',
+                      documentos[i].documentos[0].creditoPersonaDocumentoId,
+                      i
+                    )
+                  : null
+              "
+            >
+            </ginni-checkbox>
+            <ng-template #visualizarDocumentos>
+              <ng-container *ngIf="documentos[i].documentos[0].archivoCargado; else sinDocumentos">
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinDocumentos>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </td>
+          <td class="text-center">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarGarantias"
+              formControlName="garantiasReales"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox('garantiasReales', documentos[i].idCreditoPersona, i)
+                  : null
+              "
+            >
+            </ginni-checkbox>
+            <ng-template #visualizarGarantias>
+              <ng-container *ngIf="documentos[i].garantiaReal; else sinGarantias">
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinGarantias>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </td>
+          <td class="text-center">
+            <!--
+          <div
+            class="col-md-2 action color-primary"
+            (click)="abrirModal(documentos[i].idCreditoPersona)"
+          >
+            <span class="icon-upload"></span>
+          </div>
+          -->
+            <!--
+          <div class="col-md-12 action color-primary text-center">
+            <span class="icon-eye"></span>
+          </div>
+          -->
+            <div
+              [ngClass]="{ disabled: documentos[i].readOnly || !puedeEditar }"
+              class="action"
+              (click)="puedeEditar ? mostrarMensajeAlerta(i, !documentos[i].readOnly) : null"
+            >
+              <span class="icon-x-circle"></span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row-add-button" *ngIf="puedeEditar">
+      <ginni-button-icon color="blue-strong" icon="plus-circle" (click)="agregarGaranteORespaldo()">
+        Agregar un respaldo familiar o garante
+      </ginni-button-icon>
+    </div>
+    <div class="big-form-footer"></div>
+  </div>
+  <div class="only-mobile" *ngIf="formCheckbox">
+    <div
+      class="row row-item"
+      *ngFor="let documento of formCheckbox.controls; let i = index"
+      [formGroup]="documento"
+    >
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size col-sm-12 col-xs-8 color-gray">Datos del asociado</div>
+          <div class="form-control-size col-sm-12 col-xs-4 text-right">
+            <!--
+            <div class="action color-primary" (click)="mostrarMensajeAlerta(i, !documentos[i].readOnly)">
+              <span class="icon-eye"></span>
+            </div>
+            -->
+            <div class="action" *ngIf="!documentos[i].readOnly && puedeEditar">
+              <span
+                class="icon-editar cursor-pointer"
+                (click)="!documentos[i].readOnly ? editarGaranteORespaldo(documentos[i]) : null"
+              ></span>
+            </div>
+            <div
+              [ngClass]="{ disabled: documentos[i].readOnly || !puedeEditar }"
+              class="action"
+              (click)="puedeEditar ? mostrarMensajeAlerta(i, !documentos[i].readOnly) : null"
+            >
+              <span class="icon-x-circle"></span>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xs-12">
+            <div class="row-underline"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">Tipo de documento</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            {{ documentos[i].tipoDocumento.toUpperCase() }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">N° documento</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            {{ documentos[i].numeroDocumento.toUpperCase() }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-4">Nombre</div>
+          <div class="form-control-size col-sm-12 col-xs-8 text-right">
+            {{ documentos[i].nombre.toUpperCase() }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">Tipo</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            {{ documentos[i].tipo.toUpperCase() }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">
+            Verificaciones domiciliario
+          </div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            <ginni-checkbox
+              [noText]="true"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox(
+                      'verificacionesDomiciliario',
+                      documentos[i].verificaciones[0].id,
+                      i
+                    )
+                  : null
+              "
+              *ngIf="accesoEditar; else visualizarVerificacionesDomiciliario"
+              formControlName="verificacionesDomiciliario"
+            ></ginni-checkbox>
+            <ng-template #visualizarVerificacionesDomiciliario>
+              <ng-container
+                *ngIf="documentos[i].verificaciones[0]?.estado; else sinVerificacionDomiciliario"
+              >
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinVerificacionDomiciliario>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">Verificaciones laboral</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarVerificacionLaboral"
+              formControlName="verificacionesLaboral"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox('verificacionesLaboral', documentos[i].verificaciones[1].id, i)
+                  : null
+              "
+            ></ginni-checkbox>
+            <ng-template #visualizarVerificacionLaboral>
+              <ng-container
+                *ngIf="documentos[i].verificaciones[1]?.estado; else sinVerificacionLaboral"
+              >
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinVerificacionLaboral>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">Documentos enviados</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarDocumentos"
+              formControlName="documentosEnviados"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox(
+                      'documentosEnviados',
+                      documentos[i].documentos[0].creditoPersonaDocumentoId,
+                      i
+                    )
+                  : null
+              "
+            ></ginni-checkbox>
+            <ng-template #visualizarDocumentos>
+              <ng-container *ngIf="documentos[i].documentos[0].archivoCargado; else sinDocumentos">
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinDocumentos>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size color-gray col-sm-12 col-xs-6">Garantías reales</div>
+          <div class="form-control-size col-sm-12 col-xs-6 text-right">
+            <ginni-checkbox
+              [noText]="true"
+              *ngIf="accesoEditar; else visualizarGarantias"
+              formControlName="garantiasReales"
+              (click)="
+                puedeEditar
+                  ? cambioCheckbox('garantiasReales', documentos[i].idCreditoPersona, i)
+                  : null
+              "
+            ></ginni-checkbox>
+            <ng-template #visualizarGarantias>
+              <ng-container *ngIf="documentos[i].garantiaReal; else sinGarantias">
+                <span class="icon-check color-green full-width"></span>
+              </ng-container>
+              <ng-template #sinGarantias>
+                <span class="icon-minus2 color-gray"></span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+          <div class="form-control-size col-sm-12 col-xs-8 color-gray">Documentos requeridos</div>
+          <div class="form-control-size col-sm-12 col-xs-4 text-right">
+            <div class="action color-primary" (click)="abrirModal(item.idCreditoPersona)">
+              <span class="icon-upload"></span>
+            </div>
+          </div>
+        </div>
+
+        <button ginniButton color="primary" class="" type="submit" (click)="envioComite(value)">
+          Envío a comité
+        </button>
+      </div>
+
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row-underline"></div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="sub-row" *ngFor="let documento of item.documentos">
+          <div class="action default">
+            <span *ngIf="documento.url" class="icon-check color-green"></span>
+          </div>
+          <span class="sub-row-text"> {{ documento.nombre.toUpperCase() }} </span>
+        </div>
+      </div>
+      -->
+    </div>
+    <div class="row-add-button" *ngIf="puedeEditar">
+      <ginni-button-icon color="blue-strong" icon="plus-circle" (click)="agregarGarante.emit()">
+        Agregar un respaldo familiar o garante
+      </ginni-button-icon>
+    </div>
+    <div class="big-form-footer"></div>
+    <ginni-borrar-fila [(row)]="indexContratoVinculadoSelected" (deleteRow)="filaAEliminar()">
+      ¿Estás seguro que deseas eliminar?
+    </ginni-borrar-fila>
+  </div>
+
+  <div class="row row-item">
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <div class="subtitle-secondary">Observaciones</div>
+      <div class="form-text-area flex reset-margin">
+        <textarea
+          [disabled]="evaluacionAprobada"
+          #observacion
+          name="observacion"
+          cols="200"
+          maxlength="250"
+          style="text-transform: uppercase"
+        ></textarea>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 documentos__buttons flex-end justify-end">
+      <div class="ui-button-group-separate">
+        <button
+          [disabled]="boton.texto === 'Anular' && !restriccionTotal ? null : evaluacionAprobada"
+          ginniButton
+          [className]="boton.color"
+          type="submit"
+          *ngFor="let boton of botones"
+          (click)="botonAccion(boton.texto, observacion.value)"
+        >
+          {{ boton.texto }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="big-form-footer" *ngIf="errorMensaje">
+    <ginni-alert
+      [allowClose]="true"
+      [disappear]="errorMensaje ? true : false"
+      [type]="errorType"
+      (close)="errorMensaje = null"
+      (closeSuccess)="errorMensaje = null"
+      [show]="errorMensaje"
+    >
+      {{ errorMensaje }}
+    </ginni-alert>
+  </div>
+  <div class="big-form-footer" *ngIf="successMensaje">
+    <ginni-alert
+      [allowClose]="true"
+      [disappear]="successMensaje ? true : false"
+      [type]="successType"
+      (close)="successMensaje = null"
+      (closeSuccess)="successMensaje = null"
+      [show]="successMensaje"
+    >
+      {{ successMensaje }}
+    </ginni-alert>
+  </div>
+</ginni-cargando>
+
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="showAlert = false"
+  icon="alert"
+  [show]="showAlert"
+>
+  <div text>Los documentos que debes enviar no están completos</div>
+</ginni-modal-icon-subtext>
+
+<ginni-modal-confirm
+  [show]="showAlertButton"
+  (go)="servicioboton()"
+  goColor="primary"
+  goText="Aceptar"
+  (back)="showAlertButton = false"
+  backColor="dark"
+  backText="Cancelar"
+>
+  {{ botonAccionEstado?.mensaje }}
+</ginni-modal-confirm>
+
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="modalModificarEvaluacion = false"
+  icon="alert"
+  [show]="modalModificarEvaluacion"
+>
+  <div text>Evaluación modificada, debes regresar al módulo de Evaluación con Financiamiento</div>
+</ginni-modal-icon-subtext>

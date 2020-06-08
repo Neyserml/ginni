@@ -1,0 +1,13 @@
+@import "conf/conf";
+
+.simulador {
+  .simulador__title {
+    margin-bottom: 10px;
+  }
+
+  .simulador-certificados--monto {
+    font-size: $fontM;
+    font-weight: $font-semibold;
+    text-align: right;
+  }
+}

@@ -1,0 +1,114 @@
+@import "conf/conf";
+
+$border: 0.2em;
+$border-small: 0.1em;
+
+.circle-progress {
+  height: 1em;
+  width: 1em;
+  position: relative;
+  display: inline-block;
+
+  .label-progress {
+    border-radius: 50%;
+    bottom: 0.4em;
+    color: $gray-strong;
+    font-weight: 600;
+    z-index: 2;
+    cursor: default;
+    display: block;
+    background: none;
+    font-size: 0.24em;
+    left: 0.4em;
+    line-height: 2.3em;
+    position: absolute;
+    right: 0.4em;
+    text-align: center;
+    top: 0.6em;
+
+    .smaller {
+      color: #bdc3c7;
+      font-size: 0.55em;
+      padding-bottom: 20px;
+      vertical-align: super;
+      left: -0.25em;
+      position: relative;
+    }
+
+    .percent {
+      position: relative;
+      right: -$border;
+    }
+  }
+
+  .progress-contain {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .circle {
+    height: 100%;
+    width: 100%;
+    clip: rect(auto, auto, auto, auto);
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    .half-circle {
+      height: 100%;
+      width: 100%;
+      border: $border solid #3498db;
+      border-radius: 50%;
+      clip: rect(0, 0.5em, 1.5em, 0);
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+
+    .left-side {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(298deg);
+    }
+
+    .right-side {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  }
+
+  &.less-50 {
+    .circle {
+      clip: rect(0, 1em, 1em, 0.5em);
+
+      .right-side {
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  }
+
+  .shadow {
+    height: 100%;
+    width: 100%;
+    border: $border solid $disabled;
+    border-radius: 50%;
+  }
+
+  &.small {
+    .label-progress {
+      .percent {
+        right: -$border-small;
+      }
+    }
+
+    .circle {
+      .half-circle {
+        border-width: $border-small;
+      }
+    }
+
+    .shadow {
+      border-width: $border-small;
+    }
+  }
+}

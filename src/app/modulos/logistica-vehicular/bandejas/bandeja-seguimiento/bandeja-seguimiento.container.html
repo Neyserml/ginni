@@ -1,0 +1,120 @@
+<ginni-pagina-full>
+  <div class="bandeja-trabajo">
+    <ng-container>
+      <ginni-pagina-container class="only-desktop">
+        <div class="head-page">
+          <h3 class="head-page__title">
+            {{ portalSandbox.usuario.primerNombre.toLowerCase() | capitalizeText }}, estas son tus
+            bandejas de trabajo
+          </h3>
+          <span class="head-page__subtitle"> Haz click en un asociado para editarlo </span>
+        </div>
+      </ginni-pagina-container>
+
+      <div class="table-wrapper">
+        <ginni-pagina-container>
+          <ginni-buscador
+            #buscador
+            (textoABuscar)="textoABuscar($event)"
+            [placeholder]="placeholder"
+            [iconText]="'CC:'"
+            [maxLength]="11"
+            [onlyContract]="true"
+          >
+            <div class="table-actions__item ui-button-group only-desktop">
+              <button
+                [disabled]="listarBandejasLoading$ | async"
+                ginniButton
+                color="white"
+                class="ui-button-large ui-button-block icon-refresh"
+                (click)="refrescar()"
+              ></button>
+            </div>
+          </ginni-buscador>
+        </ginni-pagina-container>
+
+        <ginni-pagina-container>
+          <div class="table-content">
+            <ginni-tab-page
+              [tabsPage]="tabsPage"
+              (tabSeleccionada)="tabSeleccionada($event)"
+            ></ginni-tab-page>
+            <div class="table-grid only-desktop position-relative">
+              <ginni-cargando
+                [loading]="listarBandejasLoading$ | async"
+                [failed]="listarBandejasFailed$ | async"
+              >
+                <ginni-grillas *ngIf="columnas?.length" [columnas]="columnas">
+                  <tr *ngIf="listarBandeja?.length === 0">
+                    <td colspan="8" class="bandeja-vacia">
+                      <div>No se han encontrado resultados en la búsqueda</div>
+                    </td>
+                  </tr>
+                  <tr
+                    [ngClass]="{ 'cursor-default': !item.bloqueContratoID }"
+                    (click)="redirectEditarAsociado(item.bloqueContratoID)"
+                    *ngFor="let item of listarBandeja; let i = index"
+                  >
+                    <td scope="row">{{ item.fechaIngreso }}</td>
+                    <td scope="row">
+                      <p *ngFor="let contrato of item.contratos" [innerHTML]="contrato"></p>
+                    </td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.nombres" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row">{{ item.funcionario }}</td>
+                    <td scope="row" class="text-center">{{ item.categoria }}</td>
+                    <td scope="row" class="text-center">{{ item.diasEvaluacion }}</td>
+                    <td scope="row" class="text-center">{{ item.diasAdjudicacion }}</td>
+                  </tr>
+                </ginni-grillas>
+
+                <div class="flex space-between" *ngIf="listarBandeja?.length">
+                  <ginni-paginador
+                    [ngClass]="{ hidden: numeroPaginas === 1 }"
+                    [(currentPage)]="paginaActual"
+                    (currentPageChange)="cambiarPagina()"
+                    [totalItems]="totalRegistros"
+                    [maxSize]="tamanioPaginador"
+                  ></ginni-paginador>
+                  <ginni-leyenda [listarLeyenda]="listarLeyenda"></ginni-leyenda>
+                </div>
+              </ginni-cargando>
+            </div>
+          </div>
+        </ginni-pagina-container>
+      </div>
+    </ng-container>
+  </div>
+</ginni-pagina-full>
+<ginni-dialog [active]="dialogFiltro" (activeChange)="cerrarFiltro()" title="Filtrar por...">
+  <div class="filter-dialog">
+    <ginni-multi-radio-button
+      [label]="radio.label"
+      [value]="radio.value"
+      (click)="clickRadioFiltro(radio, i)"
+      *ngFor="let radio of radioColumnas; let i = index"
+    ></ginni-multi-radio-button>
+
+    <div class="filter-button">
+      <button
+        ginniButton
+        color="primary"
+        class="ui-button-block"
+        type="button"
+        (click)="clickAplicarFiltro()"
+      >
+        Aplicar
+      </button>
+    </div>
+  </div>
+</ginni-dialog>
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="aceptarSeguimiento()"
+  icon="alert"
+  [show]="showSuccessOrError"
+>
+  <div text>{{ mensajeDocumento?.mensaje }}</div>
+</ginni-modal-icon-subtext>

@@ -1,0 +1,36 @@
+[
+	{
+		"idIngreso":6565656,
+		"idOrigen": 115,
+		"idTipoIngreso": 109,
+    "fuente": "almogin",
+    "readOnly": true,
+		"ingresoMensualNeto": {
+			"idMoneda": 1,
+			"monto": 3044
+		}
+	},
+	{
+		"idIngreso": 6565658,
+		"idOrigen": 117,
+		"idTipoIngreso": 110,
+		"fuente": "otro",
+    "readOnly": false,
+		"ingresoMensualNeto": {
+			"idMoneda": 2,
+			"monto": 1254
+		}
+  },
+
+	{
+		"idIngreso": 6565658,
+		"idOrigen": 117,
+		"idTipoIngreso": 110,
+		"fuente": "otro",
+    "readOnly": false,
+		"ingresoMensualNeto": {
+			"idMoneda": 2,
+			"monto": 1254
+		}
+	}
+]

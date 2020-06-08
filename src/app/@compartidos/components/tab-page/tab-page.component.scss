@@ -1,0 +1,24 @@
+@import "../../../../assets/sass/conf/conf.scss";
+
+.table-content {
+  .tab {
+    border-bottom: 1px solid $gray-light;
+    color: $dark-light;
+    margin-bottom: 26px;
+
+    .title-tab {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 20px;
+      margin-right: 2rem;
+      padding-bottom: 10px;
+      position: relative;
+      top: 4px;
+
+      &.active {
+        color: $primary;
+        border-bottom: 4px solid $primary;
+      }
+    }
+  }
+}

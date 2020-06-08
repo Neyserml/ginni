@@ -1,0 +1,17 @@
+@import "conf/conf";
+
+.footer {
+  background: $gray-light;
+  text-align: right;
+  padding: 15px;
+
+  svg path,
+  svg polygon {
+    fill: #9b9b9b;
+  }
+
+  svg {
+    vertical-align: middle;
+    height: 18px;
+  }
+}

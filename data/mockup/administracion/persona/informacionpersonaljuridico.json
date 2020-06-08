@@ -1,0 +1,55 @@
+{
+  "nombreCompleto": "NV & CV S.A.C.",
+  "idPersona": 300343,
+  "tipoDocumento": "RUC",
+  "numeroDocumento": "1574893",
+  "numeroPartida": "488484848",
+  "actividadEconomica": {
+    "identificador": 103,
+    "descripcion" :"EMPRESA PUERTO"
+  },
+  "giroNegocio": "EXPORTADORA",
+  "fechaConstitucion": "15/05/2000",
+  "correo": "rafa@gmail.com",
+  "direccion": {
+    "idDepartamento": "13",
+    "idProvincia": "04",
+    "idDistrito": "03",
+    "idTipoZona": 82,
+    "nombreZona": "corpac",
+    "idTipoVia": 95,
+    "direccionTexto": "jose pardo 1231"
+  },
+  "facturacionMensual": {
+    "idFacturacionMensual": 247936,
+    "idMoneda": 1,
+    "monto": 29407.98,
+    "tipoMoneda": "PEN"
+  },
+  "telefonos": [{
+      "tipo": "F",
+      "valor": "518545843",
+      "id": 1162985,
+      "idAmbito": 12,
+      "anexo": "0222"
+    },
+    {
+      "tipo": "F",
+      "valor": "518545843",
+      "id": 1162986
+    },
+    {
+      "tipo": "M",
+      "valor": "518545843",
+      "id": 1162987
+    },
+    {
+      "tipo": "M",
+      "valor": "518545843",
+      "id": 1162988
+    }
+  ]
+}
+
+
+

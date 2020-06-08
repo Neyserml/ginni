@@ -1,0 +1,16 @@
+@import "conf/conf";
+
+:host {
+  font-size: 12px;
+  color: $primary;
+  margin-bottom: 30px;
+  display: block;
+
+  @media (max-width: $resM) {
+    font-size: 12px;
+  }
+
+  a {
+    font-weight: $font-semibold;
+  }
+}

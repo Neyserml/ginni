@@ -1,0 +1,16 @@
+<div class="tab-bar">
+  <ginni-pagina-container class="reset-padding">
+    <div class="tab-bar-wrapper tab-bar-flexbox">
+      <div class="tab-bar-menu" #menuContainer>
+        <div class="tab-bar-items">
+          <ginni-tab-bar-item
+            *ngFor="let item of tabs"
+            icon="{{ item.icon }}"
+            link="{{ item.link }}"
+            text="{{ item.text }}"
+          ></ginni-tab-bar-item>
+        </div>
+      </div>
+    </div>
+  </ginni-pagina-container>
+</div>

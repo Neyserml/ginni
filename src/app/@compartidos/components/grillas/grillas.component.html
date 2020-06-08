@@ -1,0 +1,54 @@
+<table class="table table-striped tr-pointer" *ngIf="columnas.length">
+  <thead>
+    <tr>
+      <th
+        scope="col"
+        *ngFor="let columna of columnas"
+        [class]="columna.className ? columna.className : ''"
+      >
+        <div
+          class="table-head__item active"
+          [ngClass]="{
+            asc: columna.asc,
+            active: columna.focus
+          }"
+          (click)="clickEnColumna(columna, columnasTramite)"
+        >
+          <span class="table-head__text"> {{ columna.name }} </span>
+          <span *ngIf="chevron" class="table-head__chevron icon-chevron-down"></span>
+        </div>
+      </th>
+
+      <th *ngIf="tableIcon" scope="col" class="only-desktop">
+        <div class="tabla__checklist">
+          <div
+            tooltip="Evaluación crediticia"
+            hide-delay="0"
+            class="tabla__checklist-item icon-coins-pile disabled"
+          ></div>
+          <div
+            tooltip="Pedido"
+            hide-delay="0"
+            class="tabla__checklist-item icon-cart disabled"
+          ></div>
+          <div
+            tooltip="Facturación"
+            hide-delay="0"
+            class="tabla__checklist-item icon-bill disabled"
+          ></div>
+          <div
+            tooltip="Seguro"
+            hide-delay="0"
+            class="tabla__checklist-item icon-shield disabled"
+          ></div>
+          <div
+            tooltip="Notaría"
+            hide-delay="0"
+            class="tabla__checklist-item icon-stamp disabled"
+          ></div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <ng-content></ng-content>
+</table>

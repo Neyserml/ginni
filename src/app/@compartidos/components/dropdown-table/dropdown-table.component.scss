@@ -1,0 +1,52 @@
+@import "conf/colors";
+
+.dropdown-table {
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  line-height: 22px;
+  color: $gray-strong;
+
+  &.disabled {
+    color: $gray-light;
+  }
+
+  .title, .active:not(.disabled) {
+    transition: transform 0.2s;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 16px;
+  }
+
+  @media (max-width: 1024px) {
+    border-bottom: 1px solid $gray-light;
+    padding: 20px 0;
+    width: 100%;
+
+    & > span:first-child {
+      padding-left: 34px;
+    }
+
+    ginni-dropdown {
+      float: right;
+      padding-right: 34px;
+    }
+
+    &.line-bottom {
+      border-bottom: 1px solid $gray-light;
+    }
+  }
+
+  .dropdown-button {
+
+    &.disabled {
+      color: $gray-light;
+    }
+
+    &.long-text {
+      top: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+}

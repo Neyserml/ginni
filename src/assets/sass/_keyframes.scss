@@ -1,0 +1,37 @@
+@keyframes mercuryTypingAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  28% {
+    transform: translateY(-15px);
+  }
+
+  44% {
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes mercuryTypingAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  28% {
+    transform: translateY(-15px);
+  }
+
+  44% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

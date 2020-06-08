@@ -1,0 +1,36 @@
+@import "conf/conf";
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-button {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  font-size: $fontM;
+  color: black;
+  transition: transform 0.2s;
+
+  &.active {
+    transform: rotate(180deg);
+  }
+
+  &.long-text {
+    top: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+  display: block;
+  background: white;
+  right: 0;
+  width: auto;
+  padding: 0;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.18);
+  z-index: 10000;
+}

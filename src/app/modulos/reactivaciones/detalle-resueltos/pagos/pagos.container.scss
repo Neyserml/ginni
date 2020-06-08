@@ -1,0 +1,385 @@
+@import "conf/colors";
+@import "conf/variables";
+
+.pagos-page {
+
+  .modal__wrapper {
+    padding: 0 !important;
+  }
+
+  .form-wrapper {
+
+    label.error {
+      font-size: 12px;
+    }
+
+    div.required {
+      color: $dark-light;
+
+      @media (max-width: 1024px) {
+        font-size: 12px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 14px;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 24px 0 6px !important;
+      }
+    }
+
+    .error {
+      color: $red;
+    }
+
+    > div:nth-child(1), > div:nth-child(2) {
+      padding-bottom: 16px;
+    }
+
+    @media (min-width: 1024px) {
+
+      &form > div:last-child {
+        padding-top: 32px;
+      }
+
+      > div:nth-child(2) {
+
+        > div:nth-child(1) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      padding: 29px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .form-control {
+      height: 33px;
+      text-align: right;
+    }
+
+    @media (max-width: 1024px) {
+      .row {
+
+        &:first-child {
+
+          .font-bold {
+            font-size: 12px;
+          }
+        }
+
+        &:nth-child(2) {
+
+          & > div:first-child {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .form-block {
+
+      .not-allowed {
+        cursor: not-allowed;
+      }
+
+      div.required {
+        color: $dark-light;
+        font-size: $fontM;
+
+        @media (max-width: 1024px) {
+          margin: 25px 0 32px !important;
+        }
+
+        & > span {
+          color: $red;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        box-sizing: border-box;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
+    .form-group {
+
+      @media (min-width: 1024px) {
+        width: 232px;
+      }
+
+      .color-half-black {
+        font-size: $fontM;
+      }
+
+      @media (max-width: 1024px) {
+
+        label.error {
+          text-align: right;
+        }
+      }
+    }
+
+    .form-row {
+
+      @media (max-width: 1024px) {
+        flex-basis: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+    }
+
+    .form-label {
+      font-size: $fontM;
+      line-height: 1.2;
+      height: 33px;
+
+      &.text-center {
+
+        @media (max-width: 1024px) {
+          text-align: left !important;
+        }
+
+        @media (min-width: 1024px) {
+          text-align: center !important;
+        }
+      }
+
+
+      @media (max-width: 1024px) {
+        width: 50%;
+        display: inline-block;
+        float: left;
+      }
+    }
+
+    .form-control-wrapper {
+      font-size: $fontM;
+      height: 33px;
+
+      .ui-button {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0.25rem;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0.25rem;
+        border-bottom: 1px solid $gray-strong;
+        border-right: 1px solid $gray-strong;
+        border-top: 1px solid $gray-strong;
+      }
+
+
+      @media (min-width: 1024px) {
+        text-align: left !important;
+        display: block;
+      }
+
+      @media (max-width: 1024px) {
+        flex-basis: 50%;
+        max-width: 50%;
+
+        text-align: right !important;
+      }
+    }
+
+    .wide-button-responsive {
+
+      @media (min-width: 1024px) {
+        width: 100%;
+        padding-right: 31px;
+      }
+    }
+
+    span.error {
+      display: inline-block;
+    }
+  }
+
+  .title-no-link {
+
+    @media (max-width: 1023px) {
+      padding-bottom: 16px;
+    }
+  }
+
+  .generar-obligacion {
+
+    @media (min-width: 1024px) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .wide-button {
+    margin: 16px 0;
+    margin-bottom: 10px;
+  }
+
+  .position-relative {
+
+    .nsm-content {
+      padding: 16px 36px;
+    }
+
+    .modal__close .modal__close-icon {
+      position: absolute;
+      right: -16px;
+      font-size: 22px;
+      top: 0;
+    }
+  }
+
+  .saldo-a-favor {
+    font-weight: bold;
+
+    @media(min-width: 1024px) {
+      font-size: 20px !important;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: $fontM !important;
+      position: relative;
+      top: 2px;
+    }
+
+    .dropdown-button {
+      color: $primary;
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 29px;
+      font-size: 26px;
+      margin-left: 10px;
+      position: relative;
+      top: -1px;
+      transition: transform 0.2s;
+      vertical-align: middle;
+
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .bottom-border {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $gray-light;
+  }
+
+  .tabla-desplegable-alta {
+
+    & > div:first-child {
+
+      & > div:nth-child(2) {
+        padding: 12px 66px 12px 12px;
+
+        ginni-button-icon {
+          display: block;
+        }
+      }
+    }
+
+    .small-right {
+
+      @media(max-width: 1024px) {
+        right: 26px!important;
+      }
+    }
+
+    ginni-radio-button {
+
+      label {
+        padding: 0;
+        margin: 0;
+
+        & > div:first-child {
+          color: $gray-strong !important;
+          font-weight: normal !important;
+          font-size: $fontM !important;
+        }
+      }
+
+      ginni-button-icon {
+        height: 16px;
+        width: 16px;
+
+        @media (min-width: 1024px) {
+          display: block;
+        }
+
+        @media (max-width: 1023px) {
+          display: block !important;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .table-striped {
+
+    .ginni-button {
+      top: -5px;
+      width: 16px;
+      position: relative;
+    }
+  }
+
+  .transparente {
+
+    .ginni-button {
+
+      .button-add__icon.small-right {
+        right: 25px !important;
+      }
+    }
+  }
+
+  .pagos {
+
+    @media (max-width: 1024px) {
+
+      div:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .transparente {
+    width: 100%;
+    mso-cellspacing: 0;
+    border-spacing: 0;
+
+    td {
+      border: none;
+      padding: 0 0 16px;
+    }
+  }
+
+  ginni-borrar-fila {
+
+    @media(max-width: 1024px) {
+
+      .borrar-mensaje {
+        padding-left: 30px;
+        display: inline-block;
+      }
+
+      .icon-x {
+        cursor: pointer;
+        font-size: 18px;
+        position: absolute;
+        top: 17px;
+        vertical-align: middle;
+        padding-right: 4px;
+      }
+    }
+  }
+}

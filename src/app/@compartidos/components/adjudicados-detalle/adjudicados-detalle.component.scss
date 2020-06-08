@@ -1,0 +1,55 @@
+@import "conf/conf";
+
+.adjudicados-detalle {
+  background-color: white;
+  border-top: 1px solid $gray-light;
+  display: inline-block;
+  height: auto;
+  padding: 32px;
+  margin-top: 20px;
+  z-index: 1;
+
+  table {
+    font-size: 15.84px;
+    font-weight: 600;
+    line-height: 22px;
+    width: 100%;
+
+    th {
+      color: $dark-light !important;
+      border-bottom: 0.72px solid $gray-light;
+      padding: 13px;
+    }
+
+    td {
+      color: $gray-strong;
+      border-bottom: 0.72px solid $gray-light;
+      padding: 13px;
+
+      &.empty-message {
+        color: $gray;
+        font-size: $fontM;
+        font-weight: 300;
+        line-height: 27px;
+        text-align: center;
+      }
+    }
+
+    tbody tr:last-child td {
+      border: unset;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    border: 0.72px solid $gray-light;
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    right: 0;
+    width: 453px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0 29px;
+    width: 100%;
+  }
+}

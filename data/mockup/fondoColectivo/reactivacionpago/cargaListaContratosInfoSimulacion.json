@@ -1,0 +1,30 @@
+{
+  "listaContratos": [
+    {
+      "contratoID": 93574,
+      "numeroContrato": "1103-226-20",
+      "programa": "C3",
+      "producto": "VOLKSWAGEN",
+      "grupo": "1103",
+      "tipoBien": "Vehículo",
+      "tipoBienId": 35,
+      "valorCertificado": "18400.00",
+      "modelo": "ELANTRA",
+      "marca": "HYUNDAI",
+      "porcentajeCuotaAdmin": 16.00,
+      "cuotaCapital": "238.96",
+      "cuotaTotalMensual": "284.08",
+      "montoAporte": "11931.36",
+      "detalleContrato": {
+        "fechaResolucion": "2019-09-19T15:09:51.00-05:00",
+        "diaPago": 20,
+        "cuotaAdministracion": "45.12",
+        "inversionInmobiliaria": null,
+        "nroCuotasVencidas": 2,
+        "nroCuotasPagadas": 42
+      },
+      "habilitarSeleccion": false,
+      "contratoOrigen": true
+    }
+  ]
+}

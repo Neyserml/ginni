@@ -1,0 +1,98 @@
+<div class="registro">
+  <div class="registro__wrapper-form">
+    <div class="registro__form">
+      <form [formGroup]="formRecuperarContrasenia" class="form" (ngSubmit)="onSubmitRecuperar()">
+        <ginni-svg class="registro__logo" src="assets/imagenes/iconos/ginni.svg"></ginni-svg>
+        <div class="registro__form-group">
+          <p>Restablecer contraseña</p>
+          <div class="form-group">
+            <label for="" class="form-label"> Nueva contraseña </label>
+            <input
+              autoFocus
+              ginniSoloRegex
+              [caracteres]="caracteresNoPermitidos"
+              [permitirCaracteres]="false"
+              [ctrlRegex]="ingresarContrasenia"
+              id="txtNombreUsuario"
+              (focus)="animarIndicador($event)"
+              type="password"
+              formControlName="ingresarContrasenia"
+              class="form-control"
+              [ngClass]="{
+                error: ingresarContrasenia.invalid && enviadoRecuperarContrasenia
+              }"
+            />
+            <label
+              for=""
+              class="form-sublabel"
+              *ngIf="
+                ingresarContrasenia.valid ||
+                !enviadoRecuperarContrasenia ||
+                (ingresarContrasenia.invalid && ingresarContrasenia['errors'].required)
+              "
+            >
+              6 caracteres como mínimo
+            </label>
+            <div *ngIf="ingresarContrasenia.invalid && enviadoRecuperarContrasenia">
+              <label for="" class="error" *ngIf="ingresarContrasenia['errors'].required">
+                Este campo es obligatorio
+              </label>
+              <label class="error" *ngIf="ingresarContrasenia['errors'].minlength">
+                La contraseña debe tener mínimo 6 caracteres
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"> Vuelve a escribir tu contraseña </label>
+            <input
+              ginniSoloRegex
+              [caracteres]="caracteresNoPermitidos"
+              [permitirCaracteres]="false"
+              [ctrlRegex]="reingresarContrasenia"
+              type="password"
+              (focus)="animarIndicador($event)"
+              formControlName="reingresarContrasenia"
+              class="form-control"
+              [ngClass]="{
+                error: formRecuperarContrasenia.invalid && enviadoRecuperarContrasenia
+              }"
+            />
+            <div *ngIf="reingresarContrasenia.invalid && enviadoRecuperarContrasenia">
+              <label for="" class="error" *ngIf="reingresarContrasenia['errors'].required">
+                Este campo es obligatorio
+              </label>
+            </div>
+            <div
+              *ngIf="
+                formRecuperarContrasenia['errors'] &&
+                reingresarContrasenia.valid &&
+                enviadoRecuperarContrasenia
+              "
+            >
+              <label for="" class="error" *ngIf="formRecuperarContrasenia['errors'].mismatch">
+                Los contraseñas no coinciden
+              </label>
+            </div>
+          </div>
+        </div>
+        <button ginniButton color="primary" class="ui-button-block recuperar__button" type="submit">
+          Aceptar
+        </button>
+      </form>
+      <div class="registro__indicador">
+        <div #indicador class="registro__indicador-focus"></div>
+      </div>
+    </div>
+    <div class="registro__error" @zoomAnimation *ngIf="mensajeError">{{ mensajeError }}</div>
+  </div>
+  <div class="registro__footer">
+    <ginni-svg
+      class="registro__logo--footer"
+      src="assets/imagenes/iconos/pandero-white.svg"
+    ></ginni-svg>
+    <a href="https://www.pandero.com.pe/terminos-y-condiciones/" target="_blank">
+      Términos y condiciones del servicio
+    </a>
+  </div>
+  <div class="registro__background"></div>
+</div>

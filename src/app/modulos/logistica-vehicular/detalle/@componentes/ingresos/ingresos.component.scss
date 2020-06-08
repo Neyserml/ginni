@@ -1,0 +1,35 @@
+@import "../../../../../../assets/sass/conf/conf.scss";
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ingresos {
+  margin-right: 1px;
+}
+
+.total-ingreso {
+  justify-content: right;
+
+  @media (min-width: $resM) {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  div,
+  span {
+    width: 100%;
+    text-align: right;
+  }
+
+  span {
+    color: $info;
+    font-size: 12px;
+    @media (max-width: $resM) {
+      color: $gray-strong;
+      font-size: 10px;
+    }
+  }
+
+}

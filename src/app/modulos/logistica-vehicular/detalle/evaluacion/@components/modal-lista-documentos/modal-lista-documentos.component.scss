@@ -1,0 +1,28 @@
+@import "conf/conf";
+
+.row-item {
+  @media (min-width: $resM) {
+    cursor: default;
+
+    .item-text {
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .item-actions {
+      padding-right: 10px;
+    }
+  }
+
+}
+
+.documento-zone {
+
+  ::ng-deep {
+
+    .loading {
+      height: 0;
+    }
+  }
+}

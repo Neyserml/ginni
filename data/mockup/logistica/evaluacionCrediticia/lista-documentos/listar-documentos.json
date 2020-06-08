@@ -1,0 +1,19 @@
+{
+  "listaDocumentos": [{
+      "creditoPersonaDocumentoId": 1,
+      "nombre": "Informe crediticio del titular",
+      "descripcion": "",
+      "archivoCargado": false,
+      "observacion": "",
+      "url": null
+    },
+    {
+      "creditoPersonaDocumentoId": 2,
+      "nombre": "Hoja de datos del titular",
+      "descripcion": "",
+      "archivoCargado": true,
+      "observacion": "Falta observacion",
+      "url": "http://s3.aws.com"
+    }
+  ]
+}

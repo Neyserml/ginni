@@ -1,0 +1,24 @@
+<ngx-smart-modal
+  [customClass]="'nsm-centered nsm-dialog-animation-fade ' + class"
+  [identifier]="id"
+  [closable]="false"
+  (onEscape)="onClose()"
+  (onDismiss)="onClose()"
+  [escapable]="false"
+  [dismissable]="false"
+  class="modal-component"
+>
+  <div class="modal__top">
+    <div class="modal__close" *ngIf="dismissable">
+      <div class="modal__close-icon"><span class="icon-x" (click)="onClose()"></span></div>
+    </div>
+  </div>
+  <div class="modal__wrapper">
+    <div class="modal__wrapper-head">
+      <i class="icon-chevron-left" (click)="onClose()"></i>
+      <ng-content select="[title]"></ng-content>
+    </div>
+    <div class="modal__body"><ng-content select="[body]"></ng-content></div>
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</ngx-smart-modal>

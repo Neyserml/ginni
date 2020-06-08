@@ -1,0 +1,437 @@
+<div class="title-back">
+  <div class="title-primary-strong reset-padding">
+    Información del contrato resuelto
+  </div>
+  <div class="pull-right only-wide">
+    <ginni-dropdown-table
+      [show]="ciaDetalle?.length > 0"
+      title="Cuota de inscripción"
+      class="text-right position-relative"
+    >
+      <ginni-cia-detalle [ciaDetalle]="ciaDetalle"></ginni-cia-detalle>
+    </ginni-dropdown-table>
+    <ginni-dropdown-table
+      [show]="true"
+      title="Próximas asambleas"
+      class="text-right position-relative"
+    >
+      <ginni-proximas-asambleas [proximasAsambleas]="proximasAsambleas"></ginni-proximas-asambleas>
+    </ginni-dropdown-table>
+  </div>
+</div>
+
+<ng-container *ngIf="contratoActual; else noHayContratoActual">
+  <div class="row table-list">
+    <div class="col-md-4 col-xs-12">
+      <div class="row">
+        <div class="col-md-7 col-xs-7 nowrap">Número de contrato</div>
+        <div class="col-md-5 col-xs-5">{{ contratoActual?.numeroContrato }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-5">Programa</div>
+        <div class="col-md-4 col-xs-7">{{ contratoActual?.programa.toUpperCase() }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-xs-5">Producto</div>
+        <div class="col-md-8 col-xs-7">{{ _abreviar(contratoActual?.producto).toUpperCase() }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Grupo</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.grupo }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Tipo de bien</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.tipoBien.toUpperCase() }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-xs-7 nowrap">Valor del certificado</div>
+        <div class="col-md-5 col-xs-5 nowrap">
+          {{ _formatoMoneda(contratoActual?.valorCertificado) }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="row" *ngIf="tipoInmueble()">
+        <div class="col-md-8 col-xs-6">Inversión inmobiliaria</div>
+        <div class="col-md-4 col-xs-6">
+          {{ _abreviar(contratoActual?.inversionInmobiliaria).toUpperCase() }}
+        </div>
+      </div>
+      <div class="row" *ngIf="tipoVehiculo()">
+        <div class="col-md-8 col-xs-4">Marca</div>
+        <div class="col-md-4 col-xs-8">{{ contratoActual?.marca.toUpperCase() }}</div>
+      </div>
+      <div class="row" *ngIf="tipoVehiculo()">
+        <div class="col-md-8 col-xs-4">Modelo</div>
+        <div class="col-md-4 col-xs-8">{{ _abreviar(contratoActual?.modelo.toUpperCase()) }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Día de pago</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.diaPago }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Nº cuotas vencidas</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.nroCuotasVencidas }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Nº cuotas pagadas</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.nroCuotasPagadas }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Fecha de resolución</div>
+        <div class="col-md-4 col-xs-6">{{ _dateFormat(contratoActual?.fechaResolucion) }}</div>
+      </div>
+      <div class="row" *ngIf="tipoInmueble()">
+        <div class="col-md-8 col-xs-6">Cuota admin.%</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.porcentajeCuotaAdmin }}</div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="row" *ngIf="tipoVehiculo()">
+        <div class="col-md-8 col-xs-6">Cuota admin.%</div>
+        <div class="col-md-4 col-xs-6">{{ contratoActual?.porcentajeCuotaAdmin }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xs-6">Cuota capital</div>
+        <div class="col-md-4 col-xs-6 nowrap">
+          {{ _formatoMoneda(contratoActual?.cuotaCapital) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-xs-7 nowrap">Cuota de administración</div>
+        <div class="col-md-3 col-xs-5 nowrap">
+          {{ _formatoMoneda(contratoActual?.cuotaAdministracion) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-xs-7 nowrap">Cuota total mensual</div>
+        <div class="col-md-3 col-xs-5 nowrap">
+          {{ _formatoMoneda(contratoActual?.cuotaTotalMensual) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-xs-7 nowrap">Total aportado en cuota capital</div>
+        <div class="col-md-3 col-xs-5 nowrap">
+          {{ _formatoMoneda(contratoActual?.totalAportadoCuotaCapital) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-xs-7 nowrap">Total aportado en cuota admin.</div>
+        <div class="col-md-3 col-xs-5 nowrap">
+          {{ _formatoMoneda(contratoActual?.totalAportadoCuotaAdmin) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #noHayContratoActual>
+  <div class="position-relative">
+    <ginni-cargando [loading]="true"></ginni-cargando>
+  </div>
+</ng-template>
+<div class="row table-summary with-border-bottom" *ngIf="contratoActual">
+  <div class="col-md-offset-8 col-md-4 col-xs-12">
+    <div class="row">
+      <div class="col-md-8 col-xs-6 nowrap">Monto total aportado</div>
+      <div class="col-md-4 col-xs-6 nowrap">
+        {{ _formatoMoneda(contratoActual?.totalAportado) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="not-wide">
+  <ginni-dropdown-table [show]="true" title="Próximas asambleas">
+    <ginni-proximas-asambleas [proximasAsambleas]="proximasAsambleas"></ginni-proximas-asambleas>
+  </ginni-dropdown-table>
+  <ginni-dropdown-table [show]="ciaDetalle?.length > 0" title="Cuota de inscripción">
+    <ginni-cia-detalle [ciaDetalle]="ciaDetalle"></ginni-cia-detalle>
+  </ginni-dropdown-table>
+</div>
+<div *ngIf="fondoDeRemate !== 0.0" class="align-right-margin-top">
+  <button
+    class="wide-button-responsive"
+    ginniButton
+    type="outline"
+    color="primary"
+    (click)="abrirFondoDeRemate()"
+  >
+    Ver fondo de remate
+  </button>
+</div>
+<div class="title-no-link">
+  <span>
+    Movimientos administrativos
+  </span>
+</div>
+
+<div class="table-container position-relative">
+  <table
+    class="table table-striped tall only-wide"
+    [class.scroll-info]="movimientosAdministrativos?.movimientosAdministrativos.length > 4"
+  >
+    <thead>
+      <tr>
+        <th
+          scope="col"
+          class="text-center"
+          [class.flex-middle-center]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Fecha</span>
+        </th>
+        <th
+          scope="col"
+          class="text-center"
+          [class.flex-middle-center]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Contrato origen</span>
+        </th>
+        <th
+          scope="col"
+          class="text-center"
+          [class.flex-middle-center]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Contrato destino</span>
+        </th>
+        <th
+          scope="col"
+          class="text-center"
+          [class.flex-middle-center]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Movimiento</span>
+        </th>
+        <th
+          scope="col"
+          class="text-center"
+          [class.flex-middle-center]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Nº cuotas pagadas</span>
+        </th>
+        <th
+          scope="col"
+          class="text-right"
+          [class.flex-middle-right]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Cuota capital</span>
+        </th>
+        <th
+          scope="col"
+          class="text-right"
+          [class.flex-middle-right]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Cuota de administración</span>
+        </th>
+        <th
+          scope="col"
+          class="text-right"
+          [class.flex-middle-right]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          <span class="table-head__text">Saldos no aplicados</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      [class.empty-message]="movimientosAdministrativos?.movimientosAdministrativos.length === 0"
+    >
+      <ng-container *ngIf="movimientosAdministrativos; else cargandoMovimientosAdministrativos">
+        <ng-container
+          *ngIf="
+            movimientosAdministrativos?.movimientosAdministrativos &&
+              movimientosAdministrativos?.movimientosAdministrativos.length > 0;
+            else noHayMovimientosAdministrativos
+          "
+        >
+          <tr *ngFor="let item of movimientosAdministrativos?.movimientosAdministrativos">
+            <td
+              scope="row"
+              class="text-center"
+              [innerHTML]="_dateFormat(item?.fechaMovimiento)"
+            ></td>
+            <td scope="row" class="text-center" [innerHTML]="item?.contratoOrigen"></td>
+            <td scope="row" class="text-center" [innerHTML]="item?.contratoDestino"></td>
+            <td scope="row" class="text-center" [innerHTML]="item?.movimiento"></td>
+            <td scope="row" class="text-center" [innerHTML]="item?.cuotasPagadas"></td>
+            <td
+              scope="row"
+              class="text-right nowrap"
+              [innerHTML]="item?.cuotaCapital > 0 ? _formatoMoneda(item?.cuotaCapital) : '-'"
+            ></td>
+            <td
+              scope="row"
+              class="text-right nowrap"
+              [innerHTML]="
+                item?.cuotaDeAdministracion > 0 ? _formatoMoneda(item?.cuotaDeAdministracion) : '-'
+              "
+            ></td>
+            <td
+              scope="row"
+              class="text-right nowrap"
+              [innerHTML]="
+                item?.saldosNoAplicados > 0 ? _formatoMoneda(item?.saldosNoAplicados) : '-'
+              "
+            ></td>
+          </tr>
+        </ng-container>
+        <ng-template #noHayMovimientosAdministrativos>
+          <tr>
+            <td rowspan="2" colspan="8">No hay movimientos administrativos en este contrato</td>
+          </tr>
+        </ng-template>
+      </ng-container>
+      <ng-template #cargandoMovimientosAdministrativos>
+        <ginni-cargando [loading]="true"></ginni-cargando>
+      </ng-template>
+    </tbody>
+    <tfoot *ngIf="movimientosAdministrativos?.movimientosAdministrativos.length > 0">
+      <tr>
+        <td
+          colspan="7"
+          *ngIf="movimientosAdministrativos?.movimientosAdministrativos.length < 5"
+        ></td>
+        <td
+          class="text-right font-bold nowrap"
+          [class.add-margin-right]="
+            movimientosAdministrativos?.movimientosAdministrativos.length > 4
+          "
+        >
+          Total &nbsp;&nbsp;&nbsp; {{ _formatoMoneda(movimientosAdministrativos?.total) }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <ng-container
+    *ngIf="
+      movimientosAdministrativos?.movimientosAdministrativos;
+      else cargandoMovimientosAdministrativosMobile
+    "
+  >
+    <ng-container
+      *ngIf="
+        movimientosAdministrativos?.movimientosAdministrativos.length > 0;
+        else noMovimientosAdministrativos
+      "
+    >
+      <div
+        *ngFor="
+          let item of movimientosAdministrativos?.movimientosAdministrativos;
+          let index = index
+        "
+        class="tabla-desplegable-alta not-wide"
+      >
+        <div>
+          <div (click)="toggleCollapse(index)">
+            <img
+              [class.active]="state.accordeon[index]"
+              src="../../../../../../../assets/imagenes/flecha-abajo.png"
+            />
+          </div>
+          <div>
+            <div>
+              <div>Fecha</div>
+              <div>{{ _dateFormat(item?.fechaMovimiento) }}</div>
+            </div>
+            <div>
+              <div>Contrato origen</div>
+              <div>{{ item?.contratoOrigen }}</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="state.accordeon[index]" @collapseInDownAnimation>
+          <div>&nbsp;</div>
+          <div>
+            <div>
+              <div>Contrato destino</div>
+              <div>{{ item?.contratoDestino }}</div>
+            </div>
+            <div>
+              <div>Movimiento</div>
+              <div>{{ item?.movimiento }}</div>
+            </div>
+            <div>
+              <div>Nº cuotas pagadas</div>
+              <div>{{ item?.cuotasPagadas }}</div>
+            </div>
+            <div>
+              <div>Cuota capital</div>
+              <div class="nowrap">
+                {{ item?.cuotaCapital > 0 ? _formatoMoneda(item?.cuotaCapital) : "-" }}
+              </div>
+            </div>
+            <div>
+              <div>Cuota de administración</div>
+              <div class="nowrap">
+                {{
+                  item?.cuotaDeAdministracion ? _formatoMoneda(item?.cuotaDeAdministracion) : "-"
+                }}
+              </div>
+            </div>
+            <div>
+              <div>Saldos no aplicados</div>
+              <div>
+                {{ item?.saldosNoAplicados ? _formatoMoneda(item?.saldosNoAplicados) : "-" }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="movimientosAdministrativos?.movimientosAdministrativos"
+        class="row table-summary no-background not-wide"
+      >
+        <div class="col-md-offset-8 col-md-4 col-xs-12">
+          <div class="row">
+            <div class="col-md-8 col-xs-6">Total</div>
+            <div class="col-md-4 col-xs-6 nowrap">
+              {{ _formatoMoneda(movimientosAdministrativos?.total) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noMovimientosAdministrativos>
+      <table class="table not-wide">
+        <tbody>
+          <tr>
+            <td class="empty-message">No hay movimientos administrativos en este contrato</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </ng-container>
+  <ng-template #cargandoMovimientosAdministrativosMobile>
+    <ginni-cargando [loading]="true"></ginni-cargando>
+  </ng-template>
+</div>
+
+<ginni-modal
+  class="modal-small reset-body"
+  [show]="mostrarFondoDeRemate"
+  [nativeBack]="false"
+  (showChange)="cerrarFondoDeRemate()"
+>
+  <div body class="modal-content-fit">
+    <div>Fondo de remate*</div>
+    <div class="nowrap">{{ _formatoMoneda(fondoDeRemate) }}</div>
+    <div>
+      Fondo perteneciente al contrato <br />
+      {{ contratoActual?.numeroContrato }}
+    </div>
+    <div>*Para poder realizar esta reactivación este fondo debe trabajarse de forma externa</div>
+  </div>
+</ginni-modal>

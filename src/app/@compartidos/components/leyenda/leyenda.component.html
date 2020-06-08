@@ -1,0 +1,12 @@
+<div class="bandeja-trabajo__leyenda only-desktop">
+  <table>
+    <p>Leyenda por categoría</p>
+    <tbody>
+      <tr *ngFor="let list of obtenerLeyenda">
+        <td *ngFor="let leyenda of list">
+          <span>[{{ leyenda.clave }}]</span>{{ leyenda.valor }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

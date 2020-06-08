@@ -1,0 +1,23 @@
+{
+  "personaVerificacion": {
+    "id": 741852963,
+    "persona": {
+      "id": 1456255,
+      "value": "NOMBRE APELLIDOS"
+    }
+  },
+  "via": {
+    "id": 1,
+    "value": "Presencial"
+  },
+  "tipo": {
+    "id": 2,
+    "value": "Domiciliaria"
+  },
+  "verificador": {
+    "id": 3,
+    "value": "Equifax"
+  },
+  "comentarios": "Whatever",
+  "fechaCreacion": "2019-03-16"
+}

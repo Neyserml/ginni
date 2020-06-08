@@ -1,0 +1,14 @@
+<div class="custom-slider">
+  <div class="ng5-slider-floor">{{ minValue }}</div>
+  <div class="ng5-slider">
+    <ng5-slider
+      [(highValue)]="maxValue"
+      [(value)]="minValue"
+      [options]="options"
+      (userChangeEnd)="onUserChangeEnd($event)"
+      [manualRefresh]="manualRefresh"
+    >
+    </ng5-slider>
+  </div>
+  <div class="ng5-slider-ceil">{{ maxValue }}</div>
+</div>

@@ -1,0 +1,189 @@
+<div class="header-menu" *ngIf="datosAsociados">
+  <div class="header-asociado-user">
+    <ng-container>
+      <div class="header-asociado-user__head only-desktop">
+        <h3>
+          {{ datosAsociadoActual?.nombrePersona }}
+          <small *ngIf="datosAsociados?.length > 1"
+            >(mancomunado {{ personaActualIndex + 1 }})</small
+          >
+          <small *ngIf="datosAsociadoActual?.nombreRepresentanteLegal">
+            - {{ datosAsociadoActual?.nombreRepresentanteLegal.toLowerCase() | titlecase }}</small
+          >
+        </h3>
+      </div>
+      <div class="header-asociado-user__information">
+        <div class="header-asociado-left">
+          <div class="header-asociado-user__image">
+            <img [src]="datosAsociadoActual?.urlFoto" />
+            <div
+              class="mancomunada"
+              *ngIf="datosAsociados?.length > 1"
+              (click)="cambiarAsociado.emit()"
+            >
+              <i class="icon-couple"></i>
+            </div>
+          </div>
+        </div>
+        <div class="header-asociado-user__info-mobile only-mobile">
+          <h3>{{ datosAsociadoActual?.nombrePersona }}</h3>
+          <h5 *ngIf="datosAsociados?.length > 1">(mancomunado {{ personaActualIndex + 1 }})</h5>
+          <h4>
+            {{ datosAsociadoActual?.tipoDocumento }} {{ datosAsociadoActual?.numeroDocumento }}
+          </h4>
+          <h4 *ngIf="categoria">CATEGORÍA {{ categoria }}</h4>
+          <h6 *ngIf="numeroDias">{{ numeroDiasAsociado }}</h6>
+          <div class="header-progress" *ngIf="numeroDias">
+            <div class="header-progress-line">
+              <div class="progress-section" [style.width]="percentCircle + '%'"></div>
+              <div class="progress-timeline">
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="header-message-system">
+                  <div class="header-asociado-title">Mensaje del sistema</div>
+                  <div class="header-message-system__text"></div>
+                </div> -->
+          <div
+            class="header-expand"
+            [ngClass]="{ active: activeMasDatos }"
+            (click)="toggleMasDatos()"
+          >
+            <div *ngIf="!activeMasDatos">
+              Ver más datos del asociado <span class="icon-chevron-down"></span>
+            </div>
+            <div *ngIf="activeMasDatos">
+              Ver menos datos del asociado <span class="icon-chevron-down"></span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="header-asociado-body expand-mobile"
+          [ginniExpand]="activeMasDatos"
+          [bounce]="false"
+          *ngIf="showAsociadoDesktop"
+        >
+          <div class="header-asociado-datos">
+            <div class="header-asociado-section">
+              <div
+                class="header-asociado-item only-desktop"
+                *ngIf="datosAsociadoActual?.tipoDocumento"
+              >
+                <div class="header-asociado-title">Tipo de documento</div>
+                <div class="header-asociado-text">{{ datosAsociadoActual?.tipoDocumento }}</div>
+              </div>
+              <div
+                class="header-asociado-item only-desktop"
+                *ngIf="datosAsociadoActual?.numeroDocumento"
+              >
+                <div class="header-asociado-title">N° documento</div>
+                <div class="header-asociado-text">{{ datosAsociadoActual?.numeroDocumento }}</div>
+              </div>
+              <div class="header-asociado-item" *ngIf="datosAsociadoActual?.departamento">
+                <div class="header-asociado-title">Departamento</div>
+                <div class="header-asociado-text">{{ datosAsociadoActual?.departamento }}</div>
+              </div>
+            </div>
+            <div class="header-asociado-section">
+              <div class="header-asociado-item">
+                <div class="header-asociado-title">Teléfono</div>
+                <div class="header-asociado-text vertical-children">
+                  <ng-container *ngIf="datosAsociadoActual?.telefonos?.length; else elseTelefono">
+                    <span>{{ (datosAsociadoActual?.telefonos)[0] }}</span>
+                    <ginni-dropdown *ngIf="datosAsociadoActual?.telefonos?.length > 1">
+                      <ginni-dropdown-option
+                        [hidden]="telefono === (datosAsociadoActual?.telefonos)[0]"
+                        *ngFor="let telefono of datosAsociadoActual?.telefonos"
+                      >
+                        {{ telefono }}</ginni-dropdown-option
+                      >
+                    </ginni-dropdown>
+                  </ng-container>
+                  <ng-template #elseTelefono>-</ng-template>
+                </div>
+              </div>
+              <div class="header-asociado-item" *ngIf="datosAsociadoActual?.telefonosMovil">
+                <div class="header-asociado-title">Celular</div>
+                <div class="header-asociado-text">
+                  <ng-container
+                    *ngIf="datosAsociadoActual?.telefonosMovil?.length; else elseTelefonoMovil"
+                  >
+                    <span>{{ (datosAsociadoActual?.telefonosMovil)[0] }}</span>
+                    <ginni-dropdown *ngIf="datosAsociadoActual?.telefonosMovil?.length > 1">
+                      <ginni-dropdown-option
+                        [hidden]="telefono === (datosAsociadoActual?.telefonosMovil)[0]"
+                        *ngFor="let telefono of datosAsociadoActual?.telefonosMovil"
+                      >
+                        {{ telefono }}</ginni-dropdown-option
+                      >
+                    </ginni-dropdown>
+                  </ng-container>
+                  <ng-template #elseTelefonoMovil>-</ng-template>
+                </div>
+              </div>
+              <div class="header-asociado-item" *ngIf="datosAsociadoActual?.direccion">
+                <div class="header-asociado-title">Dirección:</div>
+                <div class="header-asociado-text break-word">
+                  {{ datosAsociadoActual?.direccion }}
+                </div>
+              </div>
+              <div class="header-asociado-item">
+                <div class="header-asociado-title">Correo electrónico</div>
+                <div class="header-asociado-text break-word">
+                  {{ datosAsociadoActual?.correo ? datosAsociadoActual?.correo : "-" }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="header-asociado-item header-asociado-item--button only-mobile"
+              *ngIf="puedeEditar"
+            >
+              <button ginniButton color="blue-strong" (click)="abrirEditar()">
+                Editar datos del asociado
+              </button>
+            </div>
+          </div>
+          <div
+            class="header-asociado-section only-desktop"
+            *ngIf="categoria || mensajesSistema?.length"
+          >
+            <div class="header-asociado-item only-desktop" *ngIf="categoria">
+              <div class="header-asociado-title">Categoría</div>
+              <div class="header-asociado-text">{{ categoria }}</div>
+            </div>
+            <div *ngIf="mensajesSistema?.length" class="header-asociado-item only-desktop">
+              <div class="header-asociado-title full-width">
+                Mensaje sistema
+              </div>
+              <div class="header-asociado-text full-width box-list__scroll">
+                <div class="color-danger" *ngFor="let mensaje of mensajesSistema">
+                  {{ mensaje }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="header-asociado-right only-desktop"
+          *ngIf="numeroDiasAsociado && fechaActualizacion"
+        >
+          <ginni-circle-progress [percent]="percentCircle">
+            {{ numeroDiasAsociado }}
+          </ginni-circle-progress>
+          <p>Última actualización de datos: {{ fechaActualizacion }}</p>
+          <button ginniButton color="blue-strong" (click)="abrirEditar()" class="ui-button-block">
+            Editar datos del asociado
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

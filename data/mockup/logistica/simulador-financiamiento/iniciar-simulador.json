@@ -1,0 +1,18 @@
+{
+  "contratos":["3503-089-13"],
+  "esPedido":false,
+  "valorVehiculos":"25200.00",
+  "cantidadVehiculos":1,
+  "valorCertificado":"25200.00",
+  "valorExcedente":"0.00",
+  "tieneSimulacion":false,
+  "fechaFinanciamiento":null,
+  "categoriaActual":{
+    "categoria":{
+      "codigo":null,
+      "descripcion":null
+    },
+    "mensajeAlerta":"",
+    "nuevaCategoria":false
+  }
+}

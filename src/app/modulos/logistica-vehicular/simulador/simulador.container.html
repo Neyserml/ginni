@@ -1,0 +1,312 @@
+<ginni-pagina-full>
+  <div class="simulador position-relative">
+    <ginni-pagina-container>
+      <div class="head-page simulador__title">
+        <h3 class="head-page__title color-primary">
+          Simulador de financiamiento
+        </h3>
+      </div>
+      <div class="row-underline"></div>
+    </ginni-pagina-container>
+
+    <ng-container *ngIf="mostrarSimulador; else noSimulador">
+      <ginni-pagina-container class="position-relative">
+        <ginni-cargando [loading]="loadingSimulador">
+          <div *ngIf="simuladorIniciarDatos">
+            <ginni-simulador-financiamiento
+              (aceptarCambioEvent)="simuladorAceptarCambio($event)"
+              [configuracionEvaluacionCrediticia]="configuracionAdicionales"
+              (calcularEvent)="simuladorCalcular($event)"
+              (consultarEvent)="simuladorConsultar($event)"
+              (calcularDiferenciaEvent)="simuladorCalcularDiferencia($event)"
+              (generarPDF)="generarPDF($event)"
+              [mostrarTodoConceptos]="true"
+              [simuladorIniciarDatos]="simuladorIniciarDatos"
+              (regresarEmit)="regresar()"
+            >
+            </ginni-simulador-financiamiento>
+          </div>
+        </ginni-cargando>
+      </ginni-pagina-container>
+    </ng-container>
+    <ng-template #noSimulador>
+      <ginni-cargando [loading]="loading || (listarContratosLoading$ | async)">
+        <ginni-pagina-container>
+          <div class="row-item form-uppercase position-relative" [formGroup]="form">
+            <div class="row row-espaciados">
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-12">
+                      Selecciona el tipo de búsqueda <small>*</small>
+                    </div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-12">
+                      <select
+                        formControlName="tipoBusqueda"
+                        class="form-control"
+                        [ngClass]="{ error: form?.get('tipoBusqueda')?.invalid && formError }"
+                        (change)="tipoBusquedaChange($event)"
+                      >
+                        <option value="">SELECCIONAR</option>
+                        <option *ngFor="let option of listaConceptos" [value]="option.valor">
+                          {{ option.valor }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form?.get('tipoBusqueda')?.invalid && formError">
+                      <label for="" class="error">*Este campo es obligatorio </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row row-espaciados">
+              <div
+                *ngIf="conceptoSeleccionado && subtituloConcepto"
+                class="col-xs-12 col-sm-12 col-md-12 subtitle-secondary black"
+              >
+                {{ subtituloConcepto }}
+              </div>
+            </div>
+
+            <ng-container *ngIf="conceptoSeleccionado">
+              <div
+                class="row row-espaciados"
+                *ngIf="conceptoSeleccionado === conceptos.NUMERO_CONTRATO"
+              >
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="form-label col-sm-12 col-xs-12">N° contrato <small>*</small></div>
+                      <div class="form-control-wrapper col-sm-12 col-xs-12">
+                        <input
+                          formControlName="numeroContrato"
+                          class="form-control"
+                          [ngClass]="{ error: form?.get('numeroContrato')?.invalid && formError }"
+                        />
+                      </div>
+                      <div
+                        class="col-xs-12"
+                        *ngIf="form?.get('numeroContrato')?.invalid && formError"
+                      >
+                        <label
+                          *ngIf="form?.get('numeroContrato')?.errors?.required"
+                          for=""
+                          class="error"
+                        >
+                          *Este campo es obligatorio
+                        </label>
+                        <label
+                          *ngIf="form?.get('numeroContrato')?.errors?.maxlength"
+                          for=""
+                          class="error"
+                        >
+                          *Debe ser máximo
+                          {{ form?.get("numeroContrato")?.errors?.maxlength?.requiredLength }}
+                          caracteres
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-espaciados" *ngIf="conceptoSeleccionado === conceptos.DATOS">
+                <div
+                  class="form-label col-sm-12 col-xs-12"
+                  [ngClass]="{ 'inline-block': portalSandbox?.esMobile }"
+                >
+                  Ingresa los datos para encontrar a la persona o empresa que buscas
+                  <small>*</small>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-5">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="form-control-wrapper col-sm-12 col-xs-12">
+                        <ginni-select
+                          formControlName="datosPersona"
+                          (loadOptions)="asociadoInputChange($event)"
+                          [ngClass]="{
+                            error: form?.get('datosPersona')?.invalid && formError
+                          }"
+                        ></ginni-select>
+                      </div>
+                      <div
+                        class="col-xs-12"
+                        *ngIf="form?.get('datosPersona')?.invalid && formError"
+                      >
+                        <label for="" class="error">
+                          *Este campo es obligatorio
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="row row-espaciados"
+                *ngIf="conceptoSeleccionado === conceptos.DOCUMENTO_IDENTIDAD"
+              >
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="form-label col-sm-12 col-xs-12">
+                        Tipo documento<small>*</small>
+                      </div>
+                      <div class="form-control-wrapper col-sm-12 col-xs-12">
+                        <select
+                          (change)="tipoDocumentoSeleccionado()"
+                          class="form-control"
+                          formControlName="tipoDocumento"
+                          [ngClass]="{ error: form?.get('tipoDocumento')?.invalid && formError }"
+                        >
+                          <option value="">SELECCIONAR</option>
+                          <option *ngFor="let option of listaTipoDocumentos" [value]="option.clave">
+                            {{ option.valor }}
+                          </option>
+                        </select>
+                      </div>
+                      <div
+                        class="col-xs-12"
+                        *ngIf="form?.get('tipoDocumento')?.invalid && formError"
+                      >
+                        <label for="" class="error">
+                          *Este campo es obligatorio
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="form-label col-sm-12 col-xs-12">
+                        N° documento <small>*</small>
+                      </div>
+                      <div class="form-control-wrapper col-sm-12 col-xs-12">
+                        <input
+                          class="form-control"
+                          formControlName="numeroDocumento"
+                          [maxlength]="maxlengthDocumento"
+                          [ginniSoloNumeros]="esSoloNumeros"
+                          [ngClass]="{ error: form?.get('numeroDocumento')?.invalid && formError }"
+                        />
+                      </div>
+                      <div
+                        class="col-xs-12"
+                        *ngIf="form?.get('numeroDocumento')?.invalid && formError"
+                      >
+                        <label
+                          *ngIf="form?.get('numeroDocumento')?.errors?.required"
+                          for=""
+                          class="error"
+                        >
+                          *Este campo es obligatorio
+                        </label>
+                        <label
+                          *ngIf="form?.get('numeroDocumento')?.errors?.minlength"
+                          for=""
+                          class="error"
+                        >
+                          *Debe ser
+                          {{ form?.get("numeroDocumento")?.errors?.minlength?.requiredLength }}
+                          caracteres
+                        </label>
+                        <label
+                          *ngIf="form?.get('numeroDocumento')?.errors?.maxlength"
+                          for=""
+                          class="error"
+                        >
+                          *Debe ser
+                          {{ form?.get("numeroDocumento")?.errors?.maxlength?.requiredLength }}
+                          caracteres
+                        </label>
+                        <label
+                          *ngIf="form?.get('numeroDocumento')?.errors?.number"
+                          for=""
+                          class="error"
+                        >
+                          *Debe incluir solo números
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <div class="row row-espaciados" *ngIf="conceptoSeleccionado">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="big-form-footer text-right">
+                  <button
+                    (click)="buscar()"
+                    class="ui-button-padding"
+                    ginniButton
+                    color="blue-strong"
+                  >
+                    Buscar
+                  </button>
+                </div>
+                <div class="text-right" *ngIf="busquedaError">
+                  <ginni-alert
+                    [allowClose]="true"
+                    [disappear]="busquedaError ? true : false"
+                    [type]="errorType"
+                    (close)="busquedaError = null"
+                    (closeSuccess)="busquedaError = null"
+                    [show]="busquedaError"
+                  >
+                    {{ busquedaError }}
+                  </ginni-alert>
+                </div>
+                <!--
+                <div class="big-form-footer text-right">
+                  <div class="alert alert-danger" role="alert" *ngIf="busquedaError">
+                    {{ busquedaError }}
+                  </div>
+                </div>
+                -->
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="conceptoSeleccionado">
+            <div class="form-label">Campos obligatorios<small>* </small></div>
+            <div class="row-underline"></div>
+          </ng-container>
+        </ginni-pagina-container>
+      </ginni-cargando>
+
+      <ginni-simulador-contratos
+        (simular)="simular($event)"
+        (seleccionandoContrato)="seleccionandoContrato($event)"
+        *ngIf="mostrarListaContratos && listaContratos"
+        [listaContratos]="listaContratos"
+      >
+      </ginni-simulador-contratos>
+      <ginni-pagina-container class="flex justify-end">
+        <div class="text-right" *ngIf="errorSimulador">
+          <ginni-alert
+            [allowClose]="true"
+            [disappear]="errorSimulador ? true : false"
+            [type]="errorType"
+            (close)="errorSimulador = null"
+            (closeSuccess)="errorSimulador = null"
+            [show]="errorSimulador ? true : false"
+          >
+            {{ errorSimulador }}
+          </ginni-alert>
+        </div>
+        <!--
+        <div class="big-form-footer">
+          <div class="alert alert-danger" role="alert" *ngIf="errorSimulador">
+            {{ errorSimulador }}
+          </div>
+        </div>
+        -->
+      </ginni-pagina-container>
+    </ng-template>
+  </div>
+</ginni-pagina-full>

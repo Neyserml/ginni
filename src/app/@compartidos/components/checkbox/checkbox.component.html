@@ -1,0 +1,11 @@
+<div
+  class="checkbox"
+  (click)="clickCheck()"
+  [ngClass]="{ disabled: disabled, small: type === 'small' }"
+>
+  <label [class.active]="value"> <span></span> </label>
+  <div class="checkbox-text" *ngIf="!noText">
+    <div *ngIf="label; else content" class="item-text">{{ label }}</div>
+    <ng-template #content><ng-content></ng-content></ng-template>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "ci": "A",
+    "montoPorPagar": 0.00,
+    "montoPagado": 849.60,
+    "conAsterisco": false
+  },
+  {
+    "ci": "B",
+    "montoPorPagar": 500.90,
+    "montoPagado": 0.00,
+    "conAsterisco": false
+  },
+  {
+    "ci": "C",
+    "montoPorPagar": 1274.00,
+    "montoPagado": 0,
+    "conAsterisco": true
+  }
+]

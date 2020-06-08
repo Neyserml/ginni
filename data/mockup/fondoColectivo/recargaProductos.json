@@ -1,0 +1,74 @@
+[
+  {
+    "codigo": 17,
+    "valor": "C3-VOLKSWAGEN"
+  },
+  {
+    "codigo": 18,
+    "valor": "C3-SUZUKI"
+  },
+  {
+    "codigo": 19,
+    "valor": "C3-HYUNDAI"
+  },
+  {
+    "codigo": 20,
+    "valor": "C3-4X4"
+  },
+  {
+    "codigo": 12,
+    "valor": "C1-VOLKSWAGEN"
+  },
+  {
+    "codigo": 13,
+    "valor": "C1-SUZUKI"
+  },
+  {
+    "codigo": 10,
+    "valor": "C1-4X4"
+  },
+  {
+    "codigo": 11,
+    "valor": "C1-HYUNDAI"
+  },
+  {
+    "codigo": 14,
+    "valor": "C1-PREMIUM"
+  },
+  {
+    "codigo": 24,
+    "valor": "C1-CHEVROLET"
+  },
+  {
+    "codigo": 15,
+    "valor": "C2-PROVINCIAS"
+  },
+  {
+    "codigo": 16,
+    "valor": "C3-YA"
+  },
+  {
+    "codigo": 21,
+    "valor": "CONCESIONARIO"
+  },
+  {
+    "codigo": 23,
+    "valor": "C5-Pandero Inmuebles"
+  },
+  {
+    "codigo": 25,
+    "valor": "C6-4X4"
+  },
+  {
+    "codigo": 26,
+    "valor": "C6-SUZUKI"
+  },
+  {
+    "codigo": 27,
+    "valor": "C6-HYUNDAI"
+  },
+  {
+    "codigo": 28,
+    "valor": "C6-VOLKSWAGEN"
+  }
+]

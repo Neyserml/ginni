@@ -1,0 +1,14 @@
+@import "conf/conf";
+
+.simulador__actividades {
+  margin-bottom: 30px;
+
+  @media (max-width: $resM) {
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .simulador__actividades--text {
+    margin-left: 20px;
+  }
+}

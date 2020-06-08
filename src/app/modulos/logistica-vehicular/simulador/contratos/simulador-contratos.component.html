@@ -1,0 +1,103 @@
+<ginni-pagina-container>
+  <div class="bandeja-trabajo">
+    <div class="table-content">
+      <div class="title">Contratos del asociado</div>
+      <div class="table-grid">
+        <ginni-cargando [loading]="loading">
+          <table class="table table-striped tr-pointer">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  *ngFor="let columna of listaColumnas"
+                  [class]="columna.className ? columna.className : ''"
+                >
+                  <div class="table-head__item">
+                    <span class="table-head__text" [innerHTML]="columna.name"></span>
+                    <span class="icon-chevron-down"></span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!listaContratos.length">
+                <td colspan="10" class="empty-message">
+                  <div>No se han encontrado resultados en la búsqueda</div>
+                </td>
+              </tr>
+              <tr *ngFor="let item of listaContratos; let i = index">
+                <td>{{ item?.numeroContrato }}</td>
+                <td>
+                  <p *ngFor="let nombre of item.propietarios">
+                    {{ nombre.value?.toUpperCase() }}
+                  </p>
+                </td>
+                <td scope="row" class="only-desktop">
+                  {{ item?.situacion?.toUpperCase() }}
+                </td>
+                <td scope="row" class="text-center only-desktop">
+                  {{ _formatoMoneda(item?.valorCertificado) }}
+                </td>
+                <td scope="row" class="text-center only-desktop">
+                  {{ item?.cuotasPagadas }}
+                </td>
+                <td scope="row" class="only-desktop">
+                  {{ item?.celula?.value?.toUpperCase() }}
+                </td>
+                <td scope="row" class="text-center only-desktop">
+                  {{ item?.evaluacionCrediticia ? "SI" : "NO" }}
+                </td>
+                <td scope="row" class="text-center only-desktop">
+                  {{ item?.pedido ? "SI" : "NO" }}
+                </td>
+                <td scope="row" class="text-center only-desktop">
+                  <ginni-checkbox
+                    (click)="seleccionarContrato(listaContratos[i], !item.readOnly, i)"
+                    [disabled]="listaContratos[i].readOnly"
+                    [(value)]="listaContratos[i].seleccionado"
+                  ></ginni-checkbox>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="listaContratos.length" class="simulador-certificados--monto">
+            Monto total de los certificados $
+            {{ _formatoMonedaSinSimbolo(totalValorSeleccionados) }}
+          </div>
+
+          <div *ngIf="listaContratos.length" class="big-form-footer">
+            <!--
+            <div class="alert alert-danger" role="alert" *ngIf="false">
+              error
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="false">
+              Los datos se han guardado exitosamente
+            </div>
+            -->
+            <button
+              [attr.disabled]="desabilitarSimular ? null : true"
+              ginniButton
+              class="ui-button-padding"
+              color="primary"
+              (click)="simularButton()"
+            >
+              Simular
+            </button>
+          </div>
+          <div class="text-right" *ngIf="errorContratos">
+            <ginni-alert
+              [allowClose]="true"
+              [disappear]="errorContratos ? true : false"
+              [type]="typeAlert"
+              (close)="errorContratos = null"
+              (closeSuccess)="errorContratos = null"
+              [show]="errorContratos"
+            >
+              {{ errorContratos }}
+            </ginni-alert>
+          </div>
+        </ginni-cargando>
+      </div>
+    </div>
+  </div>
+</ginni-pagina-container>

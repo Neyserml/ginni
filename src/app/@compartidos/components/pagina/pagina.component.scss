@@ -1,0 +1,14 @@
+@import "conf/conf";
+
+:host {
+  position: relative;
+  width: 100%;
+  padding-left: 50px;
+  float: left;
+
+  @media (max-width: $resM) {
+    width: 100%;
+    padding-left: 0;
+    display: block;
+  }
+}

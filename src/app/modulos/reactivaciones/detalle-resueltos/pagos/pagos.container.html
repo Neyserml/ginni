@@ -1,0 +1,305 @@
+<div class="position-relative pagos-page">
+  <div class="title-primary-strong">
+    Pagos
+  </div>
+  <div class="title-no-link">
+    <span>
+      Información de pago
+    </span>
+  </div>
+  <div class="position-relative">
+    <form
+      *ngIf="form"
+      [formGroup]="form"
+      (keydown.enter)="$event.preventDefault()"
+      autocomplete="off"
+      novalidate
+    >
+      <div class="form-wrapper">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <span class="font-bold">A cta. de ventas grupos en formación - automático</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5 col-md-3">Ingresar monto US$:<span class="error">*</span></div>
+          <div class="col-xs-7 col-md-3">
+            <input
+              class="form-control"
+              formControlName="montoControl"
+              ginniSoloNumeros="true"
+              maxlength="8"
+              [ngClass]="{
+                error: form?.get('montoControl')?.invalid
+              }"
+              [readOnly]="!form?.get('montoControl')?.invalid && disableSubmit"
+              [step]="0.01"
+            />
+            <div>
+              <label class="error" *ngIf="form?.get('montoControl')?.invalid">
+                *
+                {{
+                  form?.get("montoControl").errors.pattern
+                    ? validationMessages.montoControl.pattern
+                    : form?.get("montoControl").errors.required
+                    ? validationMessages.montoControl.required
+                    : form?.get("montoControl").errors.min
+                    ? validationMessages.montoControl.min
+                    : "error"
+                }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="required"><span class="error">*</span>Campo obligatorio</div>
+          </div>
+        </div>
+        <div class="row generar-obligacion">
+          <div class="col-xs-6 col-md-3 only-high"></div>
+          <div class="col-xs-12 col-md-3">
+            <button
+              class="wide-button"
+              (click)="submit()"
+              color="primary"
+              ginniButton
+              type="button"
+              [disabled]="disableSubmit"
+            >
+              Generar obligación
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div (click)="toggleHistorial()" class="title-no-link bottom-border">
+    <span>
+      Historial de pagos
+    </span>
+    <div class="pull-right saldo-a-favor">
+      <span>{{ _formatoMoneda(historialDePagos?.montoTotal) }}</span>
+      <span
+        class="dropdown-button icon-chevron-down"
+        [ngClass]="{ active: this.showHistorial }"
+      ></span>
+    </div>
+  </div>
+  <div class="table-container position-relative" *ngIf="showHistorial" @collapseInDownAnimation>
+    <ginni-cargando [loading]="loadingHistorialDePagos">
+      <table
+        class="table table-striped wide only-high"
+        [class.scroll-contrato]="historialDePagos?.historialPagos.length > 4"
+      >
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">
+              <span class="table-head__text">Fecha</span>
+            </th>
+            <th scope="col" class="text-center">
+              <span class="table-head__text">Contrato</span>
+            </th>
+            <th scope="col" class="text-center">
+              <span class="table-head__text">Concepto</span>
+            </th>
+            <th scope="col" class="text-center">
+              <span class="table-head__text">Usuario</span>
+            </th>
+            <th scope="col" class="text-right">
+              <span class="table-head__text">Monto de pago</span>
+            </th>
+            <th scope="col" class="text-right">
+              <span class="table-head__text">Saldo a pagar</span>
+            </th>
+            <th scope="col" class="text-center">
+              <span class="table-head__text">Estado</span>
+            </th>
+            <th scope="col" class="text-center">
+              <span class="table-head__text"></span>
+            </th>
+          </tr>
+        </thead>
+        <ng-container
+          *ngIf="
+            historialDePagos && historialDePagos?.historialPagos.length > 0;
+            else noHayHistorialDePagos
+          "
+        >
+          <tbody>
+            <tr *ngFor="let item of historialDePagos?.historialPagos; let index = index">
+              <td scope="row" class="text-center" [innerHTML]="_dateFormat(item?.fechaPago)"></td>
+              <td
+                scope="row"
+                class="text-center"
+                [innerHTML]="item?.contratoNumero ? item?.contratoNumero : '-'"
+              ></td>
+              <td scope="row" class="text-center" [innerHTML]="item?.concepto"></td>
+              <td scope="row" class="text-center" [innerHTML]="item?.usuario"></td>
+              <td scope="row" class="text-right" [innerHTML]="_formatoMoneda(item?.monto)"></td>
+              <td scope="row" class="text-right" [innerHTML]="_formatoMoneda(item?.saldo)"></td>
+              <td scope="row" class="text-center">
+                {{ item?.estado }}
+              </td>
+              <td scope="row" class="text-center">
+                <ginni-button-icon
+                  class="small text-center last-image color-red"
+                  (click)="eliminarPago(index, isPending(item?.estado), item)"
+                  *ngIf="isPending(item?.estado)"
+                  icon="x-circle"
+                ></ginni-button-icon>
+              </td>
+            </tr>
+          </tbody>
+        </ng-container>
+        <ng-template #noHayHistorialDePagos>
+          <tbody class="empty-message">
+            <tr>
+              <td rowspan="2" colspan="7">
+                No hay obligaciones de pagos realizadas
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+      <ng-container *ngIf="historialDePagos; else cargandoHistorialDePagosMobile">
+        <ng-container
+          *ngIf="
+            historialDePagos && historialDePagos?.historialPagos.length > 0;
+            else noHistorialDePagos
+          "
+        >
+          <div class="pagos position-relative not-wide">
+            <div
+              class="tabla-desplegable-alta not-wide"
+              *ngFor="let item of historialDePagos?.historialPagos; let index = index"
+            >
+              <div>
+                <div (click)="toggleCollapse(index)">
+                  <img
+                    [class.active]="state.accordeon[index]"
+                    src="../../../../../../../assets/imagenes/flecha-abajo.png"
+                  />
+                </div>
+                <div>
+                  <ginni-button-icon
+                    (click)="eliminarPago(index, isPending(item?.estado), item)"
+                    class="small-right color-red"
+                    *ngIf="isPending(item?.estado)"
+                    icon="x-circle"
+                    color="red"
+                  ></ginni-button-icon>
+                  <div>
+                    <div>Fecha</div>
+                    <div>{{ _dateFormat(item?.fechaPago) }}</div>
+                  </div>
+                  <div>
+                    <div>Estado</div>
+                    <div>{{ item?.estado }}</div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="state.accordeon[index]" @collapseInDownAnimation>
+                <div>&nbsp;</div>
+                <div>
+                  <div>
+                    <div>Contrato</div>
+                    <div>{{ item?.contratoNumero ? item?.contratoNumero : "-" }}</div>
+                  </div>
+                  <div>
+                    <div>Concepto</div>
+                    <div>{{ item?.concepto }}</div>
+                  </div>
+                  <div>
+                    <div>Usuario</div>
+                    <div>{{ item?.usuario }}</div>
+                  </div>
+                  <div>
+                    <div>Monto de pago</div>
+                    <div>{{ _formatoMoneda(item?.monto) }}</div>
+                  </div>
+                  <div>
+                    <div>Saldo a pagar</div>
+                    <div>{{ _formatoMoneda(item?.saldo) }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noHistorialDePagos>
+          <table class="table not-wide">
+            <tbody>
+              <tr>
+                <td class="empty-message">
+                  No hay obligaciones de pagos realizadas
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ng-container>
+      <ng-template #cargandoHistorialDePagosMobile>
+        <ginni-cargando
+          [loading]="loadingHistorialDePagos"
+          [failed]="failedHistorialDePagos"
+        ></ginni-cargando>
+      </ng-template>
+    </ginni-cargando>
+  </div>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closePaymentSuccess()"
+    icon="check"
+    [show]="paymentSuccess"
+    [loading]="form?.get('montoControl').value"
+  >
+    <div text>
+      Se generó la obligación<br />
+      de pago con éxito
+    </div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeErrorPayment()"
+    icon="alert"
+    [show]="errorPayment"
+  >
+    <div text>No se pudo generar<br />la obligación de pago</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-confirm
+    [show]="confirmSave"
+    (go)="delete()"
+    goColor="primary"
+    goText="Aceptar"
+    (back)="closeConfirmSave()"
+    backColor="dark"
+    backText="Cancelar"
+  >
+    ¿Estás seguro que deseas eliminar esta obligación de pago?
+  </ginni-modal-confirm>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeErrorDeletePayment()"
+    icon="alert"
+    [show]="errorDeletePayment"
+  >
+    <div text>No se pudo eliminar<br />la obligación de pago</div>
+  </ginni-modal-icon-subtext>
+  <ginni-modal-icon-subtext
+    buttonColor="primary"
+    buttonText="Aceptar"
+    (close)="closeConfirmDeleted()"
+    icon="check"
+    [show]="confirmDeleted"
+    [loading]="loadingDeletePago"
+  >
+    <div text>La obligación de pago se ha<br />eliminado con éxito</div>
+    <div subtext>
+      El número de contrato {{ pago?.contratoNumero }}<br />queda liberado en el sistema
+    </div>
+  </ginni-modal-icon-subtext>
+</div>

@@ -1,0 +1,13 @@
+@import "conf/conf";
+
+.portal-container {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  @media (max-width: $resM) {
+    margin-top: 50px;
+  }
+  @media (min-width: $resM) {
+    margin-top: 0;
+  }
+}

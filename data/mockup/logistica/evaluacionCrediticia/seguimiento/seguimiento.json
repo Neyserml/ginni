@@ -1,0 +1,12 @@
+{
+  "listBandejaHistorial": [
+    {
+        "evento": "Registro Evaluacion Crediticia",
+        "fechaEvento": "18/10/2019",
+        "comentario": "comentario envio a comité",
+        "usuario": "ANGLAS CRISPIN ROXANA JULIA"
+    }
+  ],
+  "numeroPaginas": 4,
+  "totalRegistros": 13
+}

@@ -1,0 +1,106 @@
+<div *ngIf="camposObligatorios" class="form__leyenda only-desktop">
+  <div class="flex justify-end"><small>*</small>Campos obligatorios</div>
+</div>
+<div class="position-relative form-uppercase" [formGroup]="form">
+  <div class="row-item row-item--con-espacio">
+    <div *ngIf="titleMain" class="title-secondary">{{ titleMain }}</div>
+    <div class="row row-espaciados">
+      <div [class]="item.grillas" *ngFor="let item of datos; let i = index">
+        <div class="form-group">
+          <div class="row">
+            <div class="form-label col-sm-12 col-xs-12">
+              {{ datos[i]?.label }}
+              <small *ngIf="datos[i].obligatorio">*</small>
+            </div>
+            <div
+              class="form-control-wrapper col-sm-12 col-xs-12"
+              [ngClass]="{ 'form-control-size': datos[i].element === TEXT }"
+            >
+              <ng-container *ngIf="datos[i].element === INPUT">
+                <input
+                  class="form-control"
+                  [attr.maxLength]="datos[i]?.maxLength"
+                  [formControlName]="datos[i]?.formControlName"
+                  [ginniSoloNumeros]="datos[i]?.soloNumeros || false"
+                  [ginniNoPermitirCaracteres]="datos[i]?.noCaracteresEspeciales || false"
+                  [ngClass]="{ error: getControlError(datos[i]?.formControlName) }"
+                />
+              </ng-container>
+              <ng-container *ngIf="datos[i]?.element === SELECT">
+                <select
+                  [attr.disabled]="datos[i]?.disabled ? true : null"
+                  class="form-control"
+                  [formControlName]="datos[i]?.formControlName"
+                  [ngClass]="{ error: getControlError(datos[i]?.formControlName) }"
+                >
+                  <option value="">Seleccionar</option>
+                  <option *ngFor="let option of datos[i].options" [value]="option.clave"
+                    >{{ option.valor.toUpperCase() }}
+                  </option>
+                </select>
+              </ng-container>
+              <ng-container *ngIf="datos[i].element === DATE">
+                <ginni-input-date
+                  [ngClass]="{ error: getControlError(datos[i].formControlName) ? true : false }"
+                  [formControlName]="datos[i].formControlName"
+                ></ginni-input-date>
+              </ng-container>
+              <ng-container *ngIf="datos[i].element === CHECKBOX">
+                <ginni-checkbox [formControlName]="datos[i].formControlName">
+                  {{ datos[i].value }}
+                </ginni-checkbox>
+              </ng-container>
+              <ng-container *ngIf="datos[i].element === TEXT">
+                {{ datos[i].value }}
+              </ng-container>
+            </div>
+            <div class="col-xs-12" *ngIf="form.invalid">
+              <label
+                *ngIf="getControlError(datos[i].formControlName)?.required"
+                for=""
+                class="error"
+              >
+                *Este campo es obligatorio
+              </label>
+              <label *ngIf="getControlError(datos[i].formControlName)?.number" for="" class="error">
+                *Debe incluir solo números
+              </label>
+              <label
+                *ngIf="getControlError(datos[i].formControlName)?.minlength"
+                for=""
+                class="error"
+              >
+                *Debe ser mínimo
+                {{ getControlError(datos[i].formControlName)?.minlength?.requiredLength }}
+                caracteres
+              </label>
+              <label
+                *ngIf="getControlError(datos[i].formControlName)?.maxlength"
+                for=""
+                class="error"
+              >
+                *Debe ser máximo
+                {{ getControlError(datos[i].formControlName)?.maxlength?.requiredLength }}
+                caracteres
+              </label>
+              <label
+                *ngIf="getControlError(datos[i].formControlName)?.validateEmail"
+                for=""
+                class="error"
+              >
+                *Ingresar un correo válido
+              </label>
+              <label
+                *ngIf="getControlError(datos[i].formControlName)?.descripcion"
+                for=""
+                class="error"
+              >
+                *{{ getControlError(datos[i].formControlName)?.descripcion }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

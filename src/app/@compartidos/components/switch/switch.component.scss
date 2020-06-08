@@ -1,0 +1,72 @@
+@import "conf/conf";
+
+$switch-height: 25px;
+$switch-width: 30px;
+$knob-height: 17px;
+$translate-distance: $switch-width+5px;
+
+.flag-switch {
+  position: relative;
+  outline: 0;
+  appearance: none;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 60px;
+  height: $switch-height;
+  margin: 5px auto;
+
+  &:before {
+    left: -19px;
+  }
+
+  &:after {
+    right: -17px;
+  }
+
+  label {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    width: 60px;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      border-radius: 30px;
+      transition: all 0.25s ease-in-out;
+    }
+
+    &:before {
+      height: $switch-height;
+      width: $switch-width*2;
+      border: 1px solid $gray;
+      background-color: transparent;
+    }
+
+    &:after {
+      top: 4px;
+      left: 4px;
+      width: $knob-height;
+      height: $knob-height;
+      background: $gray;
+      -webkit-transform: translate(0, 0);
+      transform: translate(0, 0);
+
+    }
+  }
+
+  label.active:after {
+    background: $success;
+    transition: all 0.25s ease-in-out;
+    transform: translate($translate-distance, 0);
+    -webkit-transform: translate($translate-distance, 0);
+  }
+
+  label.active:before {
+    border-color: $success;
+  }
+}

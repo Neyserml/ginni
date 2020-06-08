@@ -1,0 +1,21 @@
+<div class="table-actions__wrapper">
+  <div class="table-actions justify-end">
+    <div class="table-actions__item input-group-placeholder">
+      <div *ngIf="iconText" class="buscador__icon">
+        <p>{{ iconText }}</p>
+      </div>
+      <input
+        #buscador
+        [ginniSoloNumerosYGuion]="onlyContract"
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'buscador__icon--input': iconText }"
+        placeholder="{{ placeholder }}"
+        [attr.disabled]="disabled ? true : null"
+        [readonly]="disabled"
+      />
+      <i class="icon-search"></i>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

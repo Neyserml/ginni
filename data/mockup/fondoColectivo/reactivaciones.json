@@ -1,0 +1,276 @@
+{
+  "contratosResueltos": [
+    {
+      "contratoId": "136648",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2017-01-20T12:47:15.00-05:00",
+      "programa": "C3",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2024-09-23T09:00:00.00-05:00",
+      "cia": 77.02,
+      "cuotasPagadas": 32,
+      "contratos": [
+        "6136-136-22"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Galan Ruiz Jamilton"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "00972665"
+      ],
+      "personaIds": [
+        "230051"
+      ]
+    },
+    {
+      "contratoId": "136697",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2019-02-25T12:49:09.00-05:00",
+      "programa": "C6",
+      "estadoBandeja": "CON_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2023-10-23T09:00:00.00-05:00",
+      "cia": 87.83,
+      "cuotasPagadas": 46,
+      "contratos": [
+        "3602-172-12"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Sotomayor Ramos Javier Alberto"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "08694055"
+      ],
+      "personaIds": [
+        "230133"
+      ]
+    },
+    {
+      "contratoId": "136477",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2019-02-23T12:49:30.00-05:00",
+      "programa": "C6",
+      "estadoBandeja": "CON_SIMULACION_CONTRATO_GEN",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2023-10-23T09:00:00.00-05:00",
+      "cia": 67.18,
+      "cuotasPagadas": 11,
+      "contratos": [
+        "3602-160-15"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Vilca Vega Teodoro"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "10045379"
+      ],
+      "personaIds": [
+        "227383"
+      ]
+    },
+    {
+      "contratoId": "136788",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2003-02-27T12:47:03.00-05:00",
+      "programa": "C6",
+      "estadoBandeja": "PAGO_A_CUENTA",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2023-10-23T09:00:00.00-05:00",
+      "cia": 20.29,
+      "cuotasPagadas": 36,
+      "contratos": [
+        "6604-161-17"
+      ],
+      "hasAssociated": true,
+      "nombres": [
+        "Escobar Quispe Jhon Fredy"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "10125585"
+      ],
+      "personaIds": [
+        "230243"
+      ]
+    },
+    {
+      "contratoId": "139348",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2019-02-13T14:46:34.00-05:00",
+      "programa": "A4",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2020-01-08T09:00:00.00-05:00",
+      "cia": 31.64,
+      "cuotasPagadas": 28,
+      "contratos": [
+        "0645-081-52"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "La Rosa Chauca Victor Oswaldo"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "15367436"
+      ],
+      "personaIds": [
+        "120471"
+      ]
+    },
+    {
+      "contratoId": "136701",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2013-01-29T12:46:47.00-05:00",
+      "programa": "C6",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2023-10-23T09:00:00.00-05:00",
+      "cia": 47.21,
+      "cuotasPagadas": 14,
+      "contratos": [
+        "3602-168-11"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Contreras Martinez Magali"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "16006665"
+      ],
+      "personaIds": [
+        "230122"
+      ]
+    },
+    {
+      "contratoId": "136637",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2019-02-22T12:47:32.00-05:00",
+      "programa": "C2",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2025-04-23T09:00:00.00-05:00",
+      "cia": 60.4,
+      "cuotasPagadas": 28,
+      "contratos": [
+        "5138-204-12"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Jaucha Cuadros Paul Edwin"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "20114305"
+      ],
+      "personaIds": [
+        "230039"
+      ]
+    },
+    {
+      "contratoId": "136670",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2015-03-22T12:47:33.00-05:00",
+      "programa": "C2",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2025-04-23T09:00:00.00-05:00",
+      "cia": 3.91,
+      "cuotasPagadas": 45,
+      "contratos": [
+        "5138-209-12"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Jauregui Ramon Juan Linkol"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "20669328"
+      ],
+      "personaIds": [
+        "230086"
+      ]
+    },
+    {
+      "contratoId": "136692",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2014-03-28T12:46:21.00-05:00",
+      "programa": "C2",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2024-02-23T09:00:00.00-05:00",
+      "cia": 88.47,
+      "cuotasPagadas": 42,
+      "contratos": [
+        "5126-184-27"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Aviles Cansaya Cleida Alexandra"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "41238058"
+      ],
+      "personaIds": [
+        "230117"
+      ]
+    },
+    {
+      "contratoId": "136617",
+      "reactivacionContratoID": 123456789,
+      "fechaResolucion": "2019-02-25T12:48:05.00-05:00",
+      "programa": "C2",
+      "estadoBandeja": "SIN_SIMULACION",
+      "tipoBien": "Vehículo",
+      "fechaLiquidacion": "2025-04-23T09:00:00.00-05:00",
+      "cia": 55.97,
+      "cuotasPagadas": 40,
+      "contratos": [
+        "5138-192-11"
+      ],
+      "hasAssociated": false,
+      "nombres": [
+        "Miranda Alban David Ulmer"
+      ],
+      "tipoDocumentos": [
+        "DNI"
+      ],
+      "numeroDocumentos": [
+        "43677898"
+      ],
+      "personaIds": [
+        "230018"
+      ]
+    }
+  ],
+  "numeroRegistros": 21,
+  "numeroPaginas": 3
+}

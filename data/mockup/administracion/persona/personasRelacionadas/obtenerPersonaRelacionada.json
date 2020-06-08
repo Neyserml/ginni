@@ -1,0 +1,46 @@
+{
+  "idRelacion": null,
+  "idPersonaRelacionada": 181797,
+  "idPersona": 181395,
+  "nombres": "BRIAN ELIAS",
+  "apellidoPaterno": "CERNA",
+  "apellidoMaterno": "SANCHEZ",
+  "idTipoRelacion": 17,
+  "idEstadoCivil": 69,
+  "tipoDocumento": 18,
+  "numeroDocumento": "42825558",
+  "tipoPersona": "NATURAL",
+  "idPaisNacionalidad": 189,
+  "fechaNacimiento": "26/01/1985",
+  "idSexo": 125,
+  "correo": "DESARROLLO@PANDERO.COM.PE",
+  "celular": "999999999",
+  "telefonoFijo": "999999999",
+  "estadoPEP": false,
+  "direccionDomicilio": {
+    "idDepartamento": "15",
+    "idProvincia": "01",
+    "idDistrito": "12",
+    "idTipoZona": "82",
+    "nombreZona": "EL NARANJAL",
+    "idTipoVia": "95",
+    "referencia": "ASD",
+    "direccionTexto": "ALFREDO MENDIOLA 4018 "
+  },
+  "aportaIngresos": false,
+  "informacionLaboral": {
+    "idTipoTrabajador": null,
+    "centroTrabajo": null,
+    "cargoOcupacion": {
+      "descripcion": "Gerente General",
+      "identificador": 3367
+    },
+    "fechaIngresoTrabajo": "02/03/2016",
+    "correoLaboral": "TEST@GMAIL.COM",
+    "idTipoTrabajadorSAF": null,
+    "ingresoMensualNeto": {
+      "idMoneda": 2,
+      "monto": "2936.00"
+    }
+  }
+}

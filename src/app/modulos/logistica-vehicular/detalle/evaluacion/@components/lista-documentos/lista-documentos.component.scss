@@ -1,0 +1,28 @@
+@import "../../../../../../../assets/sass/conf/conf.scss";
+
+.documentos__buttons {
+  align-self: flex-end;
+}
+
+textarea {
+  @media screen and (max-width: $resL) {
+    margin-bottom: 20px;
+  }
+}
+
+.documentos__modal {
+  font-size: $fontM;
+  color: $primary;
+  i {
+    font-size: 45px;
+    margin-bottom: 10px;
+  }
+}
+
+.documentos__modal--texto {
+  margin-bottom: 35px;
+}
+
+.icon-minus2, .icon-check {
+  font-size: 20px;
+}

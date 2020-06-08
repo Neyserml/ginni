@@ -1,0 +1,82 @@
+[
+  {
+    "idTipoDocumento": "18",
+    "tipoDocumento": "DNI",
+    "numeroDocumento": "71627581",
+    "nombre": "Chacon Valdeiglesias Christian Antonio",
+    "tipo": "TITULAR",
+    "tipoPersona": "N",
+    "razonSocial": "",
+    "idPersona": 160731,
+    "idCreditoPersona": 991,
+    "readOnly": true,
+    "garantiaReal": false,
+    "documentos": [
+      {
+        "id": 24,
+        "creditoPersonaDocumentoId": 4493,
+        "nombre": "Documento Enviado",
+        "descripcion": null,
+        "url": "",
+        "archivoCargado": true,
+        "adicional": null,
+        "tipoArchivo": "",
+        "observacion": null
+      }
+    ],
+    "verificaciones": [
+      {
+        "id": 394,
+        "descripcion": "Domiciliaria",
+        "estado": false,
+        "creditoPersonaId": 991
+      },
+      {
+        "id": 395,
+        "descripcion": "Laboral",
+        "estado": false,
+        "creditoPersonaId": 991
+      }
+    ]
+  },
+  {
+    "idTipoDocumento": "16",
+    "tipoDocumento": "C.e",
+    "numeroDocumento": "4554545",
+    "nombre": "Erika Jaqueline Cáceda Ríos ",
+    "tipo": "TITULAR",
+    "tipoPersona": "N",
+    "razonSocial": "",
+    "idPersona": 548798,
+    "idCreditoPersona": 787,
+    "readOnly": false,
+    "garantiaReal": true,
+    "documentos": [
+      {
+        "id": 24,
+        "creditoPersonaDocumentoId": 4493,
+        "nombre": "Documento Enviado",
+        "descripcion": null,
+        "url": "",
+        "archivoCargado": true,
+        "adicional": null,
+        "tipoArchivo": "",
+        "observacion": null
+      }
+    ],
+    "verificaciones": [
+      {
+        "id": 394,
+        "descripcion": "Domiciliaria",
+        "estado": true,
+        "creditoPersonaId": 991
+      },
+      {
+        "id": 395,
+        "descripcion": "Laboral",
+        "estado": false,
+        "creditoPersonaId": 991
+      }
+    ]
+  }
+]

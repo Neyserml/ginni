@@ -1,0 +1,40 @@
+{
+  "listaContratos": [
+    {
+      "contratoID": 137468,
+      "numeroContrato": "3602-157-27",
+      "programa": "C6",
+      "producto": "HYUNDAI",
+      "grupo": "3602",
+      "tipoBien": "Vehículo",
+      "tipoBienId": 35,
+      "valorCertificado": "15000.00",
+      "modelo": "ACCENT",
+      "marca": "HYUNDAI",
+      "porcentajeCuotaAdmin": 14,
+      "cuotaCapital": "250.00",
+      "cuotaTotalMensual": "250.00",
+      "montoAporte": null,
+      "detalleContrato": {
+        "fechaResolucion": "2019-03-23T08:31:01.00-05:00",
+        "diaPago": 20,
+        "cuotaAdministracion": "0.00",
+        "inversionInmobiliaria": "COMPRA",
+        "nroCuotasVencidas": 6,
+        "nroCuotasPagadas": 2
+      },
+      "contratoOrigen": true
+    }
+  ],
+  "listaTipoBien": [
+    {
+      "listaId": 34,
+      "nombre": "Inmueble"
+    },
+    {
+      "listaId": 35,
+      "nombre": "Vehículo"
+    }
+  ],
+  "maximoAfusionar": 50
+}

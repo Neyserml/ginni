@@ -1,0 +1,73 @@
+[
+  {
+    "contratoId": 142898,
+    "numeroContrato": "660101624",
+    "situacionId": 10,
+    "situacion": "ADJ.SORTEO",
+    "valorCertificado": "23400.00",
+    "cuotasPagadas": 62,
+    "celula": {
+      "id": 123456,
+      "value": "Derco"
+    },
+    "evaluacionCrediticia": false,
+    "seleccionado": false,
+    "readOnly": false,
+    "propietarios": [
+      {
+        "id": 141978,
+        "value": "PERA PEREZ PALMA JOEL BRUCE"
+      },
+      {
+        "id": 141978,
+        "value": "Estrella PEREZ PALMA JOEL BRUCE"
+      }
+    ]
+  },
+  {
+    "contratoId": 142899,
+    "numeroContrato": "660117126",
+    "situacionId": 20,
+    "situacion": "ADJ.REMATE",
+    "valorCertificado": "23400.00",
+    "cuotasPagadas": 62,
+    "celula": {
+      "id": 123456,
+      "value": "Derco"
+    },
+    "evaluacionCrediticia": true,
+    "seleccionado": true,
+    "readOnly": false,
+    "propietarios": [
+      {
+        "id": 141978,
+        "value": "PERA PEREZ PALMA JOEL BRUCE"
+      },
+      {
+        "id": 141978,
+        "value": "Graciela PEREZ PALMA JOEL BRUCE"
+      }
+    ]
+  },
+  {
+    "contratoId": 142901,
+    "numeroContrato": "660104838",
+    "situacionId": 20,
+    "situacion": "ADJ.REMATE",
+    "valorCertificado": "21200.00",
+    "cuotasPagadas": 62,
+    "celula": {
+      "id": 123456,
+      "value": "c4"
+    },
+    "evaluacionCrediticia": false,
+    "seleccionado": true,
+    "readOnly": false,
+    "propietarios": [
+      {
+        "id": 141978,
+        "value": "PERA PEREZ PALMA JOEL BRUCE"
+      }
+    ]
+  }
+]

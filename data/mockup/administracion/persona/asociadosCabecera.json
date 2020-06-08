@@ -1,0 +1,44 @@
+{
+  "fechaActualizacion": "2018-12-28T16:00:07.00-05:00",
+  "personas": [
+    {
+      "idPersona": "214647",
+      "nombrePersona": "Yupanqui Godo Luis Atahualpa",
+      "tipoDocumento": "DNI",
+      "numeroDocumento": "10555309",
+      "departamento": "LIMA",
+      "direccion": "Av. Javier Prado Este 650 Of. 503 San Isidro",
+      "telefonos": [
+        "3545263",
+        "4472985",
+        "3819769"
+      ],
+      "tipoPersona": "NATURAL",
+      "telefonosMovil": ["941315859"],
+      "correo": null,
+      "correos": ["desarrollo@pandero.com.pe","test@pandero.com.pe"],
+      "genero": "M",
+      "urlFoto": "https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/avatars/male_avatar.png"
+    },
+    {
+      "idPersona": "446616",
+      "nombrePersona": "CENTRO DE EST LAT AMERICANO ADM PUBLICA EIRL",
+      "tipoDocumento": "RUC",
+      "numeroDocumento": "20185846971",
+      "departamento": "LIMA",
+      "direccion": "Av. Javier Prado Este 650 Of. 503 San Isidro",
+      "nombreRepresentanteLegal": "Tueros Hinostroza Monica Liliana",
+      "telefonos": [
+        "6242603",
+        "6243603",
+        "6244603"
+      ],
+      "tipoPersona": "JURÍDICA",
+      "telefonosMovil": ["912651887"],
+      "correo": null,
+      "correos": ["desarrollo@pandero.com.pe", "test@pandero.com.pe"],
+      "genero": null,
+      "urlFoto": "https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/avatars/persona_juridica_avatar.png"
+    }
+  ]
+}

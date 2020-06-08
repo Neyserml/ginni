@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <h3>
+      Detalle:
+    </h3>
+    <!-- <tr /> -->
+    <h4><span th:text="${message}"></span></h4>
+    <ul>
+      <li th:each="nombre : ${listaNombreCorreo}" th:inline="text">[[${nombre}]]</li>
+    </ul>
+    <h4>Atentamente:</h4>
+    <h5>El equipo GINNI.</h5>
+  </body>
+</html>

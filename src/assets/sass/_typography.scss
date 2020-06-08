@@ -1,0 +1,125 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family;
+  width: 100%;
+  margin-top: 0;
+}
+
+p {
+  font-family: $font-family;
+  padding: 0;
+  margin: 0;
+}
+
+body a {
+  color: $active-link;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $hover-link;
+  }
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+
+.title-primary {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 22px;
+  color: $primary;
+
+  @media (max-width: $resL) {
+    font-size: 18px;
+  }
+}
+
+.title-primary-strong {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: $primary;
+
+  @media (max-width: $resL) {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: $resM) {
+  .tab-head {
+    .padding-title {
+      .title-primary {
+        padding-left: 12px;
+      }
+    }
+  }
+}
+
+.title-secondary {
+  color: $blue-strong;
+  font-weight: $font-semibold;
+  font-size: 15px;
+  padding-bottom: 6px;
+  padding-top: 10px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  @media (max-width: $resM) {
+    font-size: 13px;
+    padding-top: 0;
+
+  }
+
+  &.black {
+    color: $black;
+  }
+}
+
+.subtitle-secondary {
+  color: $dark-light;
+  font-size: $fontM;
+  font-weight: $font-semibold;
+  padding-bottom: 6px;
+  padding-top: 10px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  @media (max-width: $resM) {
+    font-size: 13px;
+    padding-top: 0;
+
+  }
+
+  &.black {
+    color: $black;
+  }
+}

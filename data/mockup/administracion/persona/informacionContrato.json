@@ -1,0 +1,22 @@
+{
+  "cuotaAdministracion": "0.00",
+  "cuotaCapital": "557.43",
+  "cuotaTotalMensual": "557.43",
+  "diaPago": 5,
+  "fechaResolucion": "2018-12-10T00:00:00.00-05:00",
+  "grupo": "8111",
+  "inversionInmobiliaria": "CANCELACION DE CREDITO HIPOTECARIO",
+  "marca": null,
+  "modelo": null,
+  "nroCuotasVencidas": 9,
+  "numeroContrato": "8111-003-37",
+  "porcentajeCuotaAdmin": 18,
+  "producto": "C5-Pandero Inmuebles",
+  "programa": "C5",
+  "tipoBien": "Inmueble",
+  "valorCertificado": "41250.00",
+  "nroCuotasPagadas": 1,
+  "totalAportadoCuotaCapital": "310.46",
+  "totalAportadoCuotaAdmin": "58.61",
+  "totalAportado": "369.07"
+}

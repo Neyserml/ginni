@@ -1,0 +1,50 @@
+{
+  "historialPagos": [
+    {
+      "fechaPago": "2019-10-24T15:31:12.00-05:00",
+      "contratoNumero": "5116-024-29",
+      "usuario": "Cvillanueva",
+      "concepto": "A Cta De Ventas - Grupos En Formacion - Automatico",
+      "monto": "984.11",
+      "estado": "Pendiente",
+      "solicitudIdSaf": 20
+    },
+    {
+      "fechaPago": "2019-10-15T10:23:00.00-05:00",
+      "contratoNumero": null,
+      "usuario": null,
+      "concepto": "A Cta De Ventas - Grupos En Formacion - Automatico",
+      "monto": "1120.00",
+      "estado": "Pendiente",
+      "solicitudIdSaf": 21
+    },
+    {
+      "fechaPago": "2019-10-15T11:39:21.00-05:00",
+      "contratoNumero": null,
+      "usuario": null,
+      "concepto": "A Cta De Ventas - Grupos En Formacion - Automatico",
+      "monto": "1120.00",
+      "estado": "Pendiente",
+      "solicitudIdSaf": 22
+    },
+    {
+      "fechaPago": "2019-10-15T11:39:33.00-05:00",
+      "contratoNumero": null,
+      "usuario": null,
+      "concepto": "A Cta De Ventas - Grupos En Formacion - Automatico",
+      "monto": "1120.00",
+      "estado": "Pendiente",
+      "solicitudIdSaf": 23
+    },
+    {
+      "fechaPago": "2019-10-15T11:39:39.00-05:00",
+      "contratoNumero": null,
+      "usuario": null,
+      "concepto": "A Cta De Ventas - Grupos En Formacion - Automatico",
+      "monto": "1120.00",
+      "estado": "Pendiente",
+      "solicitudIdSaf": 24
+    }
+  ],
+  "montoTotal": 984.11
+}

@@ -1,0 +1,554 @@
+<div class="form__leyenda only-desktop">
+  <div class="flex justify-end"><small>*</small>Campos obligatorios</div>
+</div>
+<div class="position-relative">
+  <div class="row-item">
+    <ginni-cargando [loading]="loading" [failed]="failed">
+      <div class="form-uppercase" [ginniScrollToFirstInvalid]="scrollFirstInvalid">
+        <ng-container *ngIf="form">
+          <form
+            [formGroup]="form"
+            class="form-uppercase"
+            [ginniScrollToFirstInvalid]="scrollFirstInvalid"
+          >
+            <div class="title-secondary">Datos personales</div>
+            <div class="row row-espaciados">
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Nombres <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        type="text"
+                        maxlength="100"
+                        class="form-control"
+                        [ginniSoloLetras]="true"
+                        [ginniNoPermitirCaracteres]="true"
+                        formControlName="nombres"
+                        [ngClass]="{ error: getControlError('nombres') }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('nombres')?.required">
+                        *Este campo es obligatorio
+                      </label>
+                      <label class="error" *ngIf="getControlError('nombres')?.maxlength">
+                        *Debe ser máximo
+                        {{ getControlError("nombres")?.maxlength?.requiredLength }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">
+                      Apellido paterno <small>*</small>
+                    </div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        type="text"
+                        maxlength="75"
+                        [ginniSoloLetras]="true"
+                        [ginniNoPermitirCaracteres]="true"
+                        class="form-control"
+                        formControlName="apellidoPaterno"
+                        [ngClass]="{ error: getControlError('apellidoPaterno') }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('apellidoPaterno')?.required">
+                        *Este campo es obligatorio
+                      </label>
+                      <label class="error" *ngIf="getControlError('apellidoPaterno')?.maxlength">
+                        *Debe ser máximo
+                        {{ getControlError("apellidoPaterno")?.maxlength?.requiredLength }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">
+                      Apellido materno <small>*</small>
+                    </div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        type="text"
+                        maxlength="75"
+                        [ginniSoloLetras]="true"
+                        [ginniNoPermitirCaracteres]="true"
+                        class="form-control"
+                        formControlName="apellidoMaterno"
+                        [ngClass]="{ error: getControlError('apellidoMaterno') }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('apellidoMaterno')?.required">
+                        *Este campo es obligatorio
+                      </label>
+                      <label class="error" *ngIf="getControlError('apellidoMaterno')?.maxlength">
+                        *Debe ser máximo
+                        {{ getControlError("apellidoMaterno")?.maxlength?.requiredLength }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Estado civil <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idEstadoCivil"
+                        [ngClass]="{ error: getControlError('idEstadoCivil') }"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option
+                          *ngFor="let option of configuracion?.estadoCivil"
+                          [value]="option.clave"
+                        >
+                          {{ option.valor }}</option
+                        >
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('idEstadoCivil')">
+                        *Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-espaciados">
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">
+                      Fecha de nacimiento <small>*</small>
+                    </div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <ginni-input-date
+                        [ngClass]="{
+                          error: getControlError('fechaNacimiento') ? true : false
+                        }"
+                        formControlName="fechaNacimiento"
+                      ></ginni-input-date>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('fechaNacimiento')"
+                        >*{{ getControlError("fechaNacimiento").descripcion }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Sexo <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idSexo"
+                        [ngClass]="{ error: getControlError('idSexo') }"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let option of configuracion?.sexo" [value]="option.clave">{{
+                          option.valor
+                        }}</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('idSexo')">
+                        *Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Teléfono <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        [ginniSoloNumeros]="true"
+                        class="form-control"
+                        formControlName="telefonoFijo"
+                        [ngClass]="{ error: getControlError('telefonoFijo') }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label class="error" *ngIf="getControlError('telefonoFijo')?.required">
+                        *Este campo es obligatorio
+                      </label>
+                      <label class="error" *ngIf="getControlError('telefonoFijo')?.maxlength">
+                        *Debe ser máximo
+                        {{ getControlError("telefonoFijo")?.maxlength?.requiredLength }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-espaciados">
+              <div class="col-xs-12 col-sm-4 col-md-6">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-12">
+                      Correo electrónico personal<small>*</small>
+                    </div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-12">
+                      <input
+                        maxlength="60"
+                        class="form-control"
+                        formControlName="correo"
+                        [ngClass]="{ error: getControlError('correo') }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid && getControlError('correo')">
+                      <label class="error" *ngIf="getControlError('correo')?.required"
+                        >*Este campo es obligatorio
+                      </label>
+                      <label class="error" *ngIf="getControlError('correo')?.validateEmail"
+                        >*Ingresar un correo válido
+                      </label>
+                      <label class="error" *ngIf="getControlError('correo')?.maxlength">
+                        *Debe ser máximo
+                        {{ getControlError("correo")?.maxlength?.requiredLength }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="title-secondary">Datos domiciliarios</div>
+
+            <div class="row row-espaciados" [formGroup]="direccionDomicilio">
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Departamento <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        [ngClass]="{
+                          error: getControlSelectedError('direccionDomicilio', 'idDepartamento')
+                        }"
+                        formControlName="idDepartamento"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let option of departamentos" [value]="option.clave">{{
+                          option.valor
+                        }}</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlSelectedError('direccionDomicilio', 'idDepartamento')"
+                      >
+                        *Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Provincia <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idProvincia"
+                        [ngClass]="{
+                          error: getControlSelectedError('direccionDomicilio', 'idProvincia')
+                        }"
+                        [attr.disabled]="provincias.length ? null : true"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let option of provincias" [value]="option.clave">{{
+                          option.valor
+                        }}</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlSelectedError('direccionDomicilio', 'idProvincia')"
+                        >*Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Distrito <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idDistrito"
+                        [ngClass]="{
+                          error: getControlSelectedError('direccionDomicilio', 'idDistrito')
+                        }"
+                        [attr.disabled]="distritos.length ? null : true"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let option of distritos" [value]="option.clave">{{
+                          option.valor
+                        }}</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlSelectedError('direccionDomicilio', 'idDistrito')"
+                        >*Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Tipo de zona</div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idTipoZona"
+                        [ngClass]="{
+                          error: getControlSelectedError('direccionDomicilio', 'idTipoZona')
+                        }"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option
+                          *ngFor="let option of configuracion?.tipoZona"
+                          [value]="option.clave"
+                          >{{ option.valor }}</option
+                        >
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Nombre de zona</div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        type="text"
+                        maxlength="100"
+                        class="form-control"
+                        formControlName="nombreZona"
+                        [ngClass]="{
+                          error: getControlSelectedError('direccionDomicilio', 'nombreZona')
+                        }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="
+                          getControlSelectedError('direccionDomicilio', 'nombreZona')?.required
+                        "
+                      >
+                        *Este campo es obligatorio
+                      </label>
+                      <label
+                        class="error"
+                        *ngIf="
+                          getControlSelectedError('direccionDomicilio', 'nombreZona')?.maxlength
+                        "
+                      >
+                        *Debe ser máximo
+                        {{
+                          getControlSelectedError("direccionDomicilio", "nombreZona")?.maxlength
+                            ?.requiredLength
+                        }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Tipo de vía <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <select
+                        class="form-control"
+                        formControlName="idTipoVia"
+                        [ngClass]="{
+                          error: getControlError('direccionDomicilio', 'idTipoVia')
+                        }"
+                      >
+                        <option value="">Seleccionar</option>
+                        <option
+                          *ngFor="let option of configuracion?.tipoVia"
+                          [value]="option.clave"
+                          >{{ option.valor }}</option
+                        >
+                      </select>
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlError('direccionDomicilio', 'idTipoVia')"
+                      >
+                        *Este campo es obligatorio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-6">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-12">Dirección <small>*</small></div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-12">
+                      <input
+                        type="text"
+                        maxlength="255"
+                        class="form-control"
+                        formControlName="direccionTexto"
+                        [ngClass]="{
+                          error: getControlError('direccionDomicilio', 'direccionTexto')
+                        }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlError('direccionDomicilio', 'direccionTexto')?.required"
+                      >
+                        *Este campo es obligatorio
+                      </label>
+                      <label
+                        class="error"
+                        *ngIf="getControlError('direccionDomicilio', 'direccionTexto')?.maxlength"
+                      >
+                        *Debe ser máximo
+                        {{
+                          getControlError("direccionDomicilio", "direccionTexto")?.maxlength
+                            ?.requiredLength
+                        }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-6">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="form-label col-sm-12 col-xs-6">Referencia</div>
+                    <div class="form-control-wrapper col-sm-12 col-xs-6">
+                      <input
+                        type="text"
+                        maxlength="255"
+                        class="form-control"
+                        formControlName="referencia"
+                        [ngClass]="{
+                          error: getControlError('direccionDomicilio', 'referencia')
+                        }"
+                      />
+                    </div>
+                    <div class="col-xs-12" *ngIf="form.invalid">
+                      <label
+                        class="error"
+                        *ngIf="getControlError('direccionDomicilio', 'referencia')?.maxlength"
+                      >
+                        *Debe ser máximo
+                        {{
+                          getControlError("direccionDomicilio", "referencia")?.maxlength
+                            ?.requiredLength
+                        }}
+                        caracteres
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="big-form-footer">
+            <button
+              [attr.disabled]="accesoEditar ? null : true"
+              (click)="guardarForm()"
+              ginniButton
+              class="ui-button ui-button-padding ui-button-primary"
+              color="primary"
+            >
+              Grabar datos
+            </button>
+          </div>
+          <div class="text-right big-form-footer" *ngIf="guardadoError">
+            <ginni-alert
+              [allowClose]="true"
+              [disappear]="guardadoError"
+              [type]="typeError"
+              (close)="guardadoError = null"
+              (closeSuccess)="guardadoError = null"
+              [show]="guardadoError"
+            >
+              {{ guardadoError }}
+            </ginni-alert>
+          </div>
+          <div class="text-right big-form-footer" *ngIf="guardadoExitoso">
+            <ginni-alert
+              [allowClose]="true"
+              [disappear]="guardadoExitoso"
+              [type]="typeSuccess"
+              (close)="guardadoExitoso = null"
+              (closeSuccess)="guardadoExitoso = null"
+              [show]="guardadoExitoso"
+            >
+              Los datos se han guardado exitosamente
+            </ginni-alert>
+          </div>
+        </ng-container>
+      </div>
+    </ginni-cargando>
+  </div>
+</div>
+<ginni-modal-confirm
+  [show]="modalEstasSeguroEliminar"
+  (go)="enviarActualizarPersonal(true)"
+  goColor="primary"
+  goText="Aceptar"
+  (back)="modalEstasSeguroEliminar = false"
+  backColor="dark"
+  backText="Cancelar"
+>
+  ¿Estás seguro que deseas cambiar el estado civil del asociado?
+  <br />
+  Se va eliminar a la persona relacionada.
+</ginni-modal-confirm>
+
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="modalModificarEvaluacion = false"
+  icon="alert"
+  [show]="modalModificarEvaluacion && mostrarModal"
+>
+  <div text>Evaluación modificada, debes regresar al módulo de Evaluación con Financiamiento</div>
+</ginni-modal-icon-subtext>

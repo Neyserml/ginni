@@ -1,0 +1,17 @@
+[
+  {
+    "codigo": 122,
+    "valor": "MEJOR OPCIÓN",
+    "habilitarGuardado": true
+  },
+  {
+    "codigo": 123,
+    "valor": "MANTENER CUOTA",
+    "habilitarGuardado": true
+  },
+  {
+    "codigo": 124,
+    "valor": "ASAMBLEA ADICIONAL",
+    "habilitarGuardado": false
+  }
+]

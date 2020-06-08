@@ -1,0 +1,48 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="14px"></mj-text>
+      <mj-section background-color="#ffffff"></mj-section>
+    </mj-attributes>
+    <mj-style inline="inline">a { text-decoration: none!important; color: inherit!important; }</mj-style>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image align="left" width="150" src="/assets/img/logo-small.png"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#6ac7f1" padding-bottom="10px" padding-top="10px">
+      <mj-column>
+        <mj-text color="black">Restablecer contraseña </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-bottom="10px" padding-top="20px">
+      <mj-column>
+        <mj-text>Hola Pamela:</mj-text>
+        <mj-text>Has solicitado reestablecer tu contraseña
+          de Ginni.</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-button background-color="#2d72b4" color="#FFF" font-size="13px" align="left" border="none"
+          padding="15px 30px" border-radius="6px" href="https://mjml.io" font-family="Open Sans,Helvetica,Arial,sans-serif"
+          padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10">Actualizar
+          contraseña ahora</mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-bottom="20px" padding-top="0px">
+      <mj-column>
+        <mj-text font-size="12px" padding-bottom="0">¿Necesitas ayuda?</mj-text>
+        <mj-text font-size="12px">Estamos a tu servicio, ponte en contacto
+          con nosotros a los anexos 1119 y 1120.</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-image align="right" width="100" src="/assets/img/logo-small.png"></mj-image>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

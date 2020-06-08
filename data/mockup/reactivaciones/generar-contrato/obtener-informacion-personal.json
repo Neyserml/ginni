@@ -1,0 +1,58 @@
+{
+  "identificador": 32323,
+  "idPersona": 360343,
+  "nombres": "Sandra Yesenia",
+  "apePaterno": "Silva",
+  "apeMaterno": "Medina",
+  "tipoDocumento": "DNI",
+  "numeroDocumento": "47757795",
+  "correo": "maria.felipa@avantica.net",
+  "ruc": "20444444403",
+  "idEstadoCivil": 69,
+  "idPaisNacionalidad": 189,
+  "idSexo": 106,
+  "separacionBienes": false,
+  "tieneVinculacionPandero": false,
+  "fechaNacimiento": "20/05/1992",
+  "urlAvatar": "https://s3-us-west-2.amazonaws.com/qa.ginni.frontfiles/avatars/female_avatar.png",
+  "fechaActualizacion": "20/05/1992",
+  "telefonos": [{
+    "id": 41184,
+    "valor": 2267944,
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 98477,
+    "valor": 941464640,
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 1235608,
+    "valor": 941464640,
+    "tipo": "F",
+    "idAmbito": 12
+  }, {
+    "id": 1356639,
+    "valor": 2267944,
+    "tipo": "M",
+    "idAmbito": 12
+  }],
+  "direccion": {
+    "idDepartamento": "15",
+    "idProvincia": "01",
+    "idDistrito": "30",
+    "idTipoZona": "82",
+    "nombreZona": "ASDASASD",
+    "idTipoVia": "98",
+    "referencia": "REF AV TUPAC YUPANQUI",
+    "direccionTexto": "SADSDF",
+    "nombreDepartamento": "LIMA"
+  },
+  "vinculados": [],
+  "lugarNacimiento": {
+    "idPais": 189,
+    "idDepartamento": "18",
+    "idProvincia": "01",
+    "idDistrito": "01"
+  }
+}

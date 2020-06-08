@@ -1,0 +1,167 @@
+<ginni-pagina-full>
+  <div class="bandeja-trabajo">
+    <ginni-pagina-container class="only-desktop">
+      <div class="head-page">
+        <h3 class="head-page__title">
+          {{ portalSandbox?.usuario.primerNombre.toLowerCase() | capitalizeText }}, estas son tus
+          bandejas de trabajo
+        </h3>
+        <span class="head-page__subtitle"> Haz click en un asociado para editarlo </span>
+      </div>
+    </ginni-pagina-container>
+
+    <div class="table-wrapper">
+      <ginni-pagina-container>
+        <ginni-buscador
+          #buscadorComponent
+          (textoABuscar)="buscador($event)"
+          [onlyContract]="onlyContract"
+          [maxLength]="maxLength"
+          [iconText]="iconText"
+          [placeholder]="placeholder"
+        >
+          <div
+            [formGroup]="selectForm"
+            class="flex buscador__select form-uppercase"
+            *ngIf="tabSelected === enTramite"
+          >
+            <select
+              (change)="seleccionarCelula($event)"
+              formControlName="select"
+              [attr.disabled]="disableSelect || disabled ? true : null"
+              class="form-control select-celula"
+            >
+              <option *ngFor="let item of listaCelulas" [value]="item.clave">
+                {{ item.valor }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="table-actions__item ui-button-group only-desktop"
+            [ngClass]="{ 'reset-margin': tabSelected === enTramite }"
+          >
+            <button
+              *ngIf="tabSelected === enTramite"
+              ginniButton
+              color="white"
+              class="ui-button-large ui-button-block icon-file-excel"
+              (click)="descargarExcel()"
+              [disabled]="(descargaExcel$ | async) || disabled || disabledExcelButton"
+              [buttonLoading]="false"
+            ></button>
+            <button
+              ginniButton
+              color="white"
+              (click)="actualizarPagina()"
+              [disabled]="disabled"
+              class="ui-button-large ui-button-block icon-refresh"
+            ></button>
+          </div>
+        </ginni-buscador>
+      </ginni-pagina-container>
+
+      <ginni-pagina-container>
+        <ginni-tab-page
+          [tabsPage]="tabsPage"
+          (tabSeleccionada)="tabSeleccionada($event)"
+        ></ginni-tab-page>
+        <div class="position-relative">
+          <ginni-cargando
+            [loading]="
+              (listarEnTramiteLoading$ | async) || (listarAprobadosLoading$ | async) || loading
+            "
+            [failed]="
+              (listarEnTramiteFailed$ | async) || (listarAprobadosFailed$ | async) || failed
+            "
+          >
+            <ginni-grillas
+              *ngIf="columnas?.length"
+              [chevron]="chevron"
+              [columnas]="columnas"
+              (columnaSelected)="columnaSelected($event)"
+              [tableIcon]="tableIcon"
+            >
+              <tr *ngIf="listaBandejas?.length === 0">
+                <td colspan="7" class="bandeja-vacia">
+                  <div>No se han encontrado resultados en la búsqueda</div>
+                </td>
+              </tr>
+              <ng-container *ngIf="listaBandejas && listaBandejas.length">
+                <tr
+                  *ngFor="let item of listaBandejas; let i = index"
+                  (click)="redirectEditarAsociado(i)"
+                >
+                  <ng-container *ngIf="tabSelected === enTramite; else aprobados">
+                    <td scope="row">{{ item.fechaSituacionActual }}</td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.nombres" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.contratos" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row" class="text-center">{{ item.segmento }}</td>
+                    <td scope="row">
+                      <p *ngFor="let modalidad of item.modalidades">{{ modalidad }}</p>
+                    </td>
+                    <td scope="row" class="text-center">
+                      <div>{{ item.dias }}</div>
+                      <div class="barra-progreso"></div>
+                    </td>
+                    <td scope="row">
+                      <div class="tabla__checklist">
+                        <div class="tabla__checklist-item">
+                          <ng-container *ngIf="item.ecAprobada">
+                            <span class="icon-check color-green full-width"></span>
+                          </ng-container>
+                        </div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <ng-template #aprobados>
+                    <td scope="row">{{ item.fechaIngreso }}</td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.contratos" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.nombres" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row">{{ item.funcionario }}</td>
+                    <td scope="row" class="text-center">{{ item.categoria }}</td>
+                    <td scope="row" class="text-center">{{ item.diasEvaluacion }}</td>
+                    <td scope="row" class="text-center">{{ item.diasAdjudicacion }}</td>
+                  </ng-template>
+                </tr>
+              </ng-container>
+            </ginni-grillas>
+
+            <div class="flex space-between" *ngIf="listaBandejas?.length">
+              <ginni-paginador
+                [ngClass]="{ hidden: numeroPaginas === 1 }"
+                [(currentPage)]="paginaActual"
+                (currentPageChange)="cambiarPagina()"
+                [totalItems]="totalRegistros"
+                [maxSize]="6"
+              ></ginni-paginador>
+              <ginni-leyenda [listarLeyenda]="listarLeyenda"></ginni-leyenda>
+            </div>
+          </ginni-cargando>
+        </div>
+      </ginni-pagina-container>
+    </div>
+  </div>
+</ginni-pagina-full>
+
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="aceptarSeguimiento()"
+  icon="alert"
+  [show]="showModal"
+>
+  <div text>{{ mensajeModal }}</div>
+</ginni-modal-icon-subtext>

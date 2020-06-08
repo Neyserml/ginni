@@ -1,0 +1,369 @@
+@import "conf/conf";
+
+.modal-component {
+
+  .nsm-content {
+    border-radius: 7px;
+    padding: 1.5rem;
+
+    @media (max-width: $resXS) {
+      padding: 1rem;
+    }
+  }
+
+  .modal-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @media (max-width: $resXS) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  .modal__head {
+    text-align: center;
+    color: $primary;
+    font-size: $fontM;
+    margin-bottom: 5px;
+
+    .modal__title-icon {
+      margin-bottom: 5px;
+
+      svg {
+        height: 57px;
+        width: 64px;
+      }
+    }
+  }
+
+  .modal__wrapper-head {
+    i {
+      display: none;
+    }
+  }
+
+  .modal__close {
+    position: relative;
+    padding-bottom: 35px;
+    width: 100%;
+    z-index: 100;
+
+    @media (max-width: $resM) {
+      padding-bottom: 23px;
+    }
+
+    .modal__close-icon {
+      position: absolute;
+      right: -3px;
+      font-size: 22px;
+      top: -17px;
+
+      @media (max-width: $resXS) {
+        right: -5px;
+        top: -10px;
+      }
+
+      span {
+        color: gray;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal__wrapper {
+    padding: 15px;
+  }
+
+  .modal__body {
+    padding-top: 5px;
+
+    p {
+      font-size: 12px;
+      padding-bottom: 10px;
+    }
+
+    .errorGuardado {
+      background-color: $red;
+      color: white;
+      text-align: center;
+      padding: 12px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-size: 30px;
+        margin-right: 14px;
+      }
+    }
+  }
+
+  .modal-content-fit {
+
+    div {
+      margin: 0 auto;
+      text-align: center;
+
+      &:nth-child(1) {
+        color: $primary;
+        font-size: 15.84px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+
+      &:nth-child(2) {
+        color: $gray-strong;
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 47px;
+        margin-bottom: 10px;
+        margin-top: 6px;
+      }
+
+      &:nth-child(3) {
+        color: $gray;
+        font-size: 15px;
+        line-height: 21px;
+        margin-bottom: 34px;
+      }
+
+      &:nth-child(4) {
+        color: $blue-strong;
+        font-size: 12px;
+        line-height: 17px;
+      }
+    }
+
+    &.with-bottom {
+
+      & > div {
+        font-weight: normal;
+        padding-bottom: 40px;
+      }
+    }
+  }
+
+  .nsm-dialog {
+    &.modal-small {
+      max-width: 418px;
+
+      .nsm-content {
+        width: 100%;
+      }
+    }
+
+    &.modal-full {
+      max-width: 1200px;
+
+      .nsm-content {
+        width: 100%;
+      }
+    }
+
+    &.modal-without-padding {
+      .modal__top,
+      .modal__wrapper-head {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .modal__top {
+        position: absolute;
+        right: 0;
+
+        .modal__close-icon {
+          top: 11px;
+        }
+      }
+
+      .modal__body {
+        padding: 0;
+      }
+
+      .nsm-content,
+      .modal__wrapper {
+        padding: 0;
+      }
+    }
+
+    &.modal--view {
+      .corner-right {
+        padding-right: 0;
+        padding-left: 0;
+
+        .corner-right-wrapper {
+          display: flex;
+          height: 100%;
+          background: $gray-light;
+          width: 100%;
+          border-radius: 0 8px 8px 0;
+          align-items: flex-end;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+        }
+
+        &.corner-disabled {
+          .corner-right-wrapper {
+            background: white;
+          }
+
+          .documento-zone {
+            display: none;
+          }
+        }
+      }
+
+      .corner-left {
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+
+        .title-primary {
+          font-size: 16px;
+          padding-bottom: 10px;
+        }
+
+        .subtitle {
+          font-size: 13px;
+          padding-bottom: 20px;
+          color: $dark-light;
+
+          @media (max-width: $resM) {
+            padding-bottom: 0;
+          }
+        }
+      }
+
+      .modal__view-main {
+        padding-top: 35px;
+        padding-bottom: 30px;
+      }
+
+      .modal-large-height {
+        min-height: 590px;
+      }
+
+      .modal__view-wrapper {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+
+    &.modal-dialog {
+      .nsm-content {
+        padding-top: 2rem;
+      }
+
+      .modal__head {
+        font-size: $fontM;
+      }
+
+      .modal__wrapper-head {
+        i {
+          display: inline-block;
+        }
+      }
+
+      @media (min-width: $resM) {
+        .modal__wrapper-head {
+          .modal__head {
+            text-align: left;
+            position: absolute;
+            top: 6px;
+            font-size: 22px;
+            color: $primary;
+            padding-bottom: 5px;
+          }
+
+          i {
+            display: none;
+          }
+        }
+      }
+
+      @media (max-width: $resM) {
+        align-items: baseline;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: white;
+
+        .modal__close {
+          display: none;
+        }
+
+        &.nsm-dialog-open {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+
+        &.nsm-dialog-close {
+          -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
+        }
+
+        .nsm-content {
+          padding: 0;
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .modal__wrapper {
+          padding: 0;
+
+          .modal__body {
+            padding-top: 5px;
+            padding-bottom: 5px;
+          }
+        }
+
+        &.reset-body .modal__wrapper {
+          .modal__body {
+            padding: 0;
+          }
+        }
+
+        .modal__wrapper-head {
+          display: flex;
+          height: 50px;
+          background: $blue-strong;
+          align-items: center;
+          padding: 0 10px;
+          color: white;
+
+          i {
+            font-size: 23px;
+          }
+
+          .modal__head {
+            color: white;
+            display: inline-block;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .modal-icon__alert-triangle {
+      margin-bottom: 20px;
+
+      i {
+        font-size: 70px;
+      }
+
+      @media (max-width: $resM) {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .overlay.nsm-overlay-open {
+    background-color: rgba(42, 56, 70, 0.8);
+  }
+}

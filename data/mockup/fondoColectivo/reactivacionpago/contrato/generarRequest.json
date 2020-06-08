@@ -1,0 +1,14 @@
+{
+  "listaIDTipoBienServicio": "34",
+  "grupoID": 501,
+  "certificadoPosicionID": "7",
+  "listaIDSimulacionOpcion": "122",
+  "contratoId": 77533,
+  "importeDiferenciaCIA": "200.23",
+  "movimientoSimulacionDetalle": [
+    {
+      "contratoId": 77533,
+      "importeCIA": "0"
+    }
+  ]
+}

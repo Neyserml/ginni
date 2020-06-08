@@ -1,0 +1,75 @@
+@import "conf/conf";
+
+.veladura {
+  background: #6b757f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  .veladura-modal {
+    background-color: white;
+    border-radius: 7px;
+    height: 280px;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 60px;
+    width: 30%;
+
+    @media (max-width: $resS) {
+      width: 80%;
+    }
+
+    .veladura-modal__logo {
+      text-align: center;
+
+      svg-icon {
+
+        svg {
+          width: 100px;
+          height: 100px;
+
+          @media (max-width: $resS) {
+            width: 80px;
+            height: 85px;
+          }
+        }
+      }
+    }
+
+    .veladura-contenido {
+      color: $primary;
+      font-family: inherit;
+
+      .veladura-contenido__texto {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.evaluacion-button {
+
+  .evaluacion-button--icon {
+    margin-left: 30px;
+  }
+}
+
+.form-detail {
+  width: 100%;
+  border-radius: 5px;
+  background-color: $light;
+  text-align: right;
+  padding: 3px;
+  font-size: 12px;
+  padding-right: 12px;
+  min-height: 25px;
+  margin: 3px 0;
+}
+
+.text-disable {
+  pointer-events: none;
+  .tab-title {
+    color: $gray-light;
+  }
+}

@@ -1,0 +1,72 @@
+@import "conf/colors";
+
+.modal-icon-subtext {
+
+  $space-in-between: 15px;
+
+  .nsm-content {
+    padding: $space-in-between * 2;
+
+    .modal__body {
+      padding-top: 0;
+    }
+
+    .modal__wrapper {
+      padding: 0;
+    }
+  }
+
+  div {
+
+    & > div.text {
+      color: $primary;
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+
+      > div {
+        margin-bottom: $space-in-between;
+        margin-top: $space-in-between;
+      }
+    }
+
+    & > div.subtext {
+      color: $gray;
+      font-size: 13px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.23;
+      letter-spacing: normal;
+      text-align: center;
+
+      > div {
+        margin-bottom: $space-in-between;
+        margin-top: $space-in-between;
+      }
+    }
+
+    & > div.endtext {
+      color: $gray-strong;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.23;
+      letter-spacing: normal;
+      text-align: center;
+
+      > div {
+        margin-bottom: $space-in-between;
+        margin-top: $space-in-between;
+      }
+    }
+
+    & > div.button {
+      margin-top: $space-in-between;
+    }
+  }
+}

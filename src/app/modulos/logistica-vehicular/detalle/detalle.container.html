@@ -1,0 +1,27 @@
+<ginni-pagina-full>
+  <div class="asociado">
+    <ginni-pagina-container class="header-asociado position-relative">
+      <ginni-pagina-ruta-bar [breadcrumbs]="portalSandbox.breadcrumbs"></ginni-pagina-ruta-bar>
+      <ginni-cargando [loading]="loading" [failed]="asociadoFailed$ | async">
+        <div *ngIf="datosAsociados">
+          <ginni-header-asociado
+            [fechaActualizacion]="fechaActualizacion"
+            [idBloqueContrato]="idBloqueContrato"
+            [mensajesSistema]="mensajesSistema"
+            [categoria]="categoria"
+            [datosAsociados]="datosAsociados"
+            [personaActualIndex]="personaActualIndex"
+            [puedeEditar]="true"
+            [numeroDias]="numeroDias"
+            (cambiarAsociado)="cambiarAsociado()"
+          ></ginni-header-asociado>
+        </div>
+      </ginni-cargando>
+    </ginni-pagina-container>
+    <div class="separador-ancho only-desktop"></div>
+    <div class="pagina-asociado">
+      <ginni-tab-bar [tabs]="tabs"></ginni-tab-bar>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ginni-pagina-full>

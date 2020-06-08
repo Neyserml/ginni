@@ -1,0 +1,18 @@
+{
+  "certificadoPosicionID": "2",
+  "contratoId": 57422,
+  "grupoID": 517,
+  "importeDiferenciaCIA": "0.00",
+  "listaIDSimulacionOpcion": "123",
+  "listaIDTipoBienServicio": 35,
+  "movimientoSimulacionDetalle": [
+    {
+      "contratoId": 65573,
+      "importeCIA": 10.58
+    },
+    {
+      "contratoId": 65581,
+      "importeCIA": 400
+    }
+  ]
+}

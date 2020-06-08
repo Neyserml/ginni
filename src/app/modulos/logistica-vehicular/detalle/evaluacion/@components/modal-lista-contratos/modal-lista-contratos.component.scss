@@ -1,0 +1,16 @@
+@import "conf/conf";
+
+.nsm-dialog {
+  &.modal-full-full {
+    max-width: 1500px;
+
+    .nsm-content {
+      width: 100%;
+    }
+  }
+}
+
+.mensaje-advertencia {
+  margin-bottom: 40px;
+  text-align: center;
+}

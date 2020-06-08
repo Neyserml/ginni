@@ -1,0 +1,43 @@
+{
+  "lista": [
+    {
+      "bloqueContratoID": "7",
+      "fechaIngreso": "30312",
+      "contratos": ["7878-124-12","2452-151-65", "656"],
+      "nombres": ["Estrella"],
+      "funcionario": "Funcionario 1",
+      "categoria": "A",
+      "diasEvaluacion": "60",
+      "diasAdjudicacion": "120"
+    }, {
+      "bloqueContratoID": "8",
+      "fechaIngreso": "2000",
+      "contratos": ["844545"],
+      "nombres": ["Benites"],
+      "funcionario": "otro",
+      "categoria": "no se",
+      "diasEvaluacion": "12 ",
+      "diasAdjudicacion": "20"
+    }, {
+      "bloqueContratoID": "9",
+      "fechaIngreso": "2000",
+      "contratos": ["844545"],
+      "nombres": ["Benites"],
+      "funcionario": "otro",
+      "categoria": "no se",
+      "diasEvaluacion": "12 ",
+      "diasAdjudicacion": "20"
+    }, {
+      "bloqueContratoID": "10",
+      "fechaIngreso": "2000",
+      "contratos": ["844545"],
+      "nombres": ["Benites"],
+      "funcionario": "otro",
+      "categoria": "no se",
+      "diasEvaluacion": "12 ",
+      "diasAdjudicacion": "20"
+    }
+  ],
+  "numeroPaginas": 12,
+  "totalRegistros": 110
+}

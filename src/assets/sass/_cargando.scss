@@ -1,0 +1,168 @@
+@import "conf/conf";
+
+.small {
+  >.loading {
+    min-height: auto;
+
+    .loading-shape {
+      .loading-ui {
+        .spin {
+          border-width: 2px;
+          width: 15px;
+          height: 15px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  min-height: 66px;
+
+  .loading-shape {
+    .loading-ui {
+      display: none;
+      position: absolute;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      vertical-align: middle;
+      opacity: 0;
+      line-height: 1;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-duration: 0.5s;
+      animation-duration: 0.5s;
+      -webkit-transition: background-color 0.5s linear;
+      transition: background-color 0.5s linear;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      will-change: opacity;
+      background-color: white;
+
+      &.opacity {
+        background-color: hsla(0, 0%, 100%, 1);
+      }
+
+      &.active {
+        display: block;
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .loading-contain {
+        color: rgba(0, 0, 0, 0.87);
+        display: block;
+        font-size: 16px;
+        font-style: normal;
+        height: auto !important;
+        left: 50%;
+        line-height: 1.4;
+        margin: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: auto !important;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+
+        i {
+          font-size: 69px;
+        }
+
+        > div {
+          margin-top: 16px;
+        }
+      }
+
+      .spin {
+        background-color: transparent;
+        border: 3px solid $primary;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-radius: 150px;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        margin-bottom: 8px;
+        -webkit-animation: spin 0.7s infinite linear;
+        animation: spin 0.7s infinite linear;
+      }
+
+      .loading-svg,
+      .loading-svg svg {
+        width: 150px;
+        height: 150px;
+
+      }
+
+      svg {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+
+        fill-opacity: 0;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+
+        animation-name: DrawLineInfinite;
+        animation-duration: 8s;
+        animation-delay: 0s;
+      }
+
+      .text-loading {
+        margin-top: 5px;
+        color: $primary;
+        font-weight: $font-semibold;
+      }
+
+      .alert {
+        color: $danger;
+
+        i {
+          display: inline-block;
+          font-size: 18px;
+          vertical-align: middle;
+        }
+
+        div {
+          display: inline-block;
+          margin-left: 9px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    &.fixed {
+      &>.loading-ui {
+        z-index: 1000;
+        position: fixed;
+      }
+    }
+
+    &.small .loading-ui {
+      .spin {
+        border-width: 2px;
+        width: 15px;
+        height: 15px;
+      }
+
+      .text-loading {
+        display: none;
+      }
+    }
+  }
+
+  &.float {
+    position: relative;
+    min-height: 125px;
+
+    .loading-shape .loading-ui {
+      background-color: transparent !important;
+    }
+  }
+}

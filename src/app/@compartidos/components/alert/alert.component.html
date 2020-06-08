@@ -1,0 +1,5 @@
+<div *ngIf="show" class="alert alert-{{ type }}" role="alert">
+  <span class="icon-{{ getAlertType(type) }}"></span>
+  <ng-content></ng-content>
+  <i *ngIf="allowClose" (click)="onClose()" class="icon-x1"></i>
+</div>

@@ -1,0 +1,269 @@
+{
+  "tipobien": {
+    "lista": [
+      {
+        "listaId": 34,
+        "nombre": "Inmueble"
+      },
+      {
+        "listaId": 35,
+        "nombre": "Vehículo"
+      }
+    ],
+    "listaIdSelected": 35
+  },
+  "producto": {
+    "lista": [
+      {
+        "codigo": 15,
+        "valor": "C2-PROVINCIAS"
+      },
+      {
+        "codigo": 30,
+        "valor": "C5- Pandero Inmuebles NEO"
+      },
+      {
+        "codigo": 23,
+        "valor": "C5-Pandero Inmuebles"
+      },
+      {
+        "codigo": 25,
+        "valor": "C6-4X4"
+      },
+      {
+        "codigo": 26,
+        "valor": "C6-DERCO"
+      },
+      {
+        "codigo": 27,
+        "valor": "C6-HYUNDAI"
+      },
+      {
+        "codigo": 28,
+        "valor": "C6-VOLKSWAGEN"
+      }
+    ],
+    "listaIdSelected": 25
+  },
+  "marca": {
+    "lista": [
+      {
+        "codigo": 55,
+        "valor": "208"
+      },
+      {
+        "codigo": 1,
+        "valor": "AUDI"
+      },
+      {
+        "codigo": 41,
+        "valor": "BRILLIANCE"
+      },
+      {
+        "codigo": 29,
+        "valor": "CHANGAN"
+      },
+      {
+        "codigo": 45,
+        "valor": "CHERY"
+      },
+      {
+        "codigo": 2,
+        "valor": "CHEVROLET"
+      },
+      {
+        "codigo": 14,
+        "valor": "CITROEN"
+      },
+      {
+        "codigo": 4,
+        "valor": "DAIHATSU"
+      },
+      {
+        "codigo": 23,
+        "valor": "GEELY"
+      },
+      {
+        "codigo": 24,
+        "valor": "GREAT WALL"
+      },
+      {
+        "codigo": 13,
+        "valor": "HONDA"
+      },
+      {
+        "codigo": 5,
+        "valor": "HYUNDAI"
+      },
+      {
+        "codigo": 18,
+        "valor": "ISUZU"
+      },
+      {
+        "codigo": 30,
+        "valor": "JAC"
+      },
+      {
+        "codigo": 67,
+        "valor": "JAGUAR"
+      },
+      {
+        "codigo": 27,
+        "valor": "JINBEI"
+      },
+      {
+        "codigo": 6,
+        "valor": "KIA"
+      },
+      {
+        "codigo": 37,
+        "valor": "LAND ROVER"
+      },
+      {
+        "codigo": 59,
+        "valor": "LIFAN"
+      },
+      {
+        "codigo": 33,
+        "valor": "MAHINDRA"
+      },
+      {
+        "codigo": 7,
+        "valor": "MAZDA"
+      },
+      {
+        "codigo": 8,
+        "valor": "MITSUBISHI"
+      },
+      {
+        "codigo": 20,
+        "valor": "PORSCHE"
+      },
+      {
+        "codigo": 15,
+        "valor": "SEAT"
+      },
+      {
+        "codigo": 17,
+        "valor": "SSANGYONG"
+      },
+      {
+        "codigo": 11,
+        "valor": "SUZUKI"
+      },
+      {
+        "codigo": 43,
+        "valor": "TOYOTA"
+      },
+      {
+        "codigo": 68,
+        "valor": "VOLEX"
+      },
+      {
+        "codigo": 12,
+        "valor": "VOLKSWAGEN"
+      },
+      {
+        "codigo": 36,
+        "valor": "VOLVO"
+      }
+    ],
+    "listaIdSelected": 41
+  },
+  "modelo": {
+    "lista": [
+      {
+        "codigo": 1017,
+        "valor": "FRV CROSS"
+      },
+      {
+        "codigo": 1055,
+        "valor": "FSV"
+      },
+      {
+        "codigo": 1192,
+        "valor": "H220"
+      },
+      {
+        "codigo": 1176,
+        "valor": "H230"
+      },
+      {
+        "codigo": 1763,
+        "valor": "NEW V3 EXCLUSIVE"
+      },
+      {
+        "codigo": 1661,
+        "valor": "NEW V3 EXPERIENCE"
+      },
+      {
+        "codigo": 1692,
+        "valor": "NEW V3 LIMITED"
+      },
+      {
+        "codigo": 1492,
+        "valor": "V3"
+      },
+      {
+        "codigo": 1058,
+        "valor": "V5"
+      }
+    ],
+    "listaIdSelected": 1176
+  },
+  "inversionInmobiliaria": null,
+  "certificado": {
+    "lista": [
+      {
+        "codigo": 1,
+        "valor": 15000.00
+      },
+      {
+        "codigo": 2,
+        "valor": 16800.00
+      },
+      {
+        "codigo": 3,
+        "valor": 19000.00
+      },
+      {
+        "codigo": 4,
+        "valor": 21200.00
+      },
+      {
+        "codigo": 5,
+        "valor": 23400.00
+      },
+      {
+        "codigo": 6,
+        "valor": 25800.00
+      },
+      {
+        "codigo": 7,
+        "valor": 27600.00
+      },
+      {
+        "codigo": 8,
+        "valor": 30000.00
+      }
+    ],
+    "listaIdSelected": 4
+  },
+  "grupo": {
+    "grupoId": 491,
+    "numeroGrupo": "6604",
+    "diaPago": 20,
+    "numeroAsamblea": 12,
+    "proximaAsamblea": 13,
+    "fechaProximaAsamblea": "2019-11-25T09:30:00.00-05:00",
+    "ultimosRemates": [],
+    "ganadoresSorteo": 1,
+    "vacantes": 31,
+    "resaltado": false,
+    "fechaInauguracion": "2018-11-30T17:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 15.00,
+    "movimientoTipo": "RECUPERO",
+    "numeroMeses": "60"
+  },
+  "numeroFormato": "54"
+}

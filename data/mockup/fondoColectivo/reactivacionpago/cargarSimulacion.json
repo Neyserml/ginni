@@ -1,0 +1,73 @@
+{
+  "simulacionResponse": {
+    "cuotasCelebracion": {
+      "valor": 0,
+      "activo": false
+    },
+    "cuotasProrateo": {
+      "valor": 17,
+      "activo": false
+    },
+    "cuotasAdjudicacion": {
+      "valor": 0,
+      "activo": false
+    },
+    "simulaciones": [
+      {
+        "numeroMesesAPagar": 61,
+        "numeroCuotasIngreso": 18,
+        "cuotaCapital": "396.39",
+        "cuotaAdministracion": "84.19",
+        "cuotaTotal": "480.58",
+        "numeroCuotasPorDiferir": 22,
+        "numeroCuotasPorDiferirDescentes": 22,
+        "importeADiferir": "11931.36",
+        "importePorPagar": "0.00",
+        "importeAUltimasCuotasCap": "1315.74",
+        "importeAUltimasCuotasAdm": "42.86",
+        "importeAUltimasCuotas": "1358.60",
+        "detalle": {
+          "totalPagosCuotasCapitales": "10036.32",
+          "totalPagosCuotasAdministrativas": "1895.04",
+          "costoReactivacion": "116.94",
+          "nuevaCuotaMes": "480.58",
+          "importeCelebracionContrato": "0.00",
+          "cias": [
+            {
+              "contratoId": 137468,
+              "saldoMinimo": 451.00,
+              "saldoMaximo": 901.99,
+              "saldo": 480.00
+            }
+          ],
+          "diferenciaCiaMinima": "0.00",
+          "diferenciaCiaMaxima": "514.01",
+          "diferenciaCiaValor": "150.00",
+          "importeTotalAPagar": "247.52",
+          "saldoAFavor": "100.00",
+          "totalAPagar": "747.52"
+        }
+      }
+    ]
+  },
+  "metodos": {
+    "lista": [
+      {
+        "codigo": 122,
+        "valor": "MEJOR OPCIÓN",
+        "habilitarGuardado": true
+      },
+      {
+        "codigo": 123,
+        "valor": "MANTENER CUOTA",
+        "habilitarGuardado": true
+      },
+      {
+        "codigo": 124,
+        "valor": "ASAMBLEA ADICIONAL",
+        "habilitarGuardado": false
+      }
+    ],
+    "listaIdSelected": 122
+  }
+}

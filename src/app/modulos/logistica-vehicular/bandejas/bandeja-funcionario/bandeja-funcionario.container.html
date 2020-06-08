@@ -1,0 +1,375 @@
+<ginni-pagina-full>
+  <div class="bandeja-trabajo position-relative" [ginniAllPageHeight]="54">
+    <ginni-cargando
+      [loading]="(tramiteLoading$ | async) || loading"
+      [failed]="tramiteFailed$ | async"
+    >
+      <ginni-pagina-container class="only-desktop">
+        <div class="head-page">
+          <h3 class="head-page__title">
+            {{ portalSandbox.usuario.primerNombre.toLowerCase() | capitalizeText }}, estas son tus
+            bandejas de trabajo
+          </h3>
+          <span class="head-page__subtitle"> Haz click en un asociado para editarlo </span>
+        </div>
+      </ginni-pagina-container>
+      <div class="table-wrapper">
+        <ginni-pagina-container>
+          <div class="table-actions__wrapper">
+            <ginni-buscador #buscadorComponent (textoABuscar)="buscador($event)">
+              <div class="table-actions__item only-mobile">
+                <button
+                  [disabled]="tramiteLoading$ | async"
+                  ginniButton
+                  color="white"
+                  class="ui-button-large ui-button-block icon-columnas"
+                  (click)="abrirFiltro()"
+                ></button>
+              </div>
+              <div class="table-actions__item ui-button-group only-desktop">
+                <button
+                  ginniButton
+                  *ngIf="esDesktopTarget"
+                  color="white"
+                  class="ui-button-large ui-button-block icon-file-excel"
+                  (click)="descargarExcel()"
+                  [disabled]="(tramiteLoading$ | async) || disabledExcelButton"
+                  [buttonLoading]="descargaExcelLoading$ | async"
+                ></button>
+                <button
+                  [disabled]="tramiteLoading$ | async"
+                  ginniButton
+                  color="white"
+                  class="ui-button-large ui-button-block icon-refresh"
+                  (click)="refrescar()"
+                ></button>
+              </div>
+            </ginni-buscador>
+          </div>
+        </ginni-pagina-container>
+
+        <!-- COLUMNA DE MOBILE -->
+        <ul class="nav tab-control only-mobile">
+          <li class="nav-item full-width flex flex-middle-center space-between">
+            <a class="nav-link" (click)="alCambiarTab(true)" [ngClass]="{ active: tabEnTramite }">
+              {{ tituloEnTramite }}
+            </a>
+            <a class="nav-link" (click)="alCambiarTab(false)" [ngClass]="{ active: !tabEnTramite }">
+              {{ tituloEnProgramacionResponsive }}
+            </a>
+          </li>
+        </ul>
+        <div class="table-grid only-mobile">
+          <div class="table table-striped tr-pointer">
+            <div class="flex thead">
+              <div class="col-xs-6 th" *ngFor="let columna of columnasResponsive">
+                <div
+                  class="table-head__item active"
+                  [ngClass]="{
+                    asc: columna.asc,
+                    active: columna.focus
+                  }"
+                  (click)="
+                    clickEnColumna(
+                      columna,
+                      columnasResponsive,
+                      tabEnTramite ? 'tramite' : 'programacion'
+                    )
+                  "
+                >
+                  <span class="table-head__text"> {{ columna.name }} </span>
+                  <span class="icon-chevron-down"></span>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="tabEnTramite; else elseTemplate">
+              <div class="bandeja-vacia" *ngIf="tramiteContratos.length === 0">
+                <div>No se han encontrado resultados en la búsqueda</div>
+              </div>
+              <div class="flex flex-column tbody">
+                <div
+                  class="tr flex-wrap col-xs-12"
+                  [ngClass]="{
+                    active: item.active
+                  }"
+                  *ngFor="let item of tramiteContratos; let i = index"
+                >
+                  <div
+                    class="contrato-column flex"
+                    (click)="clickEnFilaResponsive(i, tramiteContratos)"
+                  >
+                    <div
+                      class="td col-xs-6"
+                      [innerHTML]="renderItem(item[columnasResponsive[0].id])"
+                    ></div>
+                    <div
+                      class="td col-xs-6"
+                      [innerHTML]="renderItem(item[columnasResponsive[1].id])"
+                    ></div>
+                  </div>
+                  <div class="contrato-mobile" *ngIf="item.active" @collapseInDownAnimation>
+                    <div class="contrato-mobile__head" (click)="redirectEditarAsociado(i)">
+                      <div class="contrato-mobile__item">
+                        <p *ngFor="let nombre of item.nombres" [innerHTML]="nombre"></p>
+                      </div>
+                      <div class="contrato-mobile__item">
+                        <i class="icon-chevron-right"></i>
+                      </div>
+                    </div>
+                    <div class="contrato-mobile__body">
+                      <div class="contrato-mobile__item">
+                        <div class="contrato-mobile__name">Fecha Adjudicación</div>
+                        <div class="contrato-mobile__descripcion">
+                          {{ item.fechaSituacionActual }}
+                        </div>
+                      </div>
+                      <div class="contrato-mobile__item">
+                        <div class="contrato-mobile__name">Contrato</div>
+                        <div class="contrato-mobile__descripcion">
+                          <p *ngFor="let contrato of item.contratos" [innerHTML]="contrato"></p>
+                        </div>
+                      </div>
+                      <div class="contrato-mobile__item">
+                        <div class="contrato-mobile__name">Categoría</div>
+                        <div class="contrato-mobile__descripcion">
+                          {{ nombreCategoria(item.segmento) }}
+                        </div>
+                      </div>
+                      <div class="contrato-mobile__item">
+                        <div class="contrato-mobile__name">Modalidad</div>
+                        <div class="contrato-mobile__descripcion">
+                          <p *ngFor="let modalidad of item.modalidades" [innerHTML]="modalidad"></p>
+                        </div>
+                      </div>
+                      <div class="contrato-mobile__item">
+                        <div class="contrato-mobile__name">Días</div>
+                        <div class="contrato-mobile__descripcion">
+                          {{ item.dias }}
+                          <div class="barra-progreso"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tabla__checklist">
+                      <div class="tabla__checklist-item disabled">
+                        <i class="icon-coins-pile checklist-item"></i> <i class="icon-minus"></i>
+                        <ng-container *ngIf="item.ecAprobada">
+                          <span class="icon-check color-green full-width"></span>
+                        </ng-container>
+                      </div>
+                      <div class="tabla__checklist-item disabled">
+                        <i class="icon-cart checklist-item"></i> <i class="icon-x"></i>
+                      </div>
+                      <div class="tabla__checklist-item disabled">
+                        <i class="icon-bill checklist-item"></i> <i class="icon-x"></i>
+                      </div>
+                      <div class="tabla__checklist-item disabled">
+                        <i class="icon-shield checklist-item"></i> <i class="icon-x"></i>
+                      </div>
+                      <div class="tabla__checklist-item disabled">
+                        <i class="icon-stamp checklist-item"></i> <i class="icon-x"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <ginni-paginador
+                  [ngClass]="{ hidden: numeroPaginas === 1 }"
+                  [(currentPage)]="paginaEnTramite"
+                  (currentPageChange)="traerDataDeTablas(columnasResponsive)"
+                  [totalItems]="totalEnTramite"
+                  [maxSize]="tamanioPaginador"
+                ></ginni-paginador>
+              </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <div class="bandeja-vacia">
+                <div>No se han encontrado resultados en la búsqueda</div>
+              </div>
+              <div class="flex justify-center">
+                <ginni-paginador
+                  [ngClass]="{ hidden: numeroPaginas === 1 }"
+                  [(currentPage)]="paginaEnProgramacion"
+                  [totalItems]="totalEnProgramacion"
+                  [maxSize]="tamanioPaginador"
+                ></ginni-paginador>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+
+        <ginni-pagina-container>
+          <!-- COLUMNA DE TRAMITE -->
+          <div class="table-content only-desktop">
+            <div class="title">{{ tituloEnTramite }}</div>
+            <div class="table-grid">
+              <ginni-grillas
+                *ngIf="columnasTramite.length"
+                [chevron]="true"
+                [columnas]="columnasTramite"
+                (columnaSelected)="clickEnColumnaTramite($event)"
+                [tableIcon]="true"
+              >
+                <tr *ngIf="tramiteContratos.length === 0">
+                  <td colspan="7" class="bandeja-vacia">
+                    <div>No se han encontrado resultados en la búsqueda</div>
+                  </td>
+                </tr>
+                <ng-container *ngIf="tramiteContratos.length">
+                  <tr
+                    *ngFor="let item of tramiteContratos; let i = index"
+                    (click)="redirectEditarAsociado(i)"
+                  >
+                    <td scope="row">{{ item.fechaSituacionActual }}</td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.nombres" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row">
+                      <p *ngFor="let nombre of item.contratos" [innerHTML]="nombre"></p>
+                    </td>
+                    <td scope="row" class="text-center">{{ item.segmento }}</td>
+                    <td scope="row">
+                      <p *ngFor="let modalidad of item.modalidades">{{ modalidad }}</p>
+                    </td>
+                    <td scope="row" class="text-center">
+                      <div>{{ item.dias }}</div>
+                      <div class="barra-progreso"></div>
+                    </td>
+                    <td scope="row">
+                      <div class="tabla__checklist">
+                        <div class="tabla__checklist-item">
+                          <ng-container *ngIf="item.ecAprobada">
+                            <span class="icon-check color-green full-width"></span>
+                          </ng-container>
+                        </div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                        <div class="tabla__checklist-item"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ginni-grillas>
+
+              <div class="flex space-between">
+                <ginni-paginador
+                  [ngClass]="{ hidden: numeroPaginas === 1 }"
+                  [(currentPage)]="paginaEnTramite"
+                  (currentPageChange)="traerDataDeTablas()"
+                  [totalItems]="totalEnTramite"
+                  [maxSize]="tamanioPaginador"
+                ></ginni-paginador>
+                <ginni-leyenda [listarLeyenda]="tiposCategoria"></ginni-leyenda>
+              </div>
+            </div>
+          </div>
+        </ginni-pagina-container>
+        <!-- COLUMNA DE PROGRAMACION -->
+        <!--
+        <ginni-pagina-container>
+        <div class="pagina-separador only-desktop"></div>
+          <div class="table-content only-desktop">
+            <div class="title">{{ tituloEnProgramacion }}</div>
+            <div class="table-grid only-desktop">
+              <table class="table table-striped tr-pointer">
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      [class]="columna.className ? columna.className : ''"
+                      *ngFor="let columna of columnasProgramacion"
+                      (click)="clickEnColumnaMobile(columna, columnasProgramacion, 'programacion')"
+                    >
+                      <div
+                        class="table-head__item active"
+                        [ngClass]="{
+                          asc: columna.asc,
+                          active: columna.focus
+                        }"
+                      >
+                        <span class="table-head__text"> {{ columna.name }} </span>
+                        <span class="icon-chevron-down"></span>
+                      </div>
+                    </th>
+                    <th scope="col" class="only-desktop">
+                      <div class="tabla__checklist">
+                        <div
+                          tooltip="Registros públicos"
+                          hide-delay="0"
+                          class="tabla__checklist-item icon-public-book disabled"
+                        ></div>
+                        <div
+                          tooltip="Ingreso al almacén"
+                          hide-delay="0"
+                          class="tabla__checklist-item icon-gift disabled"
+                        ></div>
+                        <div
+                          tooltip="Pagos"
+                          hide-delay="0"
+                          class="tabla__checklist-item icon-dollar disabled"
+                        ></div>
+                        <div
+                          tooltip="Programación de entrega"
+                          hide-delay="100"
+                          hide-delay="0"
+                          class="tabla__checklist-item icon-calendar1 disabled"
+                        ></div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="7" class="bandeja-vacia">
+                      <div>No se han encontrado resultados en la búsqueda</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ginni-paginador
+                [ngClass]="{ hidden: numeroPaginas === 1 }"
+                [(currentPage)]="paginaEnProgramacion"
+                [totalItems]="totalEnProgramacion"
+                [maxSize]="tamanioPaginador"
+              ></ginni-paginador>
+            </div>
+          </div>
+        </ginni-pagina-container>
+        -->
+      </div>
+    </ginni-cargando>
+  </div>
+</ginni-pagina-full>
+<ginni-dialog [active]="dialogFiltro" (activeChange)="cerrarFiltro()" title="Filtrar por...">
+  <div class="filter-dialog">
+    <ginni-multi-radio-button
+      [label]="radio.label"
+      [value]="radio.value"
+      (click)="clickRadioFiltro(radio, i)"
+      *ngFor="let radio of radioColumnas; let i = index"
+    ></ginni-multi-radio-button>
+
+    <div class="filter-button">
+      <button
+        ginniButton
+        color="primary"
+        class="ui-button-block"
+        type="button"
+        (click)="clickAplicarFiltro()"
+      >
+        Aplicar
+      </button>
+    </div>
+  </div>
+</ginni-dialog>
+
+<ginni-modal-icon-subtext
+  buttonColor="primary"
+  buttonText="Aceptar"
+  (close)="aceptarSeguimiento()"
+  icon="alert"
+  [show]="showSuccessOrError"
+>
+  <div text>{{ mensajeDocumento?.mensaje }}</div>
+</ginni-modal-icon-subtext>

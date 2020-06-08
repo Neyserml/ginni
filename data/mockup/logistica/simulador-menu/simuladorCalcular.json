@@ -1,0 +1,63 @@
+{
+  "listaConceptos": [
+    {
+      "clave":"CIN_B_CONTADO",
+      "valor":"CIB",
+      "monto":"0.00",
+      "tipoConcepto":"F",
+      "nombreConcepto":"Financiado",
+      "montoInicial":"0.00",
+      "readonly":false
+    },
+    {
+      "clave":"COB_DPRECIO",
+      "valor":"DIFERENCIA DE PRECIO",
+      "monto":"0.00",
+      "tipoConcepto":"F",
+      "nombreConcepto":"Financiado",
+      "montoInicial":"0.00","readonly":true
+    },
+    {
+      "clave":"COB_DPRECIO",
+      "valor":"DIFERENCIA DE PRECIO",
+      "monto":"0.00",
+      "tipoConcepto":"C",
+      "nombreConcepto":"Contado",
+      "montoInicial":"0.00",
+      "readonly":true
+    },
+    {
+      "clave":"ING_INSCR_REG",
+      "valor":"TRÁMITES",
+      "monto":"0.00",
+      "tipoConcepto":"F",
+      "nombreConcepto":"Financiado",
+      "montoInicial":"0.00",
+      "readonly":false
+    },{
+      "clave":"VENTA_EQ_ACC",
+      "valor":"ACCESORIOS",
+      "monto":"0.00",
+      "tipoConcepto":"F",
+      "nombreConcepto":"Financiado",
+      "montoInicial":"0.00",
+      "readonly":false
+    },{
+      "clave":"VENTA_EQ_ACC_GPS",
+      "valor":"GPS",
+      "monto":"800.00",
+      "tipoConcepto":"F",
+      "nombreConcepto":"Financiado",
+      "montoInicial":"800.00",
+      "readonly":false
+    },{
+      "clave":"VENTA_EQ_ACC_GPS",
+      "valor":"GPS",
+      "monto":"0.00",
+      "tipoConcepto":"C",
+      "nombreConcepto":"Contado",
+      "montoInicial":"0.00",
+      "readonly":true}
+  ],
+  "valorExcedente": "0.00"
+}

@@ -1,0 +1,150 @@
+@import "conf/colors";
+@import "conf/variables";
+
+.table-striped {
+
+  ::ng-deep {
+
+    .table-head__text {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.add-margin-right {
+  padding-right: 27px;
+}
+
+.title-back {
+  height: 45px;
+
+  ::ng-deep {
+
+    &> div:last-child {
+      width: 420px;
+
+      ginni-dropdown-table {
+
+        &> div {
+          width: 207px !important;
+          float: right;
+        }
+      }
+    }
+  }
+
+  & > div:first-child {
+    display: block;
+    float: left;
+
+    span {
+      color: $primary;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 27px;
+
+      @media (max-width: 1023px) {
+        font-size: 18px;
+      }
+
+      &:first-child {
+        margin-right: 13px;
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    margin-top: 32px;
+    padding-left: 29px;
+  }
+
+}
+
+table.scroll-info {
+  width: 100%;
+  border-spacing: 0;
+
+  th,
+  td,
+  tr,
+  thead,
+  tbody {
+    display: block;
+  }
+
+  thead tr {
+    /* fallback */
+    width: 97%;
+    /* minus scroll bar width */
+    width: -webkit-calc(100% - 16px);
+    width: -moz-calc(100% - 16px);
+    width: calc(100% - 16px);
+  }
+
+  tr:after {
+    content: " ";
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+
+  tbody {
+    height: 156px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  tbody td,
+  thead th {
+    white-space: nowrap;
+  }
+
+  tbody td:nth-child(1),
+  thead th:nth-child(1) {
+    width: 8.620689655%;
+    float: left;
+  }
+
+  tbody td:nth-child(2),
+  thead th:nth-child(2) {
+    width: 12.155172414%;
+    float: left;
+  }
+
+  tbody td:nth-child(3),
+  thead th:nth-child(3) {
+    width: 12.844827586%;
+    float: left;
+  }
+
+  tbody td:nth-child(4),
+  thead th:nth-child(4) {
+    width: 10%;
+    float: left;
+  }
+
+  tbody td:nth-child(5),
+  thead th:nth-child(5) {
+    width: 13.793103448%;
+    float: left;
+  }
+
+  tbody td:nth-child(6),
+  thead th:nth-child(6) {
+    width: 10.603448276%;
+    float: left;
+  }
+
+  tbody td:nth-child(7),
+  thead th:nth-child(7) {
+    width: 17.413793103%;
+    float: left;
+  }
+
+  tbody td:nth-child(8),
+  thead th:nth-child(8) {
+    width: 14.568965517%;
+    float: left;
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "estadoCivil": [
+    {
+      "valor": "Casado",
+      "clave": "69"
+    },
+    {
+      "valor": "Divorciado",
+      "clave": "70"
+    },
+    {
+      "valor": "Conviviente",
+      "clave": "71"
+    },
+    {
+      "valor": "Soltero",
+      "clave": "72"
+    },
+    {
+      "valor": "Viudo",
+      "clave": "73"
+    }
+  ],
+  "sexo": [
+    {
+      "valor": "MASCULINO",
+      "clave": "106"
+    },
+    {
+      "valor": "FEMENINO",
+      "clave": "107"
+    }
+  ],
+  "tipoZona": [
+    {
+      "valor": "Urbanización",
+      "clave": "82"
+    },
+    {
+      "valor": "Pueblo Joven",
+      "clave": "83"
+    },
+    {
+      "valor": "Unidad Vecinal",
+      "clave": "84"
+    },
+    {
+      "valor": "Conjunto habitaciona",
+      "clave": "85"
+    },
+    {
+      "valor": "Asentamiento humano ",
+      "clave": "86"
+    },
+    {
+      "valor": "Cooperativa",
+      "clave": "87"
+    },
+    {
+      "valor": "Residencial",
+      "clave": "88"
+    },
+    {
+      "valor": "Zona industrial",
+      "clave": "89"
+    },
+    {
+      "valor": "Grupo",
+      "clave": "90"
+    },
+    {
+      "valor": "Caserío",
+      "clave": "91"
+    },
+    {
+      "valor": "Fundo",
+      "clave": "92"
+    },
+    {
+      "valor": "Cercado",
+      "clave": "93"
+    },
+    {
+      "valor": "Sin Zona",
+      "clave": "94"
+    }
+  ],
+  "tipoVia": [
+    {
+      "valor": "Avenida",
+      "clave": "95"
+    },
+    {
+      "valor": "Jirón",
+      "clave": "96"
+    },
+    {
+      "valor": "Calle",
+      "clave": "97"
+    },
+    {
+      "valor": "Pasaje",
+      "clave": "98"
+    },
+    {
+      "valor": "Alameda",
+      "clave": "99"
+    },
+    {
+      "valor": "Malecón",
+      "clave": "100"
+    },
+    {
+      "valor": "Óvalo",
+      "clave": "101"
+    },
+    {
+      "valor": "Plaza",
+      "clave": "102"
+    },
+    {
+      "valor": "Carretera",
+      "clave": "103"
+    },
+    {
+      "valor": "Bloque",
+      "clave": "104"
+    },
+    {
+      "valor": "Sin Vía",
+      "clave": "105"
+    }
+  ],
+  "tipoRelacion": [
+    {
+      "valor": "Cónyuge",
+      "clave": "1"
+    },
+    {
+      "valor": "Padre / Madre",
+      "clave": "2"
+    },
+    {
+      "valor": "Hijo(a)",
+      "clave": "3"
+    },
+    {
+      "valor": "Hermano(a)",
+      "clave": "4"
+    },
+    {
+      "valor": "Empleado",
+      "clave": "8"
+    },
+    {
+      "valor": "Presidente Directorio",
+      "clave": "13"
+    },
+    {
+      "valor": "Director",
+      "clave": "14"
+    },
+    {
+      "valor": "Gerente",
+      "clave": "15"
+    },
+    {
+      "valor": "Accionista",
+      "clave": "21"
+    },
+    {
+      "valor": "Abuelo / Abuela",
+      "clave": "22"
+    },
+    {
+      "valor": "Nieto(a)",
+      "clave": "23"
+    },
+    {
+      "valor": "Padre / Madre del Cónyuge",
+      "clave": "24"
+    },
+    {
+      "valor": "Hijo(a) del Cónyuge",
+      "clave": "25"
+    }
+  ],
+  "tipoTrabajador": [
+    {
+      "valor": "Dependiente",
+      "clave": "112"
+    },
+    {
+      "valor": "Independiente",
+      "clave": "113"
+    },
+    {
+      "valor": "No Remunerado",
+      "clave": "114"
+    }
+  ],
+  "ingresoEconomico": [
+    {
+      "valor": "INGRESO PRINCIPAL",
+      "clave": "109"
+    },
+    {
+      "valor": "INGRESO PROPIO",
+      "clave": "110"
+    },
+    {
+      "valor": "INGRESO FAMILIAR",
+      "clave": "111"
+    }
+  ],
+  "tipoMoneda": [
+    {
+      "valor": "US$",
+      "clave": "2"
+    },
+    {
+      "valor": "S/",
+      "clave": "1"
+    }
+  ],
+  "origenIngreso": [
+    {
+      "valor": "TITULAR",
+      "clave": "115"
+    },
+    {
+      "valor": "CÓNYUGE",
+      "clave": "116"
+    },
+    {
+      "valor": "CONVIVIENTE",
+      "clave": "117"
+    }
+  ],
+  "tipoDocumentos": [
+    {
+      "valor": "LIBRETA ELECTORAL",
+      "clave": "15"
+    },
+    {
+      "valor": "C.E.",
+      "clave": "16"
+    },
+    {
+      "valor": "PASAPORTE",
+      "clave": "17"
+    },
+    {
+      "valor": "DNI",
+      "clave": "18"
+    },
+    {
+      "valor": "CARNET DE IDENTIDAD",
+      "clave": "19"
+    },
+    {
+      "valor": "CARNET DE FUERZAS POLICIALES",
+      "clave": "20"
+    },
+    {
+      "valor": "CARNET DE FUERZAS ARMADAS",
+      "clave": "21"
+    },
+    {
+      "valor": "REGISTRO ÚNICO DE CONTRIBUYENTES",
+      "clave": "22"
+    }
+  ],
+  "tipoCambio": 3.32,
+  "tipoRespaldo": [
+    {
+      "valor": "FAMILIAR",
+      "clave": "1"
+    },
+    {
+      "valor": "GARANTE",
+      "clave": "110"
+    }
+  ],
+  "tipoRespaldoJuridico": [
+    {
+      "valor": "GARANTE",
+      "clave": "110"
+    }
+  ]
+}

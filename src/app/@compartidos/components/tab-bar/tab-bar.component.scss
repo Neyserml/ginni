@@ -1,0 +1,67 @@
+@import "../../../../assets/sass/conf/conf";
+
+.tab-bar-items {
+  display: flex;
+  flex: 1;
+
+  @media (max-width: $resM) {
+    white-space: nowrap;
+  }
+}
+
+.tab-bar {
+  background: $dark-blue;
+  height: 100%;
+  margin-bottom: 80px;
+  padding-left: 20px;
+  border-top-color: $dark-light;
+  border-top-style: solid;
+  border-top-width: 1px;
+
+  @media (max-width: $resM) {
+    margin-bottom: 0;
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+.tab-bar-flexbox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-bar-wrapper {
+  position: relative;
+  color: #8aa3bd;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.tab-bar-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: $resM) {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+
+.tab-bar-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.dias-adjudicacion {
+  color: white;
+  padding-right: 3.75rem;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    padding: 0 12px;
+  }
+}

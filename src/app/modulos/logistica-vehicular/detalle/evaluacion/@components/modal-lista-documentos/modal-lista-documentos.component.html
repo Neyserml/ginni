@@ -1,0 +1,394 @@
+<ginni-modal
+  class="modal-dialog modal-full reset-body"
+  *ngIf="portalSandbox.esMobile"
+  [nativeBack]="true"
+  [show]="show"
+  (showChange)="showChange.emit($event)"
+>
+  <ginni-modal-head title>Documentos requeridos</ginni-modal-head>
+  <div body ginniAllPageHeight>
+    <div class="list-items" *ngIf="listaDocumentos">
+      <ginni-borrar-fila
+        class="text-small size-small"
+        [(row)]="documentoSeleccionadoEliminar"
+        (deleteRow)="accionEliminarDocumento()"
+        [rowCancel]="documentoSeleccionado != documentoSeleccionadoEliminar"
+      >
+        ¿Deseas eliminar?
+      </ginni-borrar-fila>
+      <div
+        *ngFor="let item of listaDocumentos; let i = index"
+        class="row-item"
+        [ngClass]="{ selected: i === documentoSeleccionado }"
+      >
+        <div class="item-text" (click)="seleccionarDocumento(i, item)">
+          {{ item.nombre.toUpperCase() }}
+        </div>
+        <div class="item-actions" (click)="clickEliminarDocumentoLista(i, item)">
+          <div class="action default" [ngClass]="{ hidden: !item.archivoCargado }">
+            <span class="icon-check color-green"></span>
+          </div>
+          <div class="action" [ngClass]="{ hidden: !item.adicional }">
+            <span class="icon-x-circle"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-documentos-extras__footer">
+      <div class="documentos-extras">
+        <div class="flex-full">
+          <div class="documentos-extras__head modal__view-wrapper">
+            <div class="row-add-button without-border reset-padding">
+              <ginni-button-icon
+                (click)="agregarOtrosDocumentos()"
+                color="blue-strong"
+                icon="plus-circle"
+              >
+                Agregar otros documentos
+              </ginni-button-icon>
+            </div>
+          </div>
+          <div [ginniExpand]="masDocumentos" class="documentos-extras__list">
+            <div
+              *ngIf="listaDocumentosAdicionales?.length"
+              class="documentos-extras__list--border modal__view-wrapper"
+            >
+              <div class="documentos-extras__list-contain">
+                <div
+                  class="documentos-extras__item"
+                  *ngFor="let item of listaDocumentosAdicionales"
+                >
+                  <ginni-checkbox [(value)]="item.value" [label]="item.nombre.toUpperCase()">
+                  </ginni-checkbox>
+                </div>
+              </div>
+              <div class="documentos-extras__footer flex justify-end-desktop">
+                <button
+                  ginniButton
+                  (click)="agregarExtras()"
+                  [disabled]="!activarSeleccion"
+                  color="blue-strong"
+                >
+                  Agregar la seleccion
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ginni-modal>
+
+<ginni-modal
+  class="modal-dialog modal-full reset-body modal--view"
+  *ngIf="portalSandbox.esMobile"
+  [(show)]="showVisorMobile"
+  (showChange)="onChangeVisorMobile()"
+>
+  <ginni-modal-head title>Subir documento</ginni-modal-head>
+  <div body>
+    <div class="documento-zone">
+      <ginni-pagina-container>
+        <div class="corner-left">
+          <ng-container *ngIf="listaDocumentos[documentoSeleccionado]">
+            <div>{{ listaDocumentos[documentoSeleccionado].nombre }}</div>
+            <div class="subtitle">(Tamaño máximo 10 MB)</div>
+          </ng-container>
+        </div>
+      </ginni-pagina-container>
+      <div
+        *ngIf="listaDocumentos[documentoSeleccionado]?.archivoCargado"
+        class="documento-dropzone"
+      >
+        <div class="documento-dropzone-image">
+          <ginni-borrar-fila
+            (deleteRow)="accionEliminarArchivo()"
+            class="text-small"
+            [btnText]="botonEliminarDocumento"
+            [(row)]="alertaDocumento"
+          >
+            {{ mensajeEliminarDocumento }}
+          </ginni-borrar-fila>
+          <div class="documento-adjunto row-item">
+            <div class="documento-adjunto-wrapper">
+              <a class="documento-adjunto-contain">
+                <div class="documento-adjunto-image">
+                  <img
+                    [src]="
+                      '../../../../../../../assets/imagenes/' +
+                      listaDocumentos[documentoSeleccionado].tipoArchivo.toLowerCase() +
+                      '.png'
+                    "
+                  />
+                </div>
+                <div class="documento-adjunto-text">
+                  <div class="documento-adjunto-title">
+                    {{ listaDocumentos[documentoSeleccionado].nombre }}
+                  </div>
+                </div>
+              </a>
+              <div class="documento-adjunto-action">
+                <div class="action" (click)="abrirAlertaDocumento()">
+                  <span class="icon-x-circle"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="documento-dropzone-footer row-item">
+        <div
+          class="documento-btn text-left"
+          *ngIf="documentoActual?.archivoCargado"
+          (click)="descargar_documento(documentoActual.archivoBlob, documentoActual.nombre)"
+        >
+          Descargar
+        </div>
+      </div>
+      <div *ngIf="guardadoArchivoError" class="alert alert-danger" role="alert">
+        {{ guardadoArchivoError }}
+      </div>
+      <ginni-cargando [loading]="loading" [failed]="loadingFailed"></ginni-cargando>
+      <div
+        *ngIf="!listaDocumentos[documentoSeleccionado]?.archivoCargado"
+        id="dropzone"
+        class="documento-dropzone"
+      >
+        <div class="documento-dropzone__footer">
+          <button ginniButton color="blue-strong">Buscar en la memoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ginni-modal>
+
+<ginni-modal
+  class="modal-full modal-without-padding modal--view"
+  *ngIf="portalSandbox.esDesktop"
+  [show]="show"
+  (showChange)="showChange.emit($event)"
+>
+  <div body>
+    <div class="row">
+      <ginni-cargando [loading]="loading" [failed]="loadingFailed"></ginni-cargando>
+      <div class="col-xs-5 corner-left modal-large-height">
+        <div class="modal-lista-documento-left  flex-full">
+          <div class="modal__view-wrapper modal__view-main">
+            <div class="title-primary">Documentos requeridos</div>
+            <div class="subtitle">
+              Carga los archivos requeridos (Tamaño máximo 10 MB)
+            </div>
+            <div class="list-items">
+              <ginni-borrar-fila
+                class="text-small size-small"
+                [(row)]="documentoSeleccionadoEliminar"
+                (deleteRow)="accionEliminarDocumento()"
+                [rowCancel]="documentoSeleccionado != documentoSeleccionadoEliminar"
+              >
+                ¿Eliminar de la lista?
+              </ginni-borrar-fila>
+              <div
+                *ngFor="let item of listaDocumentos; let i = index"
+                class="row-item reset-padding"
+                [ngClass]="{ selected: i === documentoSeleccionado }"
+              >
+                <div (click)="seleccionarDocumento(i, item)" class="item-text">
+                  {{ item.nombre.toUpperCase() }}
+                </div>
+                <div class="item-actions">
+                  <div class="action default" [ngClass]="{ hidden: !item.archivoCargado }">
+                    <span class="icon-check color-green"></span>
+                  </div>
+                  <div
+                    class="action"
+                    (click)="clickEliminarDocumentoLista(i, item)"
+                    [ngClass]="{ hidden: !item.adicional }"
+                  >
+                    <span class="icon-x-circle"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="listaDocumentos[documentoSeleccionado]?.archivoCargado"
+              class="form-text-area position-relative"
+            >
+              <div class="subtitle">
+                Observaciones
+              </div>
+              <textarea
+                name="observacion"
+                #textarea
+                cols="200"
+                maxlength="255"
+                style="text-transform: uppercase"
+                [value]="listaDocumentos[documentoSeleccionado]?.observacion"
+              ></textarea>
+              <div class="big-form-footer">
+                <button
+                  ginniButton
+                  (click)="guardarObservacion(textarea)"
+                  class="ui-button-padding"
+                  color="primary"
+                >
+                  Grabar cambios
+                </button>
+              </div>
+            </div>
+            <div class="big-form-footer">
+              <div class="alert alert-danger" role="alert" *ngIf="guardadoError">
+                {{ guardadoError }}
+              </div>
+              <div class="alert alert-success" role="alert" *ngIf="guardadoExitoso">
+                Los datos se han guardado exitosamente
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-documentos-extras__footer">
+          <div class="documentos-extras">
+            <div class="flex-full position-relative">
+              <div class="documentos-extras__head modal__view-wrapper">
+                <div class="row-add-button without-border reset-padding">
+                  <ginni-button-icon
+                    (click)="agregarOtrosDocumentos()"
+                    color="blue-strong"
+                    icon="plus-circle"
+                  >
+                    Agregar otros documentos
+                  </ginni-button-icon>
+                </div>
+              </div>
+              <div [ginniExpand]="masDocumentos" class="documentos-extras__list">
+                <div
+                  *ngIf="listaDocumentosAdicionales?.length"
+                  class="documentos-extras__list--border modal__view-wrapper"
+                >
+                  <div class="documentos-extras__list-contain">
+                    <div
+                      class="documentos-extras__item"
+                      *ngFor="let item of listaDocumentosAdicionales"
+                    >
+                      <ginni-checkbox [(value)]="item.value" [label]="item.nombre.toUpperCase()">
+                      </ginni-checkbox>
+                    </div>
+                  </div>
+                  <div class="documentos-extras__footer flex justify-end-desktop">
+                    <button
+                      ginniButton
+                      (click)="agregarExtras()"
+                      [disabled]="!activarSeleccion"
+                      color="blue-strong"
+                    >
+                      Agregar la seleccion
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-7 corner-right">
+        <div class="corner-right-wrapper">
+          <div class="documento-zone">
+            <div class="documento-dropzone-top">
+              <ng-container *ngIf="listaDocumentos[documentoSeleccionado]">
+                {{ listaDocumentos[documentoSeleccionado].nombre }}
+              </ng-container>
+            </div>
+            <ng-container
+              *ngIf="listaDocumentos[documentoSeleccionado]?.archivoCargado; else noHayUrl"
+            >
+              <div class="documento-dropzone">
+                <div
+                  class="documento-dropzone-image"
+                  *ngIf="
+                    listaDocumentos[documentoSeleccionado]?.tipoArchivo === 'imagen';
+                    else documentoPDF
+                  "
+                >
+                  <div class="documento-image row-item">
+                    <div class="documento-image-contain">
+                      <img
+                        [src]="listaDocumentos[documentoSeleccionado].archivo | sanitizeUrl"
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <ng-template #documentoPDF>
+                  <object
+                    *ngIf="
+                      !NullOrUndefined(documentoSeleccionado) &&
+                      !NullOrUndefined(listaDocumentos[documentoSeleccionado].archivo)
+                    "
+                    width="100%"
+                    [data]="listaDocumentos[documentoSeleccionado].archivo | sanitizeUrl"
+                    type="application/pdf"
+                  >
+                  </object>
+                </ng-template>
+              </div>
+            </ng-container>
+            <ng-template #noHayUrl>
+              <div id="dropzone" class="documento-dropzone documento-dropzone--dashed">
+                <div class="documento-dropzone__main">
+                  <div class="documento-dropzone__empty">
+                    <img src="../../../../../assets/imagenes/drag.png" />
+                    <p>Arrastra y suelta los archivos para cargar</p>
+                  </div>
+                </div>
+                <div class="documento-dropzone__footer">
+                  <button ginniButton color="blue-strong">
+                    Buscar en la computadora
+                  </button>
+                </div>
+              </div>
+            </ng-template>
+            <ginni-borrar-fila
+              (deleteRow)="accionEliminarArchivo()"
+              class="text-small"
+              [btnText]="botonEliminarDocumento"
+              [(row)]="alertaDocumento"
+              [visor]="true"
+            >
+              {{ mensajeEliminarDocumento }}
+            </ginni-borrar-fila>
+            <div
+              class="documento-dropzone-footer row-item flex space-between"
+              *ngIf="listaDocumentos[documentoSeleccionado]?.archivoCargado"
+            >
+              <div>
+                <div class="documento-btn danger" (click)="abrirAlertaDocumento()">
+                  Eliminar archivo
+                </div>
+                <label for="reemplazar" class="documento-btn">Reemplazar archivo</label>
+                <input
+                  type="file"
+                  id="reemplazar"
+                  (change)="reemplazarArchivo($event)"
+                  [multiple]="false"
+                />
+              </div>
+              <div class="flex-middle-center">
+                <div
+                  class="documento-btn"
+                  *ngIf="documentoActual?.archivoCargado"
+                  (click)="descargar_documento(documentoActual.archivoBlob, documentoActual.nombre)"
+                >
+                  <a id="descargar">Descargar</a>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="guardadoArchivoError" class="errorGuardado" role="alert">
+              <span class="icon-alert-triangle"></span>
+              {{ guardadoArchivoError }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ginni-modal>

@@ -1,0 +1,68 @@
+{
+  "idPersona": 306496,
+  "nombreCompleto": "PHONIX WORLD S.A.C",
+  "tipoDocumento": "RUC",
+  "numeroDocumento": "20390605235",
+  "numeroPartida": "3333",
+  "actividadEconomica": {
+    "identificador": 324,
+    "descripcion": "4530 - VENTAS DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES"
+  },
+  "giroNegocio": "FDS",
+  "fechaConstitucion": "01/07/1988",
+  "correo": "DESARROLLO@PANDERO.COM.PE",
+  "idCorreo": 241354,
+  "direccion": {
+    "idDireccion": 255664,
+    "idDepartamento": "15",
+    "idProvincia": "01",
+    "idDistrito": "22",
+    "idTipoZona": "82",
+    "nombreZona": "CERCADO DE MIRAFLORES",
+    "idTipoVia": "95",
+    "referencia": "JAJAJAJAJA",
+    "direccionTexto": "JOSE PARDO NRO. 138 INT. 204"
+  },
+  "facturacionMensual": {
+    "idFacturacionMensual": 406839,
+    "idMoneda": 1,
+    "tipoMoneda": "PEN",
+    "monto": 500.00
+  },
+  "telefonos": [{
+    "id": 147540,
+    "valor": "999999999",
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 1090104,
+    "valor": "999999999",
+    "anexo": "",
+    "tipo": "F",
+    "idAmbito": 12
+  }, {
+    "id": 1338499,
+    "valor": "999999999",
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 1859648,
+    "valor": "999999999",
+    "anexo": "",
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 1859649,
+    "valor": "999999999",
+    "anexo": "",
+    "tipo": "M",
+    "idAmbito": 12
+  }, {
+    "id": 1859650,
+    "valor": "999999999",
+    "anexo": "",
+    "tipo": "M",
+    "idAmbito": 12
+  }],
+  "contactos": null
+}

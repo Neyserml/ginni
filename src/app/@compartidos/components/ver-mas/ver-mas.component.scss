@@ -1,0 +1,21 @@
+@import "conf/conf";
+
+.link {
+  font-size: 13px;
+  color: $blue-strong;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+:host {
+  &.ver-mas-desktop {
+    @media (max-width: $resM) {
+      .ver-mas {
+        display: block !important;
+      }
+      .link {
+        display: none;
+      }
+    }
+  }
+}

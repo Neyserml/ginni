@@ -1,0 +1,256 @@
+[
+  {
+    "grupoId": 351,
+    "numeroGrupo": "3103",
+    "diaPago": 20,
+    "numeroAsamblea": 44,
+    "proximaAsamblea": 45,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      4
+    ],
+    "ganadoresSorteo": 2,
+    "vacantes": 105,
+    "resaltado": true,
+    "fechaInauguracion": "2015-09-17T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 14,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "60"
+  },
+  {
+    "grupoId": 354,
+    "numeroGrupo": "3104",
+    "diaPago": 20,
+    "numeroAsamblea": 43,
+    "proximaAsamblea": 44,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [],
+    "ganadoresSorteo": 2,
+    "vacantes": 76,
+    "resaltado": false,
+    "fechaInauguracion": "2015-10-22T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 28,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "50"
+  },
+  {
+    "grupoId": 404,
+    "numeroGrupo": "3500",
+    "diaPago": 5,
+    "numeroAsamblea": 30,
+    "proximaAsamblea": 31,
+    "fechaProximaAsamblea": "2019-04-15T14:30:00.00-05:00",
+    "ultimosRemates": [],
+    "ganadoresSorteo": 1,
+    "vacantes": 105,
+    "resaltado": false,
+    "fechaInauguracion": "2016-11-14T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 43,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "40"
+  },
+  {
+    "grupoId": 414,
+    "numeroGrupo": "3501",
+    "diaPago": 20,
+    "numeroAsamblea": 28,
+    "proximaAsamblea": 29,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      12,
+      7
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 60,
+    "resaltado": false,
+    "fechaInauguracion": "2017-01-16T19:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 95,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "30"
+  },
+  {
+    "grupoId": 419,
+    "numeroGrupo": "3502",
+    "diaPago": 20,
+    "numeroAsamblea": 27,
+    "proximaAsamblea": 28,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      13
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 73,
+    "resaltado": false,
+    "fechaInauguracion": "2017-02-27T19:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 66,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "70"
+  },
+  {
+    "grupoId": 427,
+    "numeroGrupo": "3503",
+    "diaPago": 5,
+    "numeroAsamblea": 25,
+    "proximaAsamblea": 26,
+    "fechaProximaAsamblea": "2019-04-15T14:30:00.00-05:00",
+    "ultimosRemates": [
+      13,
+      12
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 58,
+    "resaltado": false,
+    "fechaInauguracion": "2017-04-12T17:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 70,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "80"
+  },
+  {
+    "grupoId": 433,
+    "numeroGrupo": "3504",
+    "diaPago": 20,
+    "numeroAsamblea": 23,
+    "proximaAsamblea": 24,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      46,
+      15,
+      15,
+      12
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 34,
+    "resaltado": false,
+    "fechaInauguracion": "2017-06-16T17:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 35,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "90"
+  },
+  {
+    "grupoId": 351,
+    "numeroGrupo": "3103",
+    "diaPago": 20,
+    "numeroAsamblea": 44,
+    "proximaAsamblea": 45,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      4
+    ],
+    "ganadoresSorteo": 2,
+    "vacantes": 105,
+    "resaltado": false,
+    "fechaInauguracion": "2015-09-17T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 14,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "100"
+  },
+  {
+    "grupoId": 354,
+    "numeroGrupo": "3104",
+    "diaPago": 20,
+    "numeroAsamblea": 43,
+    "proximaAsamblea": 44,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [],
+    "ganadoresSorteo": 2,
+    "vacantes": 76,
+    "resaltado": false,
+    "fechaInauguracion": "2015-10-22T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 28,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "110"
+  },
+  {
+    "grupoId": 404,
+    "numeroGrupo": "3500",
+    "diaPago": 5,
+    "numeroAsamblea": 30,
+    "proximaAsamblea": 31,
+    "fechaProximaAsamblea": "2019-04-15T14:30:00.00-05:00",
+    "ultimosRemates": [],
+    "ganadoresSorteo": 1,
+    "vacantes": 105,
+    "resaltado": false,
+    "fechaInauguracion": "2016-11-14T18:30:00.00-05:00",
+    "porcentajeCuotaAdmin": 43,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "120"
+  },
+  {
+    "grupoId": 414,
+    "numeroGrupo": "3501",
+    "diaPago": 20,
+    "numeroAsamblea": 28,
+    "proximaAsamblea": 29,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      12,
+      7
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 60,
+    "resaltado": false,
+    "fechaInauguracion": "2017-01-16T19:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 95,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "130"
+  },
+  {
+    "grupoId": 419,
+    "numeroGrupo": "3502",
+    "diaPago": 20,
+    "numeroAsamblea": 27,
+    "proximaAsamblea": 28,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      13
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 73,
+    "resaltado": false,
+    "fechaInauguracion": "2017-02-27T19:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 66,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "140"
+  },
+  {
+    "grupoId": 427,
+    "numeroGrupo": "3503",
+    "diaPago": 5,
+    "numeroAsamblea": 25,
+    "proximaAsamblea": 26,
+    "fechaProximaAsamblea": "2019-04-15T14:30:00.00-05:00",
+    "ultimosRemates": [
+      13,
+      12
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 58,
+    "resaltado": false,
+    "fechaInauguracion": "2017-04-12T17:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 70,
+    "movimientoTipo": "Reubicación",
+    "numeroMeses": "150"
+  },
+  {
+    "grupoId": 433,
+    "numeroGrupo": "3504",
+    "diaPago": 20,
+    "numeroAsamblea": 23,
+    "proximaAsamblea": 24,
+    "fechaProximaAsamblea": "2019-04-26T14:30:00.00-05:00",
+    "ultimosRemates": [
+      46,
+      15,
+      15,
+      12
+    ],
+    "ganadoresSorteo": 1,
+    "vacantes": 34,
+    "resaltado": false,
+    "fechaInauguracion": "2017-06-16T17:00:00.00-05:00",
+    "porcentajeCuotaAdmin": 35,
+    "movimientoTipo": "Recupero",
+    "numeroMeses": "160"
+  }
+]
